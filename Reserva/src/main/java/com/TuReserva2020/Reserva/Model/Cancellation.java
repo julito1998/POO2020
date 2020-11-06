@@ -25,9 +25,9 @@ public class Cancellation implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @JoinColumn(name = "booking_id", referencedColumnName = "id")
-    @OneToOne(optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JoinColumn(name = "booking_id", referencedColumnName = "id")
+//    @OneToOne(optional = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     private Booking booking;
     
@@ -58,6 +58,14 @@ public class Cancellation implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Booking getBooking() {
+        return booking;
+    }
+
+    public void setBooking(Booking booking) {
+        this.booking = booking;
     }
     
 }

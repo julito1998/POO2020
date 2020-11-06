@@ -89,8 +89,6 @@ public class User implements Serializable{
         this.natioality = natioality;
     }
     
-    
-    
     public Long getId() {
         return id;
     }

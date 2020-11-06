@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.TuReserva2020.Reserva.Model;
 
 import com.sun.istack.NotNull;
@@ -31,15 +26,15 @@ public class Booking implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JoinColumn(name = "user_id", referencedColumnName = "id")
+//    @ManyToOne(optional = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     private List<User> user;
     
-    @JoinColumn(name = "room_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JoinColumn(name = "room_id", referencedColumnName = "id")
+//    @ManyToOne(optional = false)
+//    @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     private List<Room> room;
     
@@ -75,6 +70,22 @@ public class Booking implements Serializable {
         this.parking = parking;
         this.freeCancelation = freeCancelation;
         this.cost = cost;
+    }
+
+    public List<User> getUser() {
+        return user;
+    }
+
+    public void setUser(List<User> user) {
+        this.user = user;
+    }
+
+    public List<Room> getRoom() {
+        return room;
+    }
+
+    public void setRoom(List<Room> room) {
+        this.room = room;
     }
 
     
