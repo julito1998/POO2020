@@ -47,7 +47,7 @@ public class User implements Serializable{
         
     }
 
-    public User(Long id, String email, String firstName, String lastName, String password, Date birthDate, String natioality) {
+    public User(@NotNull Long id,@NotNull String email,@NotNull String firstName,@NotNull String lastName,@NotNull String password,@NotNull Date birthDate,@NotNull String natioality) {
         this.id = id;
         this.email = email;
         this.firstName = firstName;

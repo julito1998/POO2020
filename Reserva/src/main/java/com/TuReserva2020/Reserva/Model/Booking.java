@@ -8,12 +8,17 @@ package com.TuReserva2020.Reserva.Model;
 import com.sun.istack.NotNull;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
@@ -26,11 +31,17 @@ public class Booking implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
-    private User user;
+    private List<User> user;
     
+    @JoinColumn(name = "room_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
-    private Room room;
+    private List<Room> room;
     
     @NotNull
     @Column (name="check_in")
@@ -56,7 +67,16 @@ public class Booking implements Serializable {
     public Booking() {
     }
 
-    
+    public Booking(@NotNull Long id,@NotNull Date checkIn,@NotNull Date checkOut,@NotNull boolean breakfastIncluded,@NotNull boolean parking,@NotNull boolean freeCancelation,@NotNull float cost) {
+        this.id = id;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+        this.breakfastIncluded = breakfastIncluded;
+        this.parking = parking;
+        this.freeCancelation = freeCancelation;
+        this.cost = cost;
+    }
+
     
     
     
@@ -115,6 +135,5 @@ public class Booking implements Serializable {
     public void setCost(float cost) {
         this.cost = cost;
     }
-    
     
 }

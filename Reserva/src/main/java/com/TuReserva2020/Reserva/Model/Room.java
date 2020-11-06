@@ -13,13 +13,11 @@ public class Room implements Serializable {
         @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id;
 
-
         @NotNull
         private String name;
 
         @NotNull
         private float price;
-
 
         @NotNull
         private int occupancy;
@@ -30,11 +28,9 @@ public class Room implements Serializable {
         @NotNull
         private String facilities;
 
-
         public Room(){
 
         }
-
 
         public Room(@NotNull String name ,@NotNull float price, @NotNull int occupancy, @NotNull int availability, @NotNull String facilities) {
             this.name = name;

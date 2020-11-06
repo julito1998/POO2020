@@ -4,6 +4,8 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 
 /*id: Long
@@ -13,7 +15,7 @@ card: String
 cardNumber: String*/
 
 @Entity
-@Table(name="payment")
+@Table(name="payments")
 public class Payment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,7 +24,10 @@ public class Payment implements Serializable {
     @NotNull
     @Column(name="created_at")
     private Date createdAt;
-
+    
+    @JoinColumn(name = "booking_id", referencedColumnName = "id")
+    @OneToOne(optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     private Booking booking;
 
@@ -36,10 +41,9 @@ public class Payment implements Serializable {
     public Payment(){}
 
 
-    public Payment(Long id, Date createdAt, Booking booking, String card, String cardNumber) {
+    public Payment(@NotNull Long id,@NotNull Date createdAt,@NotNull String card,@NotNull String cardNumber) {
         this.id = id;
         this.createdAt = createdAt;
-        this.booking = booking;
         this.card = card;
         this.cardNumber = cardNumber;
     }

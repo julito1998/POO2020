@@ -8,7 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
@@ -21,6 +25,9 @@ public class Cancellation implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @JoinColumn(name = "booking_id", referencedColumnName = "id")
+    @OneToOne(optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     private Booking booking;
     
@@ -28,7 +35,7 @@ public class Cancellation implements Serializable {
     @Column(name="created_at")
     private Date createdAt;
     
-    public Cancellation(Long id, Date createdAt) {
+    public Cancellation(@NotNull Long id,@NotNull Date createdAt) {
         this.id = id;
         this.createdAt = createdAt;
     }
