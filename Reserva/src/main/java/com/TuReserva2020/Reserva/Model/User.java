@@ -3,7 +3,6 @@ package com.TuReserva2020.Reserva.Model;
 import com.sun.istack.NotNull;
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +24,6 @@ public class User implements Serializable{
     @NotNull
     private String email;
     
-    //este es el nombre real
     @NotNull
     @Column(name="first_name")
     private String firstName;

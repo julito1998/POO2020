@@ -2,6 +2,7 @@ package com.TuReserva2020.Reserva.Model;
 
 import com.sun.istack.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Column;
@@ -20,23 +21,23 @@ import org.hibernate.annotations.OnDeleteAction;
  * @author Julito
  */
 @Entity
-@Table(name="booking")
+@Table(name="bookings")
 public class Booking implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-//    @JoinColumn(name = "user_id", referencedColumnName = "id")
-//    @ManyToOne(optional = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
-    private List<User> user;
+    private List<User> user=new ArrayList();
     
-//    @JoinColumn(name = "room_id", referencedColumnName = "id")
-//    @ManyToOne(optional = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "room_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
-    private List<Room> room;
+    private List<Room> room= new ArrayList();
     
     @NotNull
     @Column (name="check_in")
@@ -86,10 +87,7 @@ public class Booking implements Serializable {
 
     public void setRoom(List<Room> room) {
         this.room = room;
-    }
-
-    
-    
+    }    
     
     public Long getId() {
         return id;
@@ -146,5 +144,7 @@ public class Booking implements Serializable {
     public void setCost(float cost) {
         this.cost = cost;
     }
+    
+    
     
 }

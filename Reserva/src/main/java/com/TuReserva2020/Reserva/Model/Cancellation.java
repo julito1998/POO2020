@@ -19,15 +19,15 @@ import org.hibernate.annotations.OnDeleteAction;
  * @author Julito
  */
 @Entity
-@Table(name="cancellation")
+@Table(name="cancellations")
 public class Cancellation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-//    @JoinColumn(name = "booking_id", referencedColumnName = "id")
-//    @OneToOne(optional = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "booking_id", referencedColumnName = "id")
+    @OneToOne(optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     private Booking booking;
     
