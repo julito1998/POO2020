@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.TuReserva2020.Reserva.Model;
 
 import com.sun.istack.NotNull;
+import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="users")
-public class User {
+public class User implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -30,26 +27,69 @@ public class User {
     
     //este es el nombre real
     @NotNull
-    private String name;
+    @Column(name="first_name")
+    private String firstName;
     
     //nombre del usuario
     @NotNull
-    @Column(name="name_user")
-    private String userName;
+    @Column(name="last_name")
+    private String lastName;
 
     @NotNull
     private String password;
     
+    @NotNull
+    private Date birthDate;
+    
+    private String natioality;
+    
     public User(){
         
     }
-    
-    public User(@NotNull String email,@NotNull String name,@NotNull String userName, @NotNull String password) {
+
+    public User(Long id, String email, String firstName, String lastName, String password, Date birthDate, String natioality) {
+        this.id = id;
         this.email = email;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.password = password;
-        this.userName = userName;
+        this.birthDate = birthDate;
+        this.natioality = natioality;
     }
+     
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getNatioality() {
+        return natioality;
+    }
+
+    public void setNatioality(String natioality) {
+        this.natioality = natioality;
+    }
+    
+    
     
     public Long getId() {
         return id;
@@ -74,21 +114,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String firstName) {
-        this.name = firstName;
-    }
-
-    
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }    
+     
 }
