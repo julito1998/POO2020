@@ -42,7 +42,7 @@ create table payments(
     created_at date not null,
     booking_id int not null,
     card varchar(255) not null,
-    card_number varchar(255) not null,
+    card_number varchar(255) not null
 );
 
 
