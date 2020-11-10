@@ -2,6 +2,7 @@ package com.TuReserva2020.Reserva.Model;
 
 import com.sun.istack.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import org.hibernate.annotations.OnDeleteAction;
  * @author Julito
  */
 @Entity
-@Table(name="booking")
+@Table(name="bookings")
 public class Booking implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,6 +32,7 @@ public class Booking implements Serializable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     private List<Room> room;
+
 
     
     @NotNull
@@ -81,10 +83,7 @@ public class Booking implements Serializable {
 
     public void setRoom(List<Room> room) {
         this.room = room;
-    }
-
-    
-    
+    }    
     
     public Long getId() {
         return id;
@@ -141,5 +140,7 @@ public class Booking implements Serializable {
     public void setCost(float cost) {
         this.cost = cost;
     }
+    
+    
     
 }

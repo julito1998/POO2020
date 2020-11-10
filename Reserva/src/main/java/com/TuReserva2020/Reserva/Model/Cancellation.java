@@ -19,7 +19,7 @@ import org.hibernate.annotations.OnDeleteAction;
  * @author Julito
  */
 @Entity
-@Table(name="cancellation")
+@Table(name="cancellations")
 public class Cancellation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
