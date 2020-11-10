@@ -20,15 +20,15 @@ public class Booking implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-//    @JoinColumn(name = "user_id", referencedColumnName = "id")
-//    @ManyToOne(optional = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     private List<User> user;
     
-//    @JoinColumn(name = "room_id", referencedColumnName = "id")
-//    @ManyToOne(optional = false)
-//    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "room_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     private List<Room> room;
 
