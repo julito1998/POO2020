@@ -18,7 +18,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name="payments")
 public class Payment implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
@@ -38,7 +38,9 @@ public class Payment implements Serializable {
     @Column(name="card_number")
     private String cardNumber;
 
-    public Payment(){}
+    public Payment(){
+        super();
+    }
 
 
     public Payment(@NotNull Long id,@NotNull Date createdAt,@NotNull String card,@NotNull String cardNumber) {

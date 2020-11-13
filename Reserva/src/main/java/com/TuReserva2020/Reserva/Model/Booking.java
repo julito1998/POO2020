@@ -2,6 +2,7 @@ package com.TuReserva2020.Reserva.Model;
 
 import com.sun.istack.NotNull;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -17,23 +18,21 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name="bookings")
 public class Booking implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
-    private List<User> user;
+    private User user;
     
     @JoinColumn(name = "room_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
-    private List<Room> room;
+    private Room room;
 
-
-    
     @NotNull
     @Column (name="check_in")
     private Date checkIn;
@@ -56,9 +55,11 @@ public class Booking implements Serializable {
     private float cost;
 
     public Booking() {
+       super();
     }
 
     public Booking(@NotNull Long id,@NotNull Date checkIn,@NotNull Date checkOut,@NotNull boolean breakfastIncluded,@NotNull boolean parking,@NotNull boolean freeCancelation,@NotNull float cost) {
+        super();
         this.id = id;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -68,21 +69,21 @@ public class Booking implements Serializable {
         this.cost = cost;
     }
 
-    public List<User> getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(List<User> user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public List<Room> getRoom() {
+    public Room getRoom() {
         return room;
     }
 
-    public void setRoom(List<Room> room) {
+    public void setRoom(Room room) {
         this.room = room;
-    }    
+    }
     
     public Long getId() {
         return id;

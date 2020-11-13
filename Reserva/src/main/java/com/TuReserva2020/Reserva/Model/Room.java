@@ -13,8 +13,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name="rooms")
 public class Room implements Serializable {
+        
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
         @NotNull
@@ -31,9 +32,9 @@ public class Room implements Serializable {
 
         @NotNull
         private String facilities;
-
+        
         public Room(){
-
+              super();
         }
 
         public Room(@NotNull String name ,@NotNull float price, @NotNull int occupancy, @NotNull int availability, @NotNull String facilities) {

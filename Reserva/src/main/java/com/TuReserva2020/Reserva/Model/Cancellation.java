@@ -22,7 +22,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name="cancellations")
 public class Cancellation implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @JoinColumn(name = "booking_id", referencedColumnName = "id")
@@ -36,11 +36,13 @@ public class Cancellation implements Serializable {
     private Date createdAt;
     
     public Cancellation(@NotNull Long id,@NotNull Date createdAt) {
+        super();
         this.id = id;
         this.createdAt = createdAt;
     }
 
     public Cancellation() {
+        super();
     }
 
     
