@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -27,8 +28,8 @@ public class UserController {
     //estado=404 error como por ejemplo rutas
     // la ruta quedaria:
     // http://localhost:8080/user/guardar
-    
-    @PostMapping({"/new"})
+    @RequestMapping(value = "/new", method = { RequestMethod.GET, RequestMethod.POST })
+    //@PostMapping({"/new"})
     public String regist(@ModelAttribute User user){
          try{
             userService.create(user);
@@ -39,6 +40,6 @@ public class UserController {
     }
     @GetMapping
     public String home(Model model){
-        return "users/home";
+        return "redirect:/home";
     }
 }
