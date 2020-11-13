@@ -7,8 +7,14 @@
 <body>
     <div>Login page</div>
     <form action="#" th:action="@{/users}"  th:object="${users}" method="post">
+        <p><label >Email:</label></p>
         <input types ="email" th:field ="*{email}"/>
+
+        <p><label>Contraseña:</label></p>
         <input types ="password" th:field ="*{password}"/>
+
+        <p id="bot"><input type="submit" id="submit" name="submit" value="Registrarse" class="boton"></p>
+
     </form>
 </body>
 </html>
