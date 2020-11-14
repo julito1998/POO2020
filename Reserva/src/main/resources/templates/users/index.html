@@ -6,7 +6,7 @@
 </head>
 <body>
 <div>Ingresar Usuario</div>
-<form action="#" th:action="@{/users}"  th:object="${users}" method="get">
+<form action="#" th:action="@{/users}"  th:object="${user}" method="get">
     <p><label >Email:</label></p>
     <input types ="email" th:field ="*{email}"/>
 

@@ -29,19 +29,17 @@ public class User implements Serializable,UserDetails{
     @NotNull
     private String email;
     
-    @NotNull
+    
     @Column(name="first_name")
     private String firstName;
     
-    //nombre del usuario
-    @NotNull
     @Column(name="last_name")
     private String lastName;
 
     @NotNull
     private String password;
     
-    @NotNull
+    @Column(name="birt_date")
     private Date birthDate;
     
     private String natioality;
@@ -50,8 +48,8 @@ public class User implements Serializable,UserDetails{
         super();
     }
 
-    public User(@NotNull Long id,@NotNull String email,@NotNull String firstName,@NotNull String lastName,@NotNull String password,@NotNull Date birthDate,@NotNull String natioality) {
-        this.id = id;
+    public User(@NotNull String email,String firstName,String lastName,@NotNull String password,Date birthDate,String natioality) {
+        super();
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;

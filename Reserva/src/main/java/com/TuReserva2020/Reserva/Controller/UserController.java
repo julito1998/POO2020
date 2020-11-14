@@ -1,9 +1,12 @@
 package com.TuReserva2020.Reserva.Controller;
+
 import com.TuReserva2020.Reserva.InterfaceService.IUserService;
 import com.TuReserva2020.Reserva.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author Julito
  */
-@RestController
-@RequestMapping({"/users"})
+@Controller
+@RequestMapping("users")
 public class UserController {
     
     @Autowired
@@ -28,18 +31,24 @@ public class UserController {
     //estado=404 error como por ejemplo rutas
     // la ruta quedaria:
     // http://localhost:8080/user/guardar
-    @RequestMapping(value = "/new", method = { RequestMethod.GET, RequestMethod.POST })
-    //@PostMapping({"/new"})
+//    @RequestMapping(value = "/new", method = { RequestMethod.GET, RequestMethod.POST })
+    @PostMapping
     public String regist(@ModelAttribute User user){
          try{
             userService.create(user);
             return "redirect:/users";
         }catch(Exception ex){
-            return ex.getMessage()+" Este mail ya existe: "+user.getEmail();
+            //return ex.getMessage()+" Este mail ya existe: "+user.getEmail();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build().toString();
         }
     }
     @GetMapping
-    public String home(Model model){
-        return "redirect:/home";
+    public String home(){
+        return "users/home";
+    }
+    @GetMapping("/new")
+    public String userNew(Model model){
+        model.addAttribute("user", new User());
+        return "users/new";
     }
 }

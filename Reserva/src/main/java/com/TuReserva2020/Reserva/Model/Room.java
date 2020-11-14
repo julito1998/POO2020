@@ -38,6 +38,7 @@ public class Room implements Serializable {
         }
 
         public Room(@NotNull String name ,@NotNull float price, @NotNull int occupancy, @NotNull int availability, @NotNull String facilities) {
+            super();
             this.name = name;
             this.price = price;
             this.occupancy = occupancy;

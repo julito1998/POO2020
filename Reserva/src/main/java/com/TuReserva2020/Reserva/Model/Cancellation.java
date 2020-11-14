@@ -35,14 +35,14 @@ public class Cancellation implements Serializable {
     @Column(name="created_at")
     private Date createdAt;
     
-    public Cancellation(@NotNull Long id,@NotNull Date createdAt) {
+    public Cancellation(@NotNull Date createdAt) {
         super();
-        this.id = id;
         this.createdAt = createdAt;
     }
 
     public Cancellation() {
         super();
+        this.createdAt = new Date();
     }
 
     

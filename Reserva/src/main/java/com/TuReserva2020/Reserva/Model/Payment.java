@@ -43,8 +43,8 @@ public class Payment implements Serializable {
     }
 
 
-    public Payment(@NotNull Long id,@NotNull Date createdAt,@NotNull String card,@NotNull String cardNumber) {
-        this.id = id;
+    public Payment(@NotNull Date createdAt,@NotNull String card,@NotNull String cardNumber) {
+        super();
         this.createdAt = createdAt;
         this.card = card;
         this.cardNumber = cardNumber;

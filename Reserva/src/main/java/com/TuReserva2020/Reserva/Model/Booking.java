@@ -58,9 +58,8 @@ public class Booking implements Serializable {
        super();
     }
 
-    public Booking(@NotNull Long id,@NotNull Date checkIn,@NotNull Date checkOut,@NotNull boolean breakfastIncluded,@NotNull boolean parking,@NotNull boolean freeCancelation,@NotNull float cost) {
+    public Booking(@NotNull Date checkIn,@NotNull Date checkOut,@NotNull boolean breakfastIncluded,@NotNull boolean parking,@NotNull boolean freeCancelation,@NotNull float cost) {
         super();
-        this.id = id;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.breakfastIncluded = breakfastIncluded;

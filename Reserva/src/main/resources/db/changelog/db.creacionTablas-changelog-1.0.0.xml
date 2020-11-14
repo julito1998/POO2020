@@ -16,10 +16,10 @@
             create table users(
                 id serial primary key not null,
                 email varchar(100) not null,
-                first_name varchar(50) not null,
-                last_name varchar(50) not null,
+                first_name varchar(50),
+                last_name varchar(50),
                 password varchar(100) not null,
-                birthDate date not null,
+                birthDate date,
                 natioality varchar (100)
             );
          </sql>
@@ -37,7 +37,7 @@
                 price float not null,
                 occupancy int not null,
                 availabitlity int not null, 
-                facilities varchar(255) not null
+                facilities varchar(255)
             );
          </sql>
     <rollback>

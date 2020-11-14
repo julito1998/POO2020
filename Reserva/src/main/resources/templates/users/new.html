@@ -6,14 +6,19 @@
 </head>
 <body>
     <div>Nuevo Usuario</div>
-    <form action="#" th:action="@{/users}"  th:object="${users}" method="post">
-        <p><label >Email:</label></p>
-        <input types ="email" th:field ="*{email}"/>
+    <form action="#" th:action="@{/users}"  th:object="${user}" method="post" class="frm-registrarse">
+        <p>
+            <label>Email:</label>
+        </p>
+        <input type="text" th:field ="*{email}"/>
+        <p>
+            <label>Contraseña:</label>
+        </p>
+        <input type="password" th:field ="*{password}"/>
 
-        <p><label>Contraseña:</label></p>
-        <input types ="password" th:field ="*{password}"/>
-
-        <p id="bot"><input type="submit" id="submit" name="submit" value="Registrarse" class="boton"></p>
+        <p id="btn">
+            <input type="submit" name="submit" value="Registrarse" class="btn-registrarse">
+        </p>
 
     </form>
 </body>
