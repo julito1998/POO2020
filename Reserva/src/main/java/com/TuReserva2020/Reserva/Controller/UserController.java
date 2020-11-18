@@ -72,7 +72,7 @@ public class UserController {
     private String login(@ModelAttribute User user){
         try{
             userDetailService.loadUserByUsername(user.getEmail());
-            return "redirect:users";
+            return "redirect:users/";
         }catch(UsernameNotFoundException ex){
             return ex.getMessage()+" este usuario no esta registrado: "+user.getEmail();
             //return "redirect:/users/error";
