@@ -8,19 +8,19 @@
 <body>
 <div class="all-container">
     <h2>Iniciar Sesion:</h2>
-    <form action="#" th:action="@{/users/index}"  th:object="${user}" method="post" class="frm-registrarse">
+    <form action="#" th:action="@{/users/index}"  th:object="${user}" method="post" class="frm-logearse">
         <p>
             <label>Email:</label>
             
-            <input types ="email" th:field ="*{email}"/>
+            <input type="email" placeholder="Ingrese su mail" th:field ="*{email}"/>
         </p>
         <p>
             <label>Contraseña:</label>
             
-            <input types ="password" th:field ="*{password}"/>
+            <input type="password" placeholder="Ingrese su password" autocomplete="off" value="off" th:field ="*{password}"/>
         </p>
         <p>
-            <input type="submit" id="submit" name="submit" value="Login" class="btn">
+            <input type="submit" name="submit" value="Login" class="btn">
         </p>
     </form>
 </div>

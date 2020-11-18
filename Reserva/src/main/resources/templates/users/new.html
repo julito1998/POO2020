@@ -14,12 +14,12 @@
             <p>
                <label>Email:</label>
             
-                <input type="text" th:field ="*{email}"/>
+                <input type="email" placeholder="Ingrese su mail" th:field ="*{email}"/>
             </p>
             <p>
                 <label>Contraseña:</label>
             
-                <input type="password" th:field ="*{password}"/>
+                <input type="password" autocomplete="off" placeholder="Ingrese su contraseña" th:field="*{password}"/>
             </p>
             <p>
                 <input type="submit" name="submit" value="Registrarse" class="btn">

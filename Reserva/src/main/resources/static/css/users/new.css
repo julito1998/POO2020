@@ -25,14 +25,14 @@ body{
  
 }
 
-
-.frm-container{
+.frm-registrarse{
     font-size: 24px;
 }
-.btn-registrarse{
+
+.btn{
     background-color: #1A48E3;
     color:white;
-    padding: 12px 48px;
+    padding: 12px 51px;
     border-radius: 4px;
     text-decoration: none;
     transition:.3s;

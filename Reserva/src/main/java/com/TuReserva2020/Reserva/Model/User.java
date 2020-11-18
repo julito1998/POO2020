@@ -57,7 +57,7 @@ public class User implements Serializable,UserDetails{
         this.birthDate = birthDate;
         this.natioality = natioality;
     }
-     
+    
     public String getFirstName() {
         return firstName;
     }

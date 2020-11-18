@@ -26,13 +26,13 @@ body{
 }
 
 
-.frm-registrarse{
+.frm-logearse{
     font-size: 24px;
 }
 .btn{
     background-color: #1A48E3;
     color:white;
-    padding: 12px 56px;
+    padding: 12px 82px;
     border-radius: 4px;
     text-decoration: none;
     transition:.3s;

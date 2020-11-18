@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Julito
  */
 @Controller
-@RequestMapping("users")
+@RequestMapping("/users")
 public class UserController {
     
     @Autowired
@@ -67,18 +67,19 @@ public class UserController {
         return "users/index";
     }
     
-    @RequestMapping("index")
-    @PostMapping
+    
+    @PostMapping("/index")
     private String login(@ModelAttribute User user){
         try{
             userDetailService.loadUserByUsername(user.getEmail());
             return "redirect:users";
         }catch(UsernameNotFoundException ex){
-            //return ex.getMessage()+" este usuario no esta registrado: "+user.getEmail();
-            return "redirect:/users/error";
+            return ex.getMessage()+" este usuario no esta registrado: "+user.getEmail();
+            //return "redirect:/users/error";
 //return ResponseEntity.status(HttpStatus.BAD_REQUEST).build().toString()+" - "+ ex.getMessage()+" este usuario no esta registrado: "+user.getEmail();
         }catch(NullPointerException nl){
-            return "redirect:/users/error";
+            return nl.getMessage()+" este usuario no esta registrado: "+user.getEmail();
+            //return "redirect:/users/error";
         }
     }
     

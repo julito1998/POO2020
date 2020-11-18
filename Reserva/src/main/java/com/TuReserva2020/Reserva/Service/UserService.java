@@ -33,15 +33,13 @@ public class UserService implements UserDetailsService, IUserService{
         User user=repo.findByEmail(email);
         //si el mail devuelve null
         if(!repo.existsByEmail(email)){
-            throw new UsernameNotFoundException("El mail no existe");
+            throw new UsernameNotFoundException("El mail: "+ email +" no existe");
         }
-        else{
-            //si existe el mail debo comprobar que coincida con el password, en caso de que no exista el mail tira una exception de null pointer
-            if(repo.findByEmailAndPassword(email,new BCryptPasswordEncoder().encode(user.getPassword()))==null){
-                    throw new NullPointerException("El password no coincide");
-            }
+        //si existe el mail debo comprobar que coincida con el password, en caso de que no exista el mail tira una exception de null pointer
+        if(repo.findByPassword(user.getPassword())==null){
+                throw new NullPointerException("El password no coincide con el mail: "+user.getEmail() +" password: " + user.getPassword());
         }
-    return user;
+        return user;
     }
 
     @Override
