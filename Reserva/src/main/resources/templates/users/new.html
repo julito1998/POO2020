@@ -2,16 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <!--<link rel="stylesheet"  href="src/main/resources/templates/users/css/new.css" type="text/css">-->
     <link rel="stylesheet" th:href= "@{/css/users/new.css}">
     
-    <title>Login page</title>
+    <title>Registrar usuario</title>
 </head>
 <body>
     <div class="all-container">
         <h2>Nuevo Usuario:</h2>
         <form action="#" th:action="@{/users}"  th:object="${user}" method="post" class="frm-registrarse">
-         <div class="frm-container">  
+         
             <p>
                <label>Email:</label>
             
@@ -23,9 +22,9 @@
                 <input type="password" th:field ="*{password}"/>
             </p>
             <p>
-                <input type="submit" name="submit" value="Registrarse" class="btn-registrarse">
+                <input type="submit" name="submit" value="Registrarse" class="btn">
             </p>
-         </div> 
+         
         </form>
            
     </div>

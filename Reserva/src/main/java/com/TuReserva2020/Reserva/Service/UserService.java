@@ -26,15 +26,28 @@ public class UserService implements UserDetailsService, IUserService{
     @Autowired
     private UserRepo repo;
     
+     
+    
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return repo.findByEmail(email);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException,NullPointerException {
+        User user=repo.findByEmail(email);
+        //si el mail devuelve null
+        if(!repo.existsByEmail(email)){
+            throw new UsernameNotFoundException("El mail no existe");
+        }
+        else{
+            //si existe el mail debo comprobar que coincida con el password, en caso de que no exista el mail tira una exception de null pointer
+            if(repo.findByEmailAndPassword(email,new BCryptPasswordEncoder().encode(user.getPassword()))==null){
+                    throw new NullPointerException("El password no coincide");
+            }
+        }
+    return user;
     }
 
     @Override
     public User create(User user) {
        //si no existe el email ese en la bd lo guardo
-        if(repo.existsByEmail(user.getEmail())==false){
+        if(!repo.existsByEmail(user.getEmail())){
            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
            return repo.save(user);
        }

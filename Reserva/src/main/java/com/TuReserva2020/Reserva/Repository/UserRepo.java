@@ -14,4 +14,5 @@ public interface UserRepo extends JpaRepository<User,Long> {
     User findByEmail(String email);
    //para chequear y no tener usuarios con el mismo nombre o email
     boolean existsByEmail(String email);
+    User findByEmailAndPassword(String email, String password);
 }

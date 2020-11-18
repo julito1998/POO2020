@@ -2,21 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href= "@{/css/users/login.css}">
     <title>Login page</title>
 </head>
 <body>
-<div>Ingresar Usuario</div>
-<form action="#" th:action="@{/users}"  th:object="${user}" method="get">
-    <p><label >Email:</label></p>
-    <input types ="email" th:field ="*{email}"/>
-
-    <p><label>Contraseña:</label></p>
-    <input types ="password" th:field ="*{password}"/>
-
-
-    <p id="bot"><input type="submit" id="submit" name="submit" value="Ingresar" class="boton"></p>
-    <p id="bot"><input type="submit" id="submit" name="submit" value="Registrarse" class="boton"></p>
-
-</form>
+<div class="all-container">
+    <h2>Iniciar Sesion:</h2>
+    <form action="#" th:action="@{/users/index}"  th:object="${user}" method="post" class="frm-registrarse">
+        <p>
+            <label>Email:</label>
+            
+            <input types ="email" th:field ="*{email}"/>
+        </p>
+        <p>
+            <label>Contraseña:</label>
+            
+            <input types ="password" th:field ="*{password}"/>
+        </p>
+        <p>
+            <input type="submit" id="submit" name="submit" value="Login" class="btn">
+        </p>
+    </form>
+</div>
 </body>
 </html>
