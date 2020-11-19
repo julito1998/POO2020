@@ -36,8 +36,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			httpSecurity
 				.authorizeRequests().antMatchers("/","/js/**","/css/**","users","users/principal","users/logout","users/login","users/new").permitAll(); //se permite toda operacion en esta url
                             
-//                        httpSecurity
-//                              .authorizeRequests()
-//                              .antMatchers("/**").access("hasRole(ROLE_USER)");                       
+                        httpSecurity
+                              .authorizeRequests()
+                              .antMatchers("/**").access("hasRole(ROLE_USER)");
     }
 }
