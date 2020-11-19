@@ -50,7 +50,7 @@ public class UserController {
             //return ResponseEntity.status(HttpStatus.BAD_REQUEST).build().toString();
         }
     }
-    @GetMapping
+    @GetMapping("/home")
     public String home(){
         return "users/home";
     }
@@ -76,7 +76,7 @@ public class UserController {
     private String login(@ModelAttribute User user){
         try{
             userDetailService.loadUserByUsername(user.getEmail());
-            return "redirect:users";
+            return "redirect:users/home";
 
         }catch(UsernameNotFoundException ex){
            return ex.getMessage()+" este usuario no esta registrado: "+user.getEmail();

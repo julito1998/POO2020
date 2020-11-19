@@ -29,16 +29,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
      protected void configure(AuthenticationManagerBuilder auth) throws Exception{
          auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-           
+
      } 
     @Override
      protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-				.authorizeRequests().antMatchers("/","/js/**","/css/**","users","users/principal","users/logout","users/login","users/new").permitAll(); //se permite toda operacion en esta url
 
-                        httpSecurity
-                              .authorizeRequests()
-                              .antMatchers("/**").access("hasRole(ROLE_USER)");
+
+        httpSecurity
+				.authorizeRequests()
+                .antMatchers("/","/js/**","/css/**","users","users/principal","users/logout","users/login","users/new").permitAll(); //se permite toda operacion en esta url
+
+          /*httpSecurity
+                .authorizeRequests()
+                .antMatchers("/**").access("hasRole(ROLE_USER)");*/
+
 
     }
 }
