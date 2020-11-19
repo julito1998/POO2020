@@ -45,9 +45,9 @@ public class UserController {
          try{
             userService.create(user);
             return "redirect:/users/index";
-        }catch(Exception ex){
-            //return ex.getMessage()+" Este mail ya existe: "+user.getEmail();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build().toString();
+        }catch(UsernameNotFoundException errorU){
+            return errorU.getMessage();
+            //return ResponseEntity.status(HttpStatus.BAD_REQUEST).build().toString();
         }
     }
     @GetMapping
@@ -72,7 +72,7 @@ public class UserController {
     private String login(@ModelAttribute User user){
         try{
             userDetailService.loadUserByUsername(user.getEmail());
-            return "redirect:users";
+            return "redirect:/users";
         }catch(UsernameNotFoundException ex){
             return ex.getMessage()+" este usuario no esta registrado: "+user.getEmail();
             //return "redirect:/users/error";
