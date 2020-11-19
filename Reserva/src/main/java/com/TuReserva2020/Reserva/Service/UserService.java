@@ -37,7 +37,7 @@ public class UserService implements UserDetailsService, IUserService{
         }
         //si existe el mail debo comprobar que coincida con el password, en caso de que no exista el mail tira una exception de null pointer
         if(repo.findByPassword(new BCryptPasswordEncoder().encode(user.getPassword()))==null){
-                throw new NullPointerException("El password: "+user.getEmail()+"no coincide con el mail: " + user.getPassword());
+                throw new NullPointerException("El password: "+user.getPassword()+" no coincide con el mail: " +user.getEmail());
         }
         return user;
     }

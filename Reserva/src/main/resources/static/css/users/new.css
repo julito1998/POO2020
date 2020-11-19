@@ -11,35 +11,33 @@ body{
     font-family: 'Roboto', sans-serif;
     background-color: white;
     margin: 0px;
-}
-
-.all-container{
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1509822929063-6b6cfc9b42f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80');
     background-size: cover;
     background-position: center;
-    background-color: white;
-    padding: 183px;
+}
+
+.all-container{
+    padding: 220px 450px;
     align-items: center;
     color: white;
     text-align: right;
- 
 }
 
 .frm-registrarse{
     font-size: 24px;
 }
 
-.btn{
+.btn-registrarse{
     background-color: #1A48E3;
     color:white;
-    padding: 12px 51px;
+    padding: 1% 20%;
     border-radius: 4px;
     text-decoration: none;
     transition:.3s;
     font-weight: bold;
     border:none;
 }
-.btn:hover{
+.btn-registrarse:hover{
     color:#002646 !important;
 }
 
@@ -47,8 +45,10 @@ label{
     opacity: 0.75;
 }
 h2{
-    font-size: 48px;
-    font-weight: bold;
+    font-size: 48px !important;
+    font-weight: bold !important;
+    text-align: center;
+    line-height:2 !important;
 }
 input{
     border-radius: 2px;

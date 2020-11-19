@@ -3,43 +3,53 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
+/*
     Created on : 17-nov-2020, 19:53:00
     Author     : Julito
 */
+html {
+    box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
 body{
     font-family: 'Roboto', sans-serif;
     background-color: white;
     margin: 0px;
-}
-
-.all-container{
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80');
     background-size: cover;
     background-position: center;
-    background-color: white;
-    padding: 183px;
+    position: relative;
+}
+
+.all-container{
+    padding: 220px 450px;
     align-items: center;
     color: white;
     text-align: right;
- 
 }
 
 
 .frm-logearse{
     font-size: 24px;
 }
-.btn{
+.btn-login{
     background-color: #1A48E3;
     color:white;
-    padding: 12px 82px;
+    padding: 12px 124px;
     border-radius: 4px;
     text-decoration: none;
     transition:.3s;
     font-weight: bold;
     border:none;
 }
-.btn:hover{
+.btn-login:hover{
     color:#002646 !important;
 }
 
@@ -47,10 +57,16 @@ label{
     opacity: 0.75;
 }
 h2{
-    font-size: 48px;
-    font-weight: bold;
+    font-size: 48px !important;
+    font-weight: bold !important;
+    text-align: center;
+    line-height:2 !important;
 }
 input{
     border-radius: 2px;
     font-size: 20px;
+}
+.go-to-new{
+    color:cornflowerblue;
+    font-size: 15px;
 }
