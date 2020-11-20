@@ -30,8 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      
     @Override
      protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-           
+        auth.userDetailsService(userDetailsService);
      } 
     @Override
      protected void configure(HttpSecurity http) throws Exception {
@@ -51,11 +50,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
         http
-				.authorizeRequests().antMatchers("/","/js/**","/css/**","/users","/users/principal","/users/login","/users/new").permitAll() //se permite toda operacion en esta url
-                .and().formLogin().loginPage("/users/login");
+				.authorizeRequests().antMatchers("/","/js/**","/css/**","/users","/users/principal","/users/login","/users/new").permitAll(); //se permite toda operacion en esta url
+                //.and().formLogin().loginPage("/users/login");
         http
                 .authorizeRequests()
-                .antMatchers("/**").hasRole("USER");
+                .antMatchers("/*", "/*/*")
+                .access("hasRole('ROLE_USER')");
+                /*.authorizeRequests()
+                .antMatchers("/**").hasRole("ROLE_USER");*/
+                
 
     }
 }
