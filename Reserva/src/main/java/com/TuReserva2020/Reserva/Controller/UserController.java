@@ -49,7 +49,6 @@ public class UserController {
     }
 
 
-
     @GetMapping("/new")
     public String userNew(Model model){
         model.addAttribute("user", new User());
@@ -65,17 +64,13 @@ public class UserController {
     }
 
 
-
-
-
     @PostMapping("/new")
     public String regist(@ModelAttribute User user){
          try{
             userService.create(user);
             return "redirect:/users/login";
         }catch(UsernameNotFoundException errorU){
-            return errorU.getMessage();
-            //return ResponseEntity.status(HttpStatus.BAD_REQUEST).build().toString();
+            return "redirect:/users/new";
         }
     }
 
@@ -92,19 +87,15 @@ public class UserController {
         try{
             userDetailService.loadUserByUsername(user.getEmail());
             return "redirect:/users/home";
-
         }catch(UsernameNotFoundException ex){
-           return ex.getMessage()+" este usuario no esta registrado: "+user.getEmail();
-
-            //return "redirect:/users/error";
-            //return ResponseEntity.status(HttpStatus.BAD_REQUEST).build().toString()+" - "+ ex.getMessage()+" este usuario no esta registrado: "+user.getEmail();
-
-        }catch(NullPointerException nl){
-            //return nl.getMessage()+" este usuario no esta registrado: "+user.getEmail();
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).toString();
-            //return "redirect:/users/error";
+            return "redirect:/users/login";
+        }catch (Exception e){
+            return "redirect:/users/login";
         }
+
+
     }
+
     
     
 }

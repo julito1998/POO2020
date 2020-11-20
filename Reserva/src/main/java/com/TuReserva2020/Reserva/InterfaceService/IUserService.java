@@ -8,4 +8,5 @@ import com.TuReserva2020.Reserva.Model.User;
  */
 public interface IUserService {
     public User create(User user);
+
 }
