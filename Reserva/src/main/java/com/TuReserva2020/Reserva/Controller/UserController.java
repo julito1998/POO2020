@@ -5,6 +5,7 @@ import com.TuReserva2020.Reserva.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
@@ -73,10 +74,11 @@ public class UserController {
     }
 
 
-   /* @GetMapping("users/")
-    public String principal(){
+   @GetMapping
+    public String principal(Authentication authentication){
+        User user= (User)authentication.getPrincipal();
         return "users/principal";
-    }*/
+    }
 
 
 
