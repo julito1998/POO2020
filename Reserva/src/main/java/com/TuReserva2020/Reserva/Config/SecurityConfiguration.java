@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.ui.ModelMap;
+
 /**
  *
  * @author Julito
@@ -22,16 +24,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Qualifier("userService")
     @Autowired
     private UserDetailsService userDetailsService;
-    
+
+
     @Bean 
      public BCryptPasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder(4);
+        return new BCryptPasswordEncoder();
     }
      
     @Override
      protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.userDetailsService(userDetailsService);
-     } 
+
+        auth.userDetailsService(userDetailsService);}
+
+
+
     @Override
      protected void configure(HttpSecurity http) throws Exception {
 
@@ -50,6 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
         http
+
 				.authorizeRequests().antMatchers("/","/js/**","/css/**","/users","/users/principal","/users/login","/users/new").permitAll(); //se permite toda operacion en esta url
                 //.and().formLogin().loginPage("/users/login");
         http
