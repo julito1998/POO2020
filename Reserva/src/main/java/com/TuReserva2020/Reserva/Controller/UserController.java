@@ -89,20 +89,23 @@ public class UserController {
     private String login(@ModelAttribute User user){
         try{
             userDetailService.loadUserByUsername(user.getEmail());
+
             return "redirect:/users/home";
 
         }catch(UsernameNotFoundException ex){
-           return ex.getMessage()+" este usuario no esta registrado: "+user.getEmail();
+           //return ex.getMessage();
 
-            //return "redirect:/users/error";
+            return "redirect:/users/login";
             //return ResponseEntity.status(HttpStatus.BAD_REQUEST).build().toString()+" - "+ ex.getMessage()+" este usuario no esta registrado: "+user.getEmail();
 
-        }catch(NullPointerException nl){
-            //return nl.getMessage()+" este usuario no esta registrado: "+user.getEmail();
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).toString();
-            //return "redirect:/users/error";
+        }catch (Exception e){
+            //return "error general: "+ e.getMessage();
+            return "redirect:/users/login";
         }
+            //return ResponseEntity.status(HttpStatus.NOT_FOUND).toString();
+
     }
+
     
     
 }
