@@ -7,16 +7,7 @@ and open the template in the editor.
     Created on : 17-nov-2020, 19:53:00
     Author     : Julito
 */
-html {
-    box-sizing: border-box;
-}
-*,
-*:before,
-*:after {
-    box-sizing: inherit;
-    margin: 0;
-    padding: 0;
-}
+
 
 body{
     font-family: 'Roboto', sans-serif;
