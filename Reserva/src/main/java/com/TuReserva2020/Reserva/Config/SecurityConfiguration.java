@@ -28,7 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean 
      public BCryptPasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder(4);
+        return new BCryptPasswordEncoder();
     }
      
     @Override
@@ -54,9 +54,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
         http
-				.authorizeRequests().antMatchers("/","/js/**","/css/**","/users","/users/principal","/users/logout","/users/login","/users/new").permitAll() //se permite toda operacion en esta url
-                .and()
-                .formLogin().loginPage("/users/principal");
+				.authorizeRequests().antMatchers("/","/js/**","/css/**","/users","/users/principal","/users/logout","/users/login","/users/new").permitAll(); //se permite toda operacion en esta url
+
         http
                 .authorizeRequests()
                 .antMatchers("/**") .hasRole("USER");
