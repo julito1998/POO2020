@@ -29,18 +29,18 @@ public class UserService implements UserDetailsService, IUserService{
      
     
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException,NullPointerException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        //si no encuentro al usuario al menos debo retornar algo de tipo User
+
         User user=repo.findByEmail(email);
-        //si el mail devuelve null
-        if(!repo.existsByEmail(email)){
-            throw new UsernameNotFoundException("El mail: "+ email +" no existe");
-        }
-        //si existe el mail debo comprobar que coincida con el password, en caso de que no exista el mail tira una exception de null pointer
-        if(repo.findByPassword(new BCryptPasswordEncoder().encode(user.getPassword()))==null){
-                throw new NullPointerException("El password: "+user.getPassword()+" no coincide con el mail: " +user.getEmail());
-        }
+        //si encuentra al usuario lo retorno
+            if(user==null){
+                throw new UsernameNotFoundException("error");
+            }
         return user;
     }
+
+
 
     @Override
     public User create(User user) throws UsernameNotFoundException {
@@ -51,9 +51,11 @@ public class UserService implements UserDetailsService, IUserService{
            user=repo.save(user);
        }
         else{
-            throw new UsernameNotFoundException("El mail: "+ user.getEmail() +" ya existe");
+            throw new UsernameNotFoundException("El mail : "+ user.getEmail() +" ya esta asociado a un usuario");
         }
        return user;
     }
+
+
 
 }
