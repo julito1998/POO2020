@@ -7,13 +7,17 @@
 <body>
 
 <div>Bienvenido al Home</div>
-<form action="/users/home" th:action="@{/users}" method="get">
+
+<form action="#" th:action="@{/users/home}" method="get">
 
 
     <p>
-        <input type="submit" name="logout" value="Logout" class="ui-corner-bottom">
+
+        <a th:href="@{login}" metod="get" class="go-to-login" >Logout</a>
+
     </p>
 
+    s
 </form>
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.TuReserva2020.Reserva.Controller;
 import com.TuReserva2020.Reserva.InterfaceService.IUserService;
 import com.TuReserva2020.Reserva.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -31,7 +32,8 @@ public class UserController {
     
     @Autowired
     private IUserService userService;
-    
+
+    @Qualifier("userService")
     @Autowired
     private UserDetailsService userDetailService;
 
@@ -74,9 +76,8 @@ public class UserController {
     }
 
 
-   @GetMapping
-    public String principal(Authentication authentication){
-        User user= (User)authentication.getPrincipal();
+   @GetMapping("/principal")
+    public String principal(){
         return "users/principal";
     }
 
