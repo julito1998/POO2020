@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href= "@{/css/users/login.css}">
@@ -18,8 +18,6 @@
 <body>
 <div class="all-container">
     <h2>Iniciar Sesion:</h2>
-    <div th:object="${user}" th:if="${user.error}" class="div-form-container">
-        Invalid username and password.
 
     <form action="#" th:action="@{/users/login}"  th:object="${user}" method="post" class="frm-logearse">
 

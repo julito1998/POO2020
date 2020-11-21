@@ -5,7 +5,13 @@
  */
 package com.TuReserva2020.Reserva.DTO;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  *
@@ -13,19 +19,14 @@ import java.io.Serializable;
  */
 public class UserLoginDTO implements Serializable {
 
-    private String password;
     private String email;
+    private String password;
 
-
-    public UserLoginDTO(String password, String email) {
-        super();
-        this.password = password;
+    public UserLoginDTO(String email, String password) {
         this.email = email;
+        this.password = password;
     }
 
-    public UserLoginDTO() {
-        super();
-    }
 
     public String getPassword() {
         return password;
@@ -35,6 +36,10 @@ public class UserLoginDTO implements Serializable {
         this.password = password;
     }
 
+    public UserLoginDTO() {
+        super();
+    }
+
     public String getEmail() {
         return email;
     }
@@ -42,7 +47,6 @@ public class UserLoginDTO implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
 }
 

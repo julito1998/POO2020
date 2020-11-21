@@ -9,6 +9,4 @@ import java.util.TimeZone;
 
 public class BookingDTO implements Serializable {
 
-
-
 }

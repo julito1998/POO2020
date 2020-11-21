@@ -15,6 +15,7 @@ public class RoomService implements IRoomService {
 
     @Override
     public List<Room> getRoomsAvailable(Date checkIn, Date checkOut, int occupancy) {
-        return repo.findRoomOccupancyInDate(checkIn,checkOut,occupancy);
+        //return repo.findRoomOccupancyInDate(checkIn,checkOut,occupancy);
+        return null;
     }
 }

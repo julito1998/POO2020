@@ -6,8 +6,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class RoomAvailabilityDTO {
-    private static final SimpleDateFormat dateFormat
-            = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     private int occupancy;
     private  String checkIn;
