@@ -30,6 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
      
     @Override
      protected void configure(AuthenticationManagerBuilder auth) throws Exception{
@@ -39,23 +40,32 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      protected void configure(HttpSecurity http) throws Exception {
 
 
-        /*http.authorizeRequests()
-                .antMatchers("/","/js/**","/css/**","users/login","users/new").permitAll();
-        http.authorizeRequests()
-                .antMatchers("/**")
-                .hasRole("USER");*/
+            /*http.authorizeRequests()
+                    .antMatchers("/","/js/**","/css/**","users/login","users/new").permitAll();
+            http.authorizeRequests()
+                    .antMatchers("/**")
+                    .hasRole("USER");*/
 
 
 
-                //.antMatchers(HttpMethod.POST,"/users").permitAll()
-                //.antMatchers("users/home").hasRole("USER");
-                //.and().formLogin().loginPage("/users/login");
+                    //.antMatchers(HttpMethod.POST,"/users").permitAll()
+                    //.antMatchers("users/home").hasRole("USER");
+                    //.and().formLogin().loginPage("/users/login");
 
 
-        http
-				.authorizeRequests().antMatchers("/","/js/**","/css/**","/users","/users/principal","/users/logout","/users/login","/users/new").permitAll(); //se permite toda operacion en esta url
-
-
+            http
+                    .authorizeRequests()
+                        .antMatchers("/","/js/**","/css/**","/users/logout","/users/login","/users/new")
+                            .permitAll();//se permite toda operacion en esta url
+                        //el resto de las consultas deben ser de rol USER
+                 /*   .and()
+                        .formLogin()
+                            .loginPage("/users/principal") // la pagina de inicio.
+                                .permitAll()
+                    .and()
+                        .logout()
+                            .permitAll();*/ //la pagina de logout es la misma que la de inicio.
+            http  .authorizeRequests().antMatchers("/**").hasRole("USER");
 
 
     }
