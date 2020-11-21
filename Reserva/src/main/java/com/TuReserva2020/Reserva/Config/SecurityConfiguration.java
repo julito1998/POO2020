@@ -1,5 +1,6 @@
 package com.TuReserva2020.Reserva.Config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +30,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean 
      public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public ModelMapper modelMapper(){
+        return  new ModelMapper();
     }
 
      
@@ -65,7 +71,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .and()
                         .logout()
                             .permitAll();*/ //la pagina de logout es la misma que la de inicio.
-            http  .authorizeRequests().antMatchers("/**").hasRole("USER");
+            //http  .authorizeRequests().antMatchers("/**").hasRole("USER");
 
 
     }

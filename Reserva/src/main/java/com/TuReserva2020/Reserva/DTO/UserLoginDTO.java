@@ -11,19 +11,19 @@ import java.io.Serializable;
  *
  * @author Julito
  */
-public class UserDTO implements Serializable {
+public class UserLoginDTO implements Serializable {
 
     private String password;
     private String email;
 
 
-    public UserDTO(String password, String email) {
+    public UserLoginDTO(String password, String email) {
         super();
         this.password = password;
         this.email = email;
     }
 
-    public UserDTO() {
+    public UserLoginDTO() {
         super();
     }
 
