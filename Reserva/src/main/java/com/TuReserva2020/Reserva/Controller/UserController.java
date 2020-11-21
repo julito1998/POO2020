@@ -87,6 +87,7 @@ public class UserController {
         try{
             userDetailService.loadUserByUsername(user.getEmail());
             return "redirect:/users/home";
+
         }catch(UsernameNotFoundException ex){
             return "redirect:/users/login";
         }catch (Exception e){
