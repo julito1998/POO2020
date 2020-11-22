@@ -78,7 +78,7 @@ public class UserController {
     @PostMapping("/login")
     private String login(@ModelAttribute UserLoginDTO user){
         try{
-            userDetailService.loadUserByUsername(user.getEmail());
+            userService.loadUserByUsername(user.getEmail());
             return "redirect:/users/home";
         }catch(UsernameNotFoundException ex){
             return "redirect:/users/login";
