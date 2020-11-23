@@ -18,15 +18,17 @@
 <body>
 <div class="all-container">
     <h2>Iniciar Sesion:</h2>
+
     <form action="#" th:action="@{/users/login}"  th:object="${user}" method="post" class="frm-logearse">
+
         <p>
             <label>Email:</label>
-            
+
             <input type="email" placeholder="Ingrese su mail" th:field ="*{email}"/>
         </p>
         <p>
             <label>Contraseña:</label>
-            
+
             <input type="password" placeholder="Ingrese su password" autocomplete="off" value="off"  th:field ="*{password}"/>
         </p>
 
@@ -39,7 +41,9 @@
         <p>
             <input type="submit" name="submit" value="Login" class="btn-login">
         </p>
+
     </form>
+    </div>
 </div>
 </body>
 </html>

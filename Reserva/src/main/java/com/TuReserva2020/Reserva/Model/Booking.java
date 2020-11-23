@@ -16,7 +16,7 @@ import org.hibernate.annotations.OnDeleteAction;
  */
 @Entity
 @Table(name="bookings")
-public class Booking implements Serializable {
+public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

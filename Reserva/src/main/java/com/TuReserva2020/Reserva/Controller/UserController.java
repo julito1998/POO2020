@@ -1,7 +1,9 @@
 package com.TuReserva2020.Reserva.Controller;
 
+import com.TuReserva2020.Reserva.DTO.UserLoginDTO;
 import com.TuReserva2020.Reserva.InterfaceService.IUserService;
 import com.TuReserva2020.Reserva.Model.User;
+import com.TuReserva2020.Reserva.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -29,20 +31,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 @RequestMapping("/users")
 public class UserController {
-    
+
     @Autowired
     private IUserService userService;
 
     @Qualifier("userService")
     @Autowired
     private UserDetailsService userDetailService;
-
-    //GET (obtener), POST (guardar), PUT (actualizar), DELETE  --> estado 200 la peticion se realizo correctamente
-    //estado= 500 error de logica 
-    //estado=404 error como por ejemplo rutas
-    // la ruta quedaria:
-    // http://localhost:8080/user/guardar
-//    @RequestMapping(value = "/new", method = { RequestMethod.GET, RequestMethod.POST })
 
     @GetMapping("/home")
     public String home(){
@@ -55,15 +50,6 @@ public class UserController {
         model.addAttribute("user", new User());
         return "users/new";
     }
-
-
-
-    @GetMapping("/login")
-    public String userLogin(Model model){
-        model.addAttribute("user", new User());
-        return "users/login";
-    }
-
 
     @PostMapping("/new")
     public String regist(@ModelAttribute User user){
@@ -82,19 +68,23 @@ public class UserController {
     }
 
 
+    @GetMapping("/login")
+    public String userLogin(Model model){
+        model.addAttribute("user", new UserLoginDTO());
+        return "users/login";
+    }
+
 
     @PostMapping("/login")
-    private String login(@ModelAttribute User user){
+    private String login(@ModelAttribute UserLoginDTO user){
         try{
-            userDetailService.loadUserByUsername(user.getEmail());
+            userService.loadUserByUsername(user.getEmail());
             return "redirect:/users/home";
         }catch(UsernameNotFoundException ex){
             return "redirect:/users/login";
         }catch (Exception e){
             return "redirect:/users/login";
         }
-
-
     }
 
     
