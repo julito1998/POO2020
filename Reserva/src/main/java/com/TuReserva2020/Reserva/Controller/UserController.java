@@ -78,7 +78,8 @@ public class UserController {
 
    @GetMapping("/principal")
     public String principal(){
-        return "users/principal"; }
+        return "users/principal";
+    }
 
 
 
