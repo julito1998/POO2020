@@ -1,5 +1,6 @@
 package com.TuReserva2020.Reserva.Config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.ui.ModelMap;
 
 /**
@@ -30,35 +32,34 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+    @Bean
+    public ModelMapper modelMapper(){
+        return  new ModelMapper();
+    }
+
      
     @Override
      protected void configure(AuthenticationManagerBuilder auth) throws Exception{
          auth.userDetailsService(userDetailsService);
-           
      } 
     @Override
      protected void configure(HttpSecurity http) throws Exception {
-
-
-        /*http.authorizeRequests()
-                .antMatchers("/","/js/**","/css/**","users/login","users/new").permitAll();
-        http.authorizeRequests()
-                .antMatchers("/**")
-                .hasRole("USER");*/
-
-
-
-                //.antMatchers(HttpMethod.POST,"/users").permitAll()
-                //.antMatchers("users/home").hasRole("USER");
-                //.and().formLogin().loginPage("/users/login");
-
-
+        //antMatchers todas estas rutas hacen referencia a la ruta resources/templates ("/", "users/principal" ....) o resources/static ("/js/**", "/css/**")
+        http.authorizeRequests().antMatchers("/","/js/**","/css/**","/users","/users/principal","/users/login","/users/new","/login","/index").permitAll()
+                .antMatchers(HttpMethod.POST,"/users").permitAll()
+                .antMatchers("/**").hasRole("USER").and().formLogin()
+                //referencia al metodo get
+                .loginPage("/login")
+                .permitAll()
+                //hace referencia al metodo get del UserController
+                .defaultSuccessUrl("/users/home")
+                .failureUrl("/login?error=true")
+                //hace referencia al los name de los labels dentro del index.html
+                .usernameParameter("email")
+                .passwordParameter("password");
+        //para logout, esto lo dejamos asi por spring security.
         http
-				.authorizeRequests().antMatchers("/","/js/**","/css/**","/users","/users/principal","/users/logout","/users/login","/users/new").permitAll(); //se permite toda operacion en esta url
-
-        http
-                .authorizeRequests()
-                .antMatchers("/**") .hasRole("USER");
-
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
     }
 }

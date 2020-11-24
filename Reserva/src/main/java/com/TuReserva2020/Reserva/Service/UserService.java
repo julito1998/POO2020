@@ -31,7 +31,6 @@ public class UserService implements UserDetailsService, IUserService{
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         //si no encuentro al usuario al menos debo retornar algo de tipo User
-
         User user=repo.findByEmail(email);
         //si encuentra al usuario lo retorno
             if(user==null){
