@@ -14,37 +14,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class RaizController {
-
-    @Autowired
-    private UserService userService;
+public class AppController {
 
     @GetMapping("/home")
     public String home(){
-        return "users/home";
+        return "App/home";
     }
 
-    //este HTML es STATIC
     @GetMapping
     public String principal(){
-        return "users/principal";
-    }
-
-    //INVESTIGAR COMO SOBREESCRIBIR EL LOGIN DE SPRING SECURITY PARA LA ENTREGA FINAL.
-    @GetMapping("/login")
-    public String userLogin(Model model){
-        model.addAttribute("user", new UserLoginDTO());
-        return "index";
+        return "App/principal";
     }
 
 
-    @PostMapping("/login")
-    private String login(@ModelAttribute UserLoginDTO user) {
-        try {
-            userService.loadUserByUsername(user.getEmail());
-            return "redirect:/home";
-        } catch (UsernameNotFoundException ex) {
-            return  "/login?error=true";
-        }
-    }
 }

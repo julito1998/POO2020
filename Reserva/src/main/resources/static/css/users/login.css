@@ -20,7 +20,7 @@ body{
 }
 
 .all-container{
-    padding: 220px 450px;
+    margin: 100px;
     align-items: center;
     color: white;
     text-align: right;
@@ -50,14 +50,18 @@ label{
 h2{
     font-size: 48px !important;
     font-weight: bold !important;
-    text-align: center;
+    text-align: center !important;
     line-height:2 !important;
 }
 input{
     border-radius: 2px;
     font-size: 20px;
 }
+p{
+    padding: 0px 35% 0px 0px;
+}
 .go-to-new{
     color:cornflowerblue;
     font-size: 15px;
 }
+
