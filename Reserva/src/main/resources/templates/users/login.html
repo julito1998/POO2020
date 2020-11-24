@@ -17,10 +17,10 @@
 </head>
 <body>
 <div class="all-container">
-    <h2>Iniciar Sesion:</h2>
 
-    <form action="#" th:action="@{/login}"  th:object="${user}" method="post" class="frm-logearse">
 
+    <form action="#" th:action="@{/users/login}"  th:object="${user}" method="post" class="frm-logearse">
+        <h2>Iniciar Sesion:</h2>
         <p>
             <label>Email:</label>
 
