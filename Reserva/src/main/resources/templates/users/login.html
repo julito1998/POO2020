@@ -17,19 +17,19 @@
 </head>
 <body>
 <div class="all-container">
-    <h2>Iniciar Sesion:</h2>
+
 
     <form action="#" th:action="@{/users/login}"  th:object="${user}" method="post" class="frm-logearse">
-
+        <h2>Iniciar Sesion:</h2>
         <p>
             <label>Email:</label>
 
-            <input type="email" placeholder="Ingrese su mail" th:field ="*{email}"/>
+            <input type="email" name="email" placeholder="Ingrese su mail" th:field ="*{email}"/>
         </p>
         <p>
             <label>Contraseña:</label>
 
-            <input type="password" placeholder="Ingrese su password" autocomplete="off" value="off"  th:field ="*{password}"/>
+            <input type="password" name="password" placeholder="Ingrese su password" autocomplete="off" value="off"  th:field ="*{password}"/>
         </p>
 
 

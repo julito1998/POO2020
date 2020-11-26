@@ -39,10 +39,7 @@ public class UserController {
     @Autowired
     private UserDetailsService userDetailService;
 
-    @GetMapping("/home")
-    public String home(){
-        return "users/home";
-    }
+
 
 
     @GetMapping("/new")
@@ -57,37 +54,25 @@ public class UserController {
             userService.create(user);
             return "redirect:/login";
         }catch(UsernameNotFoundException errorU){
-            return "redirect:/users/new";
+            return "/new?error=true";
         }
     }
-
-
-   @GetMapping("/principal")
-    public String principal(){
-        return "users/principal";
-    }
-
 
     @GetMapping("/login")
     public String userLogin(Model model){
         model.addAttribute("user", new UserLoginDTO());
-        return "users/login";
+        return "/users/login";
     }
 
-
     @PostMapping("/login")
-    private String login(@ModelAttribute UserLoginDTO user){
-        try{
+    private String login(@ModelAttribute UserLoginDTO user) {
+        try {
             userService.loadUserByUsername(user.getEmail());
-            return "redirect:/users/home";
-        }catch(UsernameNotFoundException ex){
-            return "redirect:/users/login";
-        }catch (Exception e){
-            return "redirect:/users/login";
+            //return "/App/home";
+            return "/mostramealgo";
+        } catch (UsernameNotFoundException ex) {
+            return  "/login?error=true";
         }
     }
 
-
-    
-    
 }

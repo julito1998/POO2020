@@ -18,19 +18,33 @@
 </head>
 <body>
     <div class="all-container">
-        <h2>Nuevo Usuario:</h2>
+
         <form action="#" th:action="@{/users/new}"  th:object="${user}  " method="post" class="frm-registrarse">
+            <h2>Nuevo Usuario:</h2>
 
             <p>
                <label>Email:</label>
-            
                 <input type="email" placeholder="Ingrese su mail" th:field ="*{email}"/>
             </p>
             <p>
                 <label>Contraseña:</label>
-
-                <input id="password" onblur="limpiarPassword();" type="password" autocomplete="off" placeholder="Ingrese su contraseña" th:field="*{password}"/>
-
+                <input id="password" type="password" autocomplete="off" placeholder="Ingrese su contraseña" th:field="*{password}"/>
+            </p>
+            <p>
+                <label>Nombre:</label>
+                <input id="firstName" type="text" autocomplete="off" placeholder="Ingrese su nombre" th:field="*{firstName}"/>
+            </p>
+            <p>
+                <label>Apellido:</label>
+                <input id="lastName"  type="text" autocomplete="off" placeholder="Ingrese su apellido" th:field="*{lastName}"/>
+            </p>
+            <p>
+                <label>Fecha de Nacimiento:</label>
+                <input id="birthDate" type="date" value="2000-01-01" autocomplete="off" placeholder="Ingrese su fecha de nacimiento" th:field="*{birthDate}"/>
+            </p>
+            <p>
+                <label>Nacionalidad:</label>
+                <input id="natioality" type="text" autocomplete="off" placeholder="Ingrese su nacionalidad" th:field="*{natioality}"/>
             </p>
 
             <p>
