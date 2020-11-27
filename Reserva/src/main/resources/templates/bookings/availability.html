@@ -31,8 +31,21 @@
             <th>Price</th>
         </tr>
         </thead>
+        <tbody>
+        <tr th:if="${rooms.empty}">
+            <td colspan="2"> No Rooms Availability</td>
+        </tr>
+        <tr th:each="room : ${rooms}">
+            <td><span th:text="${room.name}">Room</span></td>
+            <td><span th:text="${room.occupancy}">Occupancy</span></td>
+            <td><span th:text="${room.facilities}">Facilities</span></td>
+            <td><span th:text="${room.price}">Price</span></td>
+            <td>
+                Book
+            </td>
+        </tr>
+        </tbody>
     </table>
-
 </div>
 </div>
 </body>
