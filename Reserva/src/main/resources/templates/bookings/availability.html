@@ -17,8 +17,12 @@
 </head>
 <body>
 <div class="all-container">
+<<<<<<< HEAD
 
     <form action="#" th:action="@{/bookings/availability}" th:object="${roomsAvailability}" method="post">
+=======
+    <form action="#" th:action="@{/bookings/availability}" th:object="${roomsAvailability}" method="POST" class="frm-logearse">
+>>>>>>> f59f64555bd034aa71500f3590ca2e72ee887861
         <label>Check In : </label>
         <input type="text" th:field="*{checkIn}"/>
         <label>Check Out : </label>
@@ -37,9 +41,10 @@
             <th>Price</th>
         </tr>
         </thead>
+
         <tbody>
-        <tr th:if="${rooms}">
-            <td colspan="4"> No Rooms Availability </td>
+        <tr th:if="${rooms == null}">
+            <td colspan="4"> No Rooms Availability</td>
         </tr>
         <tr th:each="room : ${rooms}">
             <td><span th:text="${room.name}"> Room </span></td>

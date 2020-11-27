@@ -33,9 +33,9 @@ public class BookingController {
     private ModelMapper modelMapper;
 
     @GetMapping("/availability")
-    private String roomsAvailabily(Model model){
+    private String roomsAvailability(Model model){
         model.addAttribute("roomsAvailability", new RoomAvailabilityDTO());
-        model.addAttribute("rooms",new RoomDTO());
+        model.addAttribute("rooms", new RoomDTO());
         return "bookings/availability";
     }
 
