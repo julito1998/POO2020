@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Disponibilidad de habitaciones</title>
+</head>
+<body>
+<div class="all-container">
+
+
+    <form action="#" th:action="@{/bookings/availability.html}" th:object="${roomAvailability}" method="post" class="frm-logearse">
+        <label>Check In : </label>
+        <input type="text" th:field="*{checkIn}"/>
+        <label>Check Out : </label>
+        <input type="text" th:field="*{checkOut}"/>
+        <label>Occupancy : </label>
+        <input type="text" th:field="*{occupancy}"/>
+        <button type="submit" name="availability">Check Availability</button>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Room</th>
+
+            <th>Occupancy</th>
+
+            <th>Facility</th>
+
+            <th>Price</th>
+        </tr>
+        </thead>
+    </table>
+
+</div>
+</div>
+</body>
+</html>

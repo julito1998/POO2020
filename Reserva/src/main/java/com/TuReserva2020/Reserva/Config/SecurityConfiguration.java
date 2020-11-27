@@ -55,8 +55,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //referencia al metodo get
                 .loginPage("/users/login")
                 .permitAll()
-                //hace referencia a la ruta en nuestro caso /localhost/home
-                .defaultSuccessUrl("/home")
+                //hace referencia a la ruta en nuestro caso /localhost/App/home
+                .defaultSuccessUrl("/App/home")
                 .failureUrl("/users/login?error=true")
                 //hace referencia al los name de los labels dentro del index.html
                 .usernameParameter("email")

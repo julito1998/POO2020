@@ -68,8 +68,8 @@ public class UserController {
     private String login(@ModelAttribute UserLoginDTO user) {
         try {
             userService.loadUserByUsername(user.getEmail());
-            //return "/App/home";
-            return "/mostramealgo";
+            return "/App/home";
+            //return "/mostramealgo";
         } catch (UsernameNotFoundException ex) {
             return  "/login?error=true";
         }
