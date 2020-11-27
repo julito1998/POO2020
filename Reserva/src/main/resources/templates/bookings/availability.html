@@ -7,9 +7,7 @@
 </head>
 <body>
 <div class="all-container">
-
-
-    <form action="#" th:action="@{/bookings/availability.html}" th:object="${roomAvailability}" method="post" class="frm-logearse">
+    <form action="#" th:action="@{/bookings/availability}" th:object="${roomsAvailability}" method="POST" class="frm-logearse">
         <label>Check In : </label>
         <input type="text" th:field="*{checkIn}"/>
         <label>Check Out : </label>
@@ -23,17 +21,15 @@
         <thead>
         <tr>
             <th>Room</th>
-
             <th>Occupancy</th>
-
             <th>Facility</th>
-
             <th>Price</th>
         </tr>
         </thead>
+
         <tbody>
-        <tr th:if="${rooms.empty}">
-            <td colspan="2"> No Rooms Availability</td>
+        <tr th:if="${rooms == null}">
+            <td colspan="4"> No Rooms Availability</td>
         </tr>
         <tr th:each="room : ${rooms}">
             <td><span th:text="${room.name}">Room</span></td>
@@ -46,7 +42,6 @@
         </tr>
         </tbody>
     </table>
-</div>
 </div>
 </body>
 </html>

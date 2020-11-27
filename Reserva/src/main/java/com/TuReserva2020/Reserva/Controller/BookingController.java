@@ -33,9 +33,9 @@ public class BookingController {
     private ModelMapper modelMapper;
 
     @GetMapping("/availability")
-    private String roomsAvailabily(Model model){
-        model.addAttribute("roomAvailability", new RoomAvailabilityDTO());
-        model.addAttribute("rooms",new RoomDTO());
+    private String roomsAvailability(Model model){
+        model.addAttribute("roomsAvailability", new RoomAvailabilityDTO());
+        model.addAttribute("rooms", new RoomDTO());
         return "bookings/availability";
     }
 
@@ -44,8 +44,8 @@ public class BookingController {
         List<Room> rooms = new ArrayList<>();
         try{
             rooms= serviceRoom.getRoomsAvailable(
-                    roomsAvailabilityDTO.getCheckInDateConverted("yyyy-MM-dd"),
-                    roomsAvailabilityDTO.getCheckOutDateConverted("yyyy-MM-dd"),
+                    roomsAvailabilityDTO.getCheckInDateConverted(),
+                    roomsAvailabilityDTO.getCheckOutDateConverted(),
                     roomsAvailabilityDTO.getOccupancy());
         }catch (Exception e){}
 

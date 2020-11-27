@@ -40,8 +40,6 @@ public class UserController {
     private UserDetailsService userDetailService;
 
 
-
-
     @GetMapping("/new")
     public String userNew(Model model){
         model.addAttribute("user", new User());
@@ -69,7 +67,6 @@ public class UserController {
         try {
             userService.loadUserByUsername(user.getEmail());
             return "/App/home";
-            //return "/mostramealgo";
         } catch (UsernameNotFoundException ex) {
             return  "/login?error=true";
         }
