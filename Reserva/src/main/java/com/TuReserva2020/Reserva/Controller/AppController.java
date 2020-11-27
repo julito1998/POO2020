@@ -22,7 +22,7 @@ public class AppController {
         return "App/home";
     }
 
-    @GetMapping
+    @GetMapping("/principal")
     public String principal(){
         return "App/principal";
     }
