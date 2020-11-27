@@ -38,13 +38,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return  new ModelMapper();
     }
 
-     
+
     @Override
-     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-         auth.userDetailsService(userDetailsService);
-     } 
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+        auth.userDetailsService(userDetailsService);
+
+    }
+
     @Override
      protected void configure(HttpSecurity http) throws Exception {
+
         //antMatchers todas estas rutas hacen referencia a la ruta resources/templates ("/", "/App/principal" ....) o resources/static ("/js/**", "/css/**")
         http.authorizeRequests().antMatchers("/","/js/**","/css/**","/users","/users/login","/users/new","/App/principal").permitAll()
                 .antMatchers(HttpMethod.POST,"/users").permitAll()
@@ -52,8 +55,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 //referencia al metodo get
                 .loginPage("/users/login")
                 .permitAll()
-                //hace referencia a la ruta en nuestro caso /localhost/home
-                .defaultSuccessUrl("/home")
+                //hace referencia a la ruta en nuestro caso /localhost/App/home
+                .defaultSuccessUrl("/App/home")
                 .failureUrl("/users/login?error=true")
                 //hace referencia al los name de los labels dentro del index.html
                 .usernameParameter("email")
@@ -61,5 +64,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //para logout, esto lo dejamos asi por spring security.
         http
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");
+
     }
+
 }
+
