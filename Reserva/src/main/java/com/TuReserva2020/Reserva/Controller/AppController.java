@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/App")
+@RequestMapping("/")
 public class AppController {
 
     @GetMapping("/home")
@@ -22,7 +22,7 @@ public class AppController {
         return "App/home";
     }
 
-    @GetMapping("/principal")
+    @GetMapping
     public String principal(){
         return "App/principal";
     }

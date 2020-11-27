@@ -8,8 +8,7 @@
 <body>
 <div class="all-container">
 
-
-    <form action="#" th:action="@{/bookings/availability.html}" th:object="${roomAvailability}" method="post" class="frm-logearse">
+    <form action="#" th:action="@{/bookings/availability}" th:object="${roomAvailability}" method="post">
         <label>Check In : </label>
         <input type="text" th:field="*{checkIn}"/>
         <label>Check Out : </label>
@@ -46,7 +45,6 @@
         </tr>
         </tbody>
     </table>
-</div>
 </div>
 </body>
 </html>
