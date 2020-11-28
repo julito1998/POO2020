@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--otra forma de escribir versiones de liquibase-->
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1.0.0-rellenar-tablas" author="facundo">
+        <tagDatabase tag="1.0.0-27/11/2020"/>
+    </changeSet>
+
+    <changeSet id="rellenar-rooms" author="facundo">
+        <comment>rellenar tabla room</comment>
+        <sql>
+            insert into rooms (name, price, occupancy, facilities, availability) values ('1', 24.0, 4, 'ni idea que era xd', 2 );
+        </sql>
+        <rollback>
+            DROP TABLE IF EXISTS rooms;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="rellenar-bookings" author="facundo">
+        <comment>rellenar tabla bookings</comment>
+        <sql>
+            insert into bookings(check_in, check_out, breakfast_included, parking, free_cancelation, cost, user_id, room_id)
+            values(DATE '2020-01-02', DATE '2020-01-10',false,false,true,500.0,1,1);
+        </sql>
+        <rollback>
+            DROP TABLE IF EXISTS bookings;
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
