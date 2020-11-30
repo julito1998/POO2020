@@ -1,0 +1,77 @@
+.all-container{
+    text-align: center;
+}
+
+.frm-availability{
+    font-size: 110%;
+    text-align: center;
+    background-position: center;
+    background:aquamarine;
+}
+
+input{
+    width: 15%;
+    border-radius: 2px;
+    border: none;
+    box-shadow: 0 0 3px rgba(0,0,0,1);
+    margin-top: 0.5% !important;
+}
+
+button{
+    margin-left: 2% !important;
+    box-shadow: 0 0 5px rgba(0,0,0,1);
+    text-decoration: none;
+    transition:.3s;
+    font-weight: bold;
+    border:none;
+    border-radius: 4px !important;
+    background-color: rgb(0,250,250);
+    color:rgb(100,20,50);
+}
+button:hover {
+    background-color:rgb(0,210,230);
+}
+
+thead{
+    background:rgb(0,230,230);
+}
+
+.container-table{
+    margin: 0;
+    text-align: center;
+    display: grid;
+}
+
+.table-view{
+    border: solid;
+    border-color: rgb(100, 211, 255) !important;
+}
+
+.table-row{
+    border: solid;
+    border-color: rgb(100, 211, 255) !important;
+}
+
+a{
+    border-radius: 3px;
+    background-color: white !important;
+}
+
+a:hover{
+    background-color: rgb(230, 255, 255) !important;
+}
+
+.nav-link{
+    margin: 0px 10px 0px 0px;
+}
+
+.nav-link-active{
+    margin: 0px 10px 0px 0px;
+    padding: .5rem 1rem;
+    display: block;
+    background-color: rgb(230, 255, 255) !important;
+}
+.nav-link-active:hover{
+    text-decoration: none;
+    color: #007bff;
+}

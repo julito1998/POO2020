@@ -17,6 +17,12 @@
     <title>Registrar usuario</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="nav-link" href="#" th:href="@{/}">Inicio</a>
+    <a class="nav-link" href="#" th:href="@{/bookings/availability}">Disponibilidad</a>
+    <a class="nav-link" href="#" th:href="@{/users/login}">Iniciar Sesion</a>
+    <a class="nav-link-active" href="#" th:href="@{#}">Crear cuenta</a>
+</nav>
     <div class="all-container">
 
         <form action="#" th:action="@{/users/new}"  th:object="${user}" method="post" class="frm-registrarse">
@@ -40,7 +46,7 @@
             </p>
             <p>
                 <label>Fecha de Nacimiento:</label>
-                <input id="birthDate" type="Date" value="2000-01-01" autocomplete="off" placeholder="Ingrese su fecha de nacimiento" th:field="*{birthDate}"/>
+                <input id="birthDate" type="Date" autocomplete="off" placeholder="Ingrese su fecha de nacimiento" th:field="*{birthDate}"/>
             </p>
             <p>
                 <label>Nacionalidad:</label>
