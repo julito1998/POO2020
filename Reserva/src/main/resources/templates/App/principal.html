@@ -16,36 +16,37 @@
 
 </head>
 <body>
-<!--<div>Bienvenido a la vista principal</div>-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="nav-link-active" href="#" th:href="@{#}">Inicio</a>
+    <a class="nav-link" href="#" th:href="@{/bookings/availability}">Disponibilidad</a>
     <a class="nav-link" href="#" th:href="@{/users/login}">Iniciar Sesion</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-    </button>
+    </button>-->
     <a class="nav-link" href="#" th:href="@{/users/new}">Crear cuenta</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-    </form>
+    </form>-->
 </nav>
 <div class="banner-wrap">
-    <h1>Wolcome to Hotel P00</h1>
+    <h1>Bienvenidos al Hotel P00</h1>
     <p>
         Si busca calidad, relajarse y divertirse esta en el lugar indicado...
     </p>
-    <a href="#" th:href="@{#}"  id="ver-disponibilidad">Ver disponibilidad</a>
+    <a href="#" th:href="@{/bookings/availability}"  id="ver-disponibilidad">Ver disponibilidad</a>
 </div>
 <div class="card-wrap">
     <h1>Nuestros Servicios:</h1>
     <div class="card-cointaner">
         <div class="card">
-            <h2>Habitacion:</h2>
+            <h2>Habitación:</h2>
             <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80">
             <p>
-                Estas habitaciones logran que seamos un hotel 5 estrellas por eso hacemos valer lo que pagas.
+                Estas habitaciones logran que seamos un hotel 5 estrellas por eso hacemos valer lo que usted paga.
             </p>
         </div>
 
@@ -71,7 +72,5 @@
 <footer>
     Somos alumnos de la UNNOBA, POO 2020
 </footer>
-<!--<form action="#" th:action="@{/}" method="get">
-</form>-->
 </body>
 </html>

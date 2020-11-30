@@ -1,23 +1,22 @@
 package com.TuReserva2020.Reserva.DTO;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class RoomAvailabilityDTO {
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+public class RoomAvailabilityDTO implements Serializable {
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     private int occupancy;
     private  String checkIn;
     private String checkOut;
 
-    public Date getCheckInDateConverted(String timezone) throws ParseException {
-        dateFormat.setTimeZone(TimeZone.getTimeZone(timezone));
+    public Date getCheckInDateConverted() throws ParseException {
         return dateFormat.parse(this.checkIn);
     }
-    public Date getCheckOutDateConverted(String timezone) throws ParseException {
-        dateFormat.setTimeZone(TimeZone.getTimeZone(timezone));
+    public Date getCheckOutDateConverted() throws ParseException {
         return dateFormat.parse(this.checkOut);
     }
 

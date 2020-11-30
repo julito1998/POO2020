@@ -7,8 +7,7 @@
     background-size:cover;
     background-position:center;
     text-align:center;
-    padding:200px;
-
+    padding:150px;
 }
 
 .banner-wrap p{
@@ -71,24 +70,22 @@ img{
 .card-cointaner{
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
+    margin-top: 1.5%;
 }
 .card{
     background: white;
     box-shadow: 0 0 16px rgba(0,0,0,1);
     border-radius: 4px;
-    padding: 24px;
-    margin: 0px 20px;
-    height: 330px;
-    width: 500px
+    padding: 1.5%;
+    margin: 0 02%;
+    width: 29%;
 }
 .card-wrap h1 {
     color: black;
 }
 .card-wrap{
-    width: 1300px;
-    margin: 20px auto;
+    margin: 1.5% auto;
 }
 footer{
     text-align: right;
@@ -97,4 +94,15 @@ footer{
     color:black;
     background-color:#cee39c;
     padding: 0px 20px;
+}
+
+.nav-link-active{
+    margin: 0px 10px 0px 0px;
+    padding: .5rem 1rem;
+    display: block;
+    background-color: rgb(230, 255, 255) !important;
+}
+.nav-link-active:hover{
+    text-decoration: none;
+    color: #007bff;
 }

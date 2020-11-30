@@ -20,7 +20,7 @@ import org.hibernate.annotations.OnDeleteAction;
  */
 @Entity
 @Table(name="cancellations")
-public class Cancellation implements Serializable {
+public class Cancellation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

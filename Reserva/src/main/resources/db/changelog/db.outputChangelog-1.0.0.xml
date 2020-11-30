@@ -6,6 +6,10 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
   
     <changeSet id="prueba" author="julito">
-   
+        <comment>Borre  de la tabla users</comment>
+        <sql>
+
+
+        </sql>
   </changeSet>
 </databaseChangeLog>

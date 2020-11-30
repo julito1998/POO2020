@@ -8,7 +8,6 @@ package com.TuReserva2020.Reserva.Service;
 import com.TuReserva2020.Reserva.InterfaceService.IUserService;
 import com.TuReserva2020.Reserva.Model.User;
 import com.TuReserva2020.Reserva.Repository.UserRepo;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

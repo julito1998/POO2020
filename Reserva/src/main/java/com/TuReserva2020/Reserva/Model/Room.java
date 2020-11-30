@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="rooms")
-public class Room implements Serializable {
+public class Room {
         
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)

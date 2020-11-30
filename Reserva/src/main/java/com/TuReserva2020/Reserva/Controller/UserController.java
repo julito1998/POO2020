@@ -40,8 +40,6 @@ public class UserController {
     private UserDetailsService userDetailService;
 
 
-
-
     @GetMapping("/new")
     public String userNew(Model model){
         model.addAttribute("user", new User());
@@ -52,7 +50,7 @@ public class UserController {
     public String regist(@ModelAttribute User user){
          try{
             userService.create(user);
-            return "redirect:/users/login";
+            return "redirect:/login";
         }catch(UsernameNotFoundException errorU){
             return "/new?error=true";
         }
@@ -68,10 +66,10 @@ public class UserController {
     private String login(@ModelAttribute UserLoginDTO user) {
         try {
             userService.loadUserByUsername(user.getEmail());
-            //return "/App/home";
-            return "/mostramealgo";
+            return "/App/home";
         } catch (UsernameNotFoundException ex) {
             return  "/login?error=true";
         }
     }
+
 }
