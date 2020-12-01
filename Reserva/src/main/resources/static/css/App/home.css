@@ -41,21 +41,29 @@ a{
     background-color: white !important;
 }
 
-.navbar-expand-lg{
-    justify-content: left !important;
-}
-
 .nav-cointaner{
-    text-align: right !important;
+    text-align: center;
 }
 
 .navbar{
-    display: ruby !important;
+    padding: 0 !important;
 }
 
 .nav-link{
     margin: 0%;
-    margin: 0%;
     height: 7vh;
     padding: 0;
+    flex: 1 1 auto;
+}
+.nav-link-active{
+    margin: 0%;
+    padding: .5rem 1rem;
+    display: block;
+    background-color: rgb(230, 255, 255) !important;
+    height: 7vh;
+    flex: 1 1 auto;
+}
+.nav-link-active:hover{
+    text-decoration: none;
+    color: #007bff;
 }
