@@ -22,9 +22,9 @@
 
 
         <label>Check In : </label>
-        <input type="text" th:field="*{checkIn}"/>
+        <input type="date" th:field="*{checkIn}"/>
         <label>Check Out : </label>
-        <input type="text" th:field="*{checkOut}"/>
+        <input type="date" th:field="*{checkOut}"/>
         <label>Occupancy : </label>
         <input type="text" th:field="*{occupancy}"/>
         <button type="submit" name="availability">Check Availability</button>
@@ -41,7 +41,7 @@
         </thead>
 
         <tbody>
-        <tr th:if="${rooms == null}">
+        <tr th:if="${rooms.empty}">
             <td colspan="4"> No Rooms Availability</td>
         </tr>
         <tr th:each="room : ${rooms}">
