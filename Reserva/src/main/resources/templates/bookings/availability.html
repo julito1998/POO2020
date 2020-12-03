@@ -46,7 +46,7 @@
             </thead>
 
             <tbody>
-            <tr th:if="${rooms == null}">
+            <tr th:if="${rooms.empty}">
                 <td colspan="4"> No Rooms Availability</td>
             </tr>
             <tr th:each="room : ${rooms}" class="table-row-cell">
@@ -61,6 +61,7 @@
             </tbody>
         </table>
     </div>
+
 </div>
 </body>
 </html>
