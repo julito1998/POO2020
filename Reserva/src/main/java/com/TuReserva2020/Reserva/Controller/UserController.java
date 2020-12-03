@@ -64,11 +64,12 @@ public class UserController {
 
     @PostMapping("/login")
     private String login(@ModelAttribute UserLoginDTO user) {
-        try {
+       try {
             userService.loadUserByUsername(user.getEmail());
             return "/App/home";
         } catch (UsernameNotFoundException ex) {
             return  "/login?error=true";
+
         }
     }
 
