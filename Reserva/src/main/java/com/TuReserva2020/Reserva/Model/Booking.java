@@ -39,6 +39,9 @@ public class Booking {
     
     @Column (name="check_out")
     private Date checkOut;
+
+    @Column (name="created_at")
+    private Date createdAt;
     
     @NotNull
     @Column(name="breakfast_included")
@@ -106,6 +109,14 @@ public class Booking {
 
     public void setCheckOut(Date checkOut) {
         this.checkOut = checkOut;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public boolean isBreakfastIncluded() {

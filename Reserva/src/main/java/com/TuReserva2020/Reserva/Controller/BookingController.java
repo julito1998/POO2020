@@ -1,13 +1,15 @@
 package com.TuReserva2020.Reserva.Controller;
 
-import com.TuReserva2020.Reserva.DTO.RoomAvailabilityDTO;
-import com.TuReserva2020.Reserva.DTO.RoomDTO;
+import com.TuReserva2020.Reserva.DTO.*;
 import com.TuReserva2020.Reserva.InterfaceService.IBookingService;
 import com.TuReserva2020.Reserva.InterfaceService.IRoomService;
 
+import com.TuReserva2020.Reserva.Model.Booking;
 import com.TuReserva2020.Reserva.Model.Room;
+import com.TuReserva2020.Reserva.Model.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,6 +57,39 @@ public class BookingController {
         model.addAttribute("rooms", roomDTO);
         model.addAttribute("roomsAvailability", roomsAvailabilityDTO);
         return "bookings/availability";
+    }
+
+
+    @PostMapping("/new")
+    public String newBooking(@ModelAttribute NewBookingRequestDTO newBookingRequestDTO,
+                             Model model){
+        NewBookingResponseDTO booking = new NewBookingResponseDTO();
+        RoomDTO roomDTO = modelMapper.map(serviceRoom.findById(newBookingRequestDTO.getRoomId()).get(), RoomDTO.class);
+        booking.setRoom(roomDTO);
+        booking.setCheckIn(newBookingRequestDTO.getCheckIn());
+        booking.setCheckOut(newBookingRequestDTO.getCheckOut());
+        booking.setOccupancy(newBookingRequestDTO.getOccupancy());
+        model.addAttribute("booking", booking);
+        return("bookings/new");
+    }
+
+    @PostMapping("/confirm")
+    public String createBooking(@ModelAttribute ConfirmBookingRequestDTO confirmBookingRequestDTO,
+                                Authentication authentication, Model model){
+        Booking booking = modelMapper.map(confirmBookingRequestDTO, Booking.class);
+        booking.setId(null);
+        booking.setUser((User)authentication.getPrincipal());
+        try {
+            serviceBooking.newBooking(booking);
+            return ("bookings/confirm");
+        }
+        catch (Exception e){
+
+            return ("bookings/availability");
+        }
+
+
+
     }
 
 
