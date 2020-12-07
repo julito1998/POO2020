@@ -14,6 +14,7 @@
         <comment>rellenar tabla room</comment>
         <sql>
             insert into rooms (name, price, occupancy, facilities, availability) values ('1', 24.0, 4, 'ni idea que era xd', 2 );
+
         </sql>
         <rollback>
             DROP TABLE IF EXISTS rooms;
@@ -25,6 +26,7 @@
         <sql>
             insert into bookings(check_in, check_out, breakfast_included, parking, free_cancelation, cost, user_id, room_id)
             values(DATE '2020-01-02', DATE '2020-01-10',false,false,true,500.0,1,1);
+
         </sql>
         <rollback>
             DROP TABLE IF EXISTS bookings;
