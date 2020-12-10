@@ -1,5 +1,6 @@
 package com.TuReserva2020.Reserva.InterfaceService;
 
+import com.TuReserva2020.Reserva.DTO.RoomDTO;
 import com.TuReserva2020.Reserva.Model.Room;
 
 import java.util.Date;

@@ -34,6 +34,17 @@ public class BookingController {
     @Autowired
     private ModelMapper modelMapper;
 
+    @GetMapping
+    private String roomsBookings(Model model){
+        try {
+            ArrayList<Booking> booking = serviceBooking.listBooking();
+            model.addAttribute("reserves", booking);
+            return ("bookings/reserves");
+        }catch(Exception e){
+            return ("App/home");
+        }
+    }
+
     @GetMapping("/availability")
     private String roomsAvailability(Model model){
         model.addAttribute("roomsAvailability", new RoomAvailabilityDTO());
@@ -41,8 +52,14 @@ public class BookingController {
         return "bookings/availability";
     }
 
-    @PostMapping("/availability")
-    private String getRoomsAvailable(@ModelAttribute RoomAvailabilityDTO roomsAvailabilityDTO, Model model){
+    @GetMapping("/availabilityPublic")
+    private String roomsAvailabilityPublic(Model model){
+        model.addAttribute("roomsAvailability", new RoomAvailabilityDTO());
+        model.addAttribute("rooms", new ArrayList<RoomDTO>());
+        return "bookings/availabilityPublic";
+    }
+
+    private void loadModelRooms(@ModelAttribute RoomAvailabilityDTO roomsAvailabilityDTO, Model model){
         List<Room> rooms = new ArrayList<>();
         try{
             rooms= serviceRoom.getRoomsAvailable(
@@ -56,6 +73,17 @@ public class BookingController {
                 .collect(Collectors.toList());
         model.addAttribute("rooms", roomDTO);
         model.addAttribute("roomsAvailability", roomsAvailabilityDTO);
+    }
+
+    @PostMapping("/availabilityPublic")
+    private String getRoomsAvailablePublic(@ModelAttribute RoomAvailabilityDTO roomsAvailabilityDTO, Model model){
+        loadModelRooms(roomsAvailabilityDTO,model);
+        return "bookings/availabilityPublic";
+    }
+
+    @PostMapping("/availability")
+    private String getRoomsAvailable(@ModelAttribute RoomAvailabilityDTO roomsAvailabilityDTO, Model model){
+        loadModelRooms(roomsAvailabilityDTO,model);
         return "bookings/availability";
     }
 
@@ -87,9 +115,6 @@ public class BookingController {
 
             return ("bookings/availability");
         }
-
-
-
     }
 
 

@@ -19,7 +19,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="nav-link" href="#" th:href="@{/}">Inicio</a>
-    <a class="nav-link" href="#" th:href="@{/bookings/availability}">Disponibilidad</a>
+    <a class="nav-link" href="#" th:href="@{/bookings/availabilityPublic}">Disponibilidad</a>
     <a class="nav-link-active" href="#" th:href="@{#}">Iniciar Sesion</a>
     <a class="nav-link" href="#" th:href="@{/users/new}">Crear cuenta</a>
 </nav>
@@ -39,32 +39,16 @@
             <input type="password" id="password" name="password" placeholder="Ingrese su password" autocomplete="off" value="off"  th:field ="*{password}"/>
         </p>
 
-
-
         <p>
-            <a th:href="@{new}" method="get" class="go-to-new" >Aun no estoy registrado...</a>
+            <a th:href="@{new}" method="get" class="go-to-new" >Aun no estoy registrado</a>
         </p>
 
         <p>
-            <input type="submit" onclick="errorMessage();" name="submit" value="Login" class="btn-login">
+            <input type="submit" name="submit" value="Login" class="btn-login">
         </p>
         <p><span id="error"></span></p>
     </form>
     </div>
 </div>
-<script>
-    function errorMessage() {
-        var error = document.getElementById("error")
-        if (isNaN(document.getElementById("email").value) || isNaN(document.getElementById("password").value) )
-        {
-            // Changing HTML to draw attention
-            error.innerHTML = "<span style='color: red;'>"+
-                "Error: Usuario o password incorrecto.</span>"
-        } else {
-            error.innerHTML = ""
-        }
-    }
-</script>
-
 </body>
 </html>

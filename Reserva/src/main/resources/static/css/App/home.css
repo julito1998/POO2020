@@ -20,50 +20,9 @@ footer{
     height: 5vh;
 }
 
-a:hover{
-    background-color: rgb(230, 255, 255) !important;
-}
-
-a:hover{
-    background-color: rgb(230, 255, 255) !important;
-}
-
-
 h1{
     color: white;
     font-size: 45px !important;
     margin: 0;
     font-weight: bold;
-}
-
-a{
-    border-radius: 3px;
-    background-color: white !important;
-}
-
-.nav-cointaner{
-    text-align: center;
-}
-
-.navbar{
-    padding: 0 !important;
-}
-
-.nav-link{
-    margin: 0%;
-    height: 7vh;
-    padding: 0;
-    flex: 1 1 auto;
-}
-.nav-link-active{
-    margin: 0%;
-    padding: .5rem 1rem;
-    display: block;
-    background-color: rgb(230, 255, 255) !important;
-    height: 7vh;
-    flex: 1 1 auto;
-}
-.nav-link-active:hover{
-    text-decoration: none;
-    color: #007bff;
 }

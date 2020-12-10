@@ -16,19 +16,45 @@
             insert into rooms (name, price, occupancy, facilities, availability) values ('1', 24.0, 4, 'ni idea que era xd', 2 );
         </sql>
         <rollback>
-            DROP TABLE IF EXISTS rooms;
+            DROP TABLE IF EXISTS rooms CASCADE;
         </rollback>
     </changeSet>
 
-    <changeSet id="rellenar-bookings" author="facundo">
-        <comment>rellenar tabla bookings</comment>
+
+    <changeSet id="rellenar-rooms 1.0" author="julian">
+        <comment>llenar tabla room</comment>
         <sql>
-            insert into bookings(check_in, check_out, breakfast_included, parking, free_cancelation, cost, user_id, room_id)
-            values(DATE '2020-01-02', DATE '2020-01-10',false,false,true,500.0,1,1);
+            insert into rooms (name, price, occupancy, facilities, availability) values ('1', 500, 3, 'vista a la montaña', 3);
+
         </sql>
         <rollback>
-            DROP TABLE IF EXISTS bookings;
+            DROP TABLE IF EXISTS rooms CASCADE;
         </rollback>
     </changeSet>
+
+
+        <changeSet id="rellenar-rooms 2.0" author="julian">
+            <comment>rellenar tabla room</comment>
+            <sql>
+                insert into rooms (name, price, occupancy, facilities, availability) values ('2B', 800.20, 2, 'ni idea que era xd', 1);
+            </sql>
+            <rollback>
+                DROP TABLE IF EXISTS rooms CASCADE;
+            </rollback>
+        </changeSet>
+
+
+        <changeSet id="rellenar-rooms 3.0" author="julian">
+            <comment>llenar tabla room</comment>
+            <sql>
+                insert into rooms (name, price, occupancy, facilities, availability) values ('3C', 500.40, 1, 'vista a la montaña', 1);
+
+            </sql>
+            <rollback>
+                DROP TABLE IF EXISTS rooms CASCADE;
+            </rollback>
+        </changeSet>
+
+
 
 </databaseChangeLog>

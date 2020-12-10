@@ -1,5 +1,6 @@
 package com.TuReserva2020.Reserva.Service;
 
+import com.TuReserva2020.Reserva.DTO.RoomDTO;
 import com.TuReserva2020.Reserva.InterfaceService.IRoomService;
 import com.TuReserva2020.Reserva.Model.Room;
 import com.TuReserva2020.Reserva.Repository.RoomRepo;

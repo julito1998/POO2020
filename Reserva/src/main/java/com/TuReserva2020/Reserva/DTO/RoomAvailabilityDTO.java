@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class RoomAvailabilityDTO implements Serializable {
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
     private int occupancy;
     private  String checkIn;
