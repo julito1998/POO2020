@@ -19,7 +19,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="nav-link" href="#" th:href="@{/}">Inicio</a>
-    <a class="nav-link" href="#" th:href="@{/bookings/availability}">Disponibilidad</a>
+    <a class="nav-link" href="#" th:href="@{/bookings/availabilityPublic}">Disponibilidad</a>
     <a class="nav-link-active" href="#" th:href="@{#}">Iniciar Sesion</a>
     <a class="nav-link" href="#" th:href="@{/users/new}">Crear cuenta</a>
 </nav>
@@ -40,7 +40,7 @@
         </p>
 
         <p>
-            <a th:href="@{new}" method="get" class="go-to-new" >Aun no estoy registrado...</a>
+            <a th:href="@{new}" method="get" class="go-to-new" >Aun no estoy registrado</a>
         </p>
 
         <p>

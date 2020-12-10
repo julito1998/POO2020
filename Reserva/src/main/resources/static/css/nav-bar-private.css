@@ -1,0 +1,47 @@
+a:hover{
+    background-color: rgb(230, 255, 255) !important;
+}
+
+a{
+    border-radius: 3px;
+    background-color: white !important;
+}
+
+.nav-cointaner{
+    text-align: center;
+}
+
+.navbar{
+    padding: 0 !important;
+    display: ruby;
+}
+
+.nav-link{
+    margin: 0%;
+    height: 7vh;
+    padding: 0;
+    flex: 1 1 auto;
+}
+.nav-link-active{
+    margin: 0%;
+    padding: .5rem 1rem;
+    display: block;
+    background-color: rgb(230, 255, 255) !important;
+    height: 7vh;
+    flex: 1 1 auto;
+}
+.nav-link-active:hover{
+    text-decoration: none;
+    color: #007bff;
+}
+
+.btn{
+    border: 1px transparent !important;
+    color: #007bff !important;
+    border-radius: 3px;
+    background-color: white !important;
+}
+
+.btn:hover{
+    background-color: rgb(230, 255, 255) !important;
+}

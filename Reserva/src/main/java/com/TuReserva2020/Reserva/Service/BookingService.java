@@ -8,7 +8,9 @@ import com.TuReserva2020.Reserva.Repository.RoomRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class BookingService implements IBookingService {
@@ -39,5 +41,12 @@ public class BookingService implements IBookingService {
         }
         else{throw new Exception ("La habitación ya esta reservada o no se encuentra disponible");}
     }
+
+    @Override
+    public ArrayList<Booking> listBooking() throws Exception{
+        List bookings = bookingRepo.findAll();
+      return (ArrayList<Booking>) bookings;
+    }
+
 
 }
