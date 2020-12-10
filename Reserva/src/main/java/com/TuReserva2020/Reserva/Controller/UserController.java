@@ -50,7 +50,7 @@ public class UserController {
     public String regist(@ModelAttribute User user){
          try{
             userService.create(user);
-            return "redirect:/login";
+            return "/users/login";
         }catch(UsernameNotFoundException errorU){
             return "/new?error=true";
         }

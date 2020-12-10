@@ -61,10 +61,13 @@ public class Booking {
        super();
     }
 
-    public Booking(@NotNull Date checkIn,@NotNull Date checkOut,@NotNull boolean breakfastIncluded,@NotNull boolean parking,@NotNull boolean freeCancelation,@NotNull float cost) {
-        super();
+    public Booking(Long id, User user, Room room, Date checkIn, Date checkOut, Date createdAt, boolean breakfastIncluded, boolean parking, boolean freeCancelation, float cost) {
+        this.id = id;
+        this.user = user;
+        this.room = room;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+        this.createdAt = createdAt;
         this.breakfastIncluded = breakfastIncluded;
         this.parking = parking;
         this.freeCancelation = freeCancelation;
