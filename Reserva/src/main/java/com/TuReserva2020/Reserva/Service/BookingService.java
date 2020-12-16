@@ -48,5 +48,23 @@ public class BookingService implements IBookingService {
       return (ArrayList<Booking>) bookings;
     }
 
+    /*@Override
+    public void deleteBooking(Booking booking) throws  Exception{
+        List bookings = bookingRepo.findAll();
+        for(Booking b : bookings){
+            if(booking.getId()==b.getId()){
+                bookingRepo.deleteById(booking.getId());
+                break;
+            }
+        }
+    }*/
+
+    public void deleteBooking(Long id) throws Exception {
+        Booking booking = bookingRepo.findById(id)
+                .orElseThrow(() -> new Exception("BookingnotFound in deleteBooking"));
+
+        bookingRepo.delete(booking);
+    }
+
 
 }

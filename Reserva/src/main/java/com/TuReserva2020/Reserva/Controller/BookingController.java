@@ -34,16 +34,7 @@ public class BookingController {
     @Autowired
     private ModelMapper modelMapper;
 
-    @GetMapping
-    private String roomsBookings(Model model){
-        try {
-            ArrayList<Booking> booking = serviceBooking.listBooking();
-            model.addAttribute("reserves", booking);
-            return ("bookings/reserves");
-        }catch(Exception e){
-            return ("App/home");
-        }
-    }
+
 
     @GetMapping("/availability")
     private String roomsAvailability(Model model){
@@ -116,6 +107,24 @@ public class BookingController {
             return ("bookings/availability");
         }
     }
+
+    @GetMapping("/reserves")
+    private String roomsBookings(Model model){
+        try {
+            ArrayList<Booking> booking = serviceBooking.listBooking();
+            model.addAttribute("reserves", booking);
+            return ("bookings/reserves");
+        }catch(Exception e){
+            return ("App/home");
+        }
+    }
+
+
+
+
+
+
+
 
 
 
