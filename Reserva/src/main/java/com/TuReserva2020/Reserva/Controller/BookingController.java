@@ -119,9 +119,30 @@ public class BookingController {
             model.addAttribute("reserves", booking);
             return ("bookings/reserves");
         }catch(Exception e){
-            return ("App/home");
+            return ("/home");
         }
     }
+
+
+    @GetMapping("/cancel_reserves")
+    private String bookingsToCancel(Model model, Authentication authentication){
+        roomsBookings(model,authentication);
+        return("bookings/cancel_reserves");
+    }
+
+    @PostMapping("/cancel_reserves")
+    private String deleteBook(Model model, Authentication authentication){
+        roomsBookings(model,authentication);
+        User sessionUser = (User)authentication.getPrincipal();
+        try {
+            serviceBooking.deleteBooking(sessionUser.getId());
+            return ("bookings/cancel_reserves");
+        }catch(Exception e){
+            return ("bookings/reserves");
+        }
+    }
+
+
 
 
 

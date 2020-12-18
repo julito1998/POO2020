@@ -11,7 +11,6 @@ public interface IBookingService {
     Booking newBooking(Booking booking) throws Exception ;
     ArrayList<Booking> listBooking() throws Exception;
     List<Booking> findBookingById(Long id) throws Exception;
-
     void deleteBooking(Long id) throws Exception;
 
 }

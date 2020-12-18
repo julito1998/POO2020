@@ -23,35 +23,37 @@
         <a class="nav-link" href="" th:href="@{/home}">Home</a><a class="nav-link" href="#" th:href="@{/bookings/reserves}">Reservas</a><a class="nav-link" href="#" th:href="@{/bookings/cancel_reserves}">Cancelar Reservas</a><a class="nav-link-active" href="#" th:href="@{/bookings/availability}">Disponibilidad de habitaciones</a><a class="nav-link" href="#" th:href="@{/logout}">Cerrar Sesion</a>
     </nav>
 
-    <form action="#" th:action="@{/bookings/reserves}" th:object="${reserves}" method="GET" class="frm-reserves">
-    <div class="container-table">
-        <table class="table-view">
-            <thead>
-            <tr class="table-row-cell">
-                <th>Room</th>
-                <th>Occupancy</th>
-                <th>Check In</th>
-                <th>Check Out</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-            </tr>
-            </thead>
+    <form action="#" th:action="@{/bookings/cancel_reserves}" th:object="${reserves}" method="post" class="frm-cancel_reserves">
+        <div class="container-table">
+            <table class="table-view">
+                <thead>
+                <tr class="table-row-cell">
+                    <th>Room</th>
+                    <th>Occupancy</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Cancel</th>
+                </tr>
+                </thead>
 
-            <tbody>
-            <tr th:if="${reserves.empty}">
-                <td colspan="6"> No se hicieron reservas</td>
-            </tr>
-            <tr th:each="reserves : ${reserves}" class="table-row-cell">
-                <td class="table-row"><span th:text="${reserves.room.name}"> Room </span></td>
-                <td class="table-row"><span th:text="${reserves.room.Occupancy}"> Occupancy </span></td>
-                <td class="table-row"><span th:text="${reserves.checkIn}"> Check In </span></td>
-                <td class="table-row"><span th:text="${reserves.checkOut}"> Check Out </span></td>
-                <td class="table-row"><span th:text="${reserves.user.firstName}"> First Name </span></td>
-                <td class="table-row"><span th:text="${reserves.user.lastName}"> Last Name </span></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+                <tbody>
+                <tr th:if="${reserves.empty}">
+                    <td colspan="6"> No se hicieron reservas</td>
+                </tr>
+                <tr th:each="reserves : ${reserves}" class="table-row-cell">
+                    <td class="table-row"><span th:text="${reserves.room.name}"> Room </span></td>
+                    <td class="table-row"><span th:text="${reserves.room.Occupancy}"> Occupancy </span></td>
+                    <td class="table-row"><span th:text="${reserves.checkIn}"> Check In </span></td>
+                    <td class="table-row"><span th:text="${reserves.checkOut}"> Check Out </span></td>
+                    <td class="table-row"><span th:text="${reserves.user.firstName}"> First Name </span></td>
+                    <td class="table-row"><span th:text="${reserves.user.lastName}"> Last Name </span></td>
+                    <td class="table-row"><button type="submit" name="cancel_book">Cancel</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
     </form>
 </div>

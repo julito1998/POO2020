@@ -64,16 +64,6 @@ public class BookingService implements IBookingService {
         bookingRepo.delete(booking);
     }
 
-    /*@Override
-    public void deleteBooking(Booking booking) throws  Exception{
-        List bookings = bookingRepo.findAll();
-        for(Booking b : bookings){
-            if(booking.getId()==b.getId()){
-                bookingRepo.deleteById(booking.getId());
-                break;
-            }
-        }
-    }*/
 
 
 
