@@ -57,11 +57,14 @@ public class BookingService implements IBookingService {
 
 
     //Metodo para elimanr usuario
-    public void deleteBooking(Long id) throws Exception {
-        Booking booking = bookingRepo.findById(id)
+    public void deleteBooking(Long id_book,Long id_user) throws Exception {
+        /*Booking booking = bookingRepo.findById(id)
                 .orElseThrow(() -> new Exception("BookingnotFound in deleteBooking"));
 
-        bookingRepo.delete(booking);
+        bookingRepo.delete(booking);*/
+
+        bookingRepo.deleteBooking(id_book, id_user);
+
     }
 
 
