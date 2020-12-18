@@ -22,30 +22,38 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <a class="nav-link" href="" th:href="@{/App/home}">Home</a><a class="nav-link" href="#" th:href="@{#}">Reservas</a><a class="nav-link" href="#" th:href="@{#}">Cancelar Reservas</a><a class="nav-link-active" href="#" th:href="@{/bookings/availability}">Disponibilidad de habitaciones</a><a class="nav-link" href="#" th:href="@{/logout}">Cerrar Sesion</a>
     </nav>
+
+    <form action="#" th:action="@{/bookings/reserves}" th:object="${reserves}" method="GET" class="frm-reserves">
     <div class="container-table">
         <table class="table-view">
             <thead>
             <tr class="table-row-cell">
                 <th>Room</th>
                 <th>Occupancy</th>
-                <th>Facility</th>
-                <th>Price</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>First Name</th>
+                <th>Last Name</th>
             </tr>
             </thead>
 
             <tbody>
-            <tr th:if="${rooms.empty}">
-                <td colspan="4"> No Rooms Availability</td>
+            <tr th:if="${reserves.empty}">
+                <td colspan="6"> No se hicieron reservas</td>
             </tr>
-            <tr th:each="room : ${booking}" class="table-row-cell">
-                <td class="table-row"><span th:text="${room.name}"> Room </span></td>
-                <td class="table-row"><span th:text="${room.occupancy}"> Occupancy </span></td>
-                <td class="table-row"><span th:text="${room.facilities}"> Facilities </span></td>
-                <td class="table-row"><span th:text="${room.price}"> Price </span></td>
+            <tr th:each="reserves : ${reserves}" class="table-row-cell">
+                <td class="table-row"><span th:text="${reserves.room.name}"> Room </span></td>
+                <td class="table-row"><span th:text="${reserves.room.Occupancy}"> Occupancy </span></td>
+                <td class="table-row"><span th:text="${reserves.checkIn}"> Check In </span></td>
+                <td class="table-row"><span th:text="${reserves.checkOut}"> Check Out </span></td>
+                <td class="table-row"><span th:text="${reserves.user.firstName}"> First Name </span></td>
+                <td class="table-row"><span th:text="${reserves.user.lastName}"> Last Name </span></td>
             </tr>
             </tbody>
         </table>
     </div>
+
+    </form>
 </div>
 </body>
 </html>

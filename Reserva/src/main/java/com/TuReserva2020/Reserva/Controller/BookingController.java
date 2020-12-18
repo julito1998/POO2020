@@ -3,13 +3,15 @@ package com.TuReserva2020.Reserva.Controller;
 import com.TuReserva2020.Reserva.DTO.*;
 import com.TuReserva2020.Reserva.InterfaceService.IBookingService;
 import com.TuReserva2020.Reserva.InterfaceService.IRoomService;
-
+import com.TuReserva2020.Reserva.InterfaceService.IUserService;
 import com.TuReserva2020.Reserva.Model.Booking;
 import com.TuReserva2020.Reserva.Model.Room;
 import com.TuReserva2020.Reserva.Model.User;
+import com.TuReserva2020.Reserva.Service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +32,7 @@ public class BookingController {
 
     @Autowired
     private IBookingService serviceBooking;
+
 
     @Autowired
     private ModelMapper modelMapper;
@@ -109,9 +112,10 @@ public class BookingController {
     }
 
     @GetMapping("/reserves")
-    private String roomsBookings(Model model){
+    private String roomsBookings(Model model, Authentication authentication){
+        User sessionUser = (User)authentication.getPrincipal();
         try {
-            ArrayList<Booking> booking = serviceBooking.listBooking();
+            List<Booking> booking = serviceBooking.findBookingById(sessionUser.getId());
             model.addAttribute("reserves", booking);
             return ("bookings/reserves");
         }catch(Exception e){

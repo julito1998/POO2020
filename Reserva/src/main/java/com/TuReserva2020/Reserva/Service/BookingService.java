@@ -48,6 +48,22 @@ public class BookingService implements IBookingService {
       return (ArrayList<Booking>) bookings;
     }
 
+
+    //Listar reservas que hizo un usuario determinado
+    public List<Booking> findBookingById(Long id) throws Exception{
+        List bookings = bookingRepo.findBookingByUser(id);
+        return bookings;
+    }
+
+
+    //Metodo para elimanr usuario
+    public void deleteBooking(Long id) throws Exception {
+        Booking booking = bookingRepo.findById(id)
+                .orElseThrow(() -> new Exception("BookingnotFound in deleteBooking"));
+
+        bookingRepo.delete(booking);
+    }
+
     /*@Override
     public void deleteBooking(Booking booking) throws  Exception{
         List bookings = bookingRepo.findAll();
@@ -59,12 +75,6 @@ public class BookingService implements IBookingService {
         }
     }*/
 
-    public void deleteBooking(Long id) throws Exception {
-        Booking booking = bookingRepo.findById(id)
-                .orElseThrow(() -> new Exception("BookingnotFound in deleteBooking"));
-
-        bookingRepo.delete(booking);
-    }
 
 
 }
