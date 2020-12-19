@@ -23,7 +23,7 @@
         <a class="nav-link" href="" th:href="@{/home}">Home</a><a class="nav-link" href="#" th:href="@{/bookings/reserves}">Reservas</a><a class="nav-link" href="#" th:href="@{/bookings/cancel_reserves}">Cancelar Reservas</a><a class="nav-link-active" href="#" th:href="@{/bookings/availability}">Disponibilidad de habitaciones</a><a class="nav-link" href="#" th:href="@{/logout}">Cerrar Sesion</a>
     </nav>
 
-    <form action="#" th:action="@{/bookings/cancel_reserves}" th:object="${reserves}" method="post" class="frm-cancel_reserves">
+    <form action="#" th:action="@{/bookings/cancel_reserves}" th:object="${reserves}" method="POST" class="frm-cancel_reserves">
         <div class="container-table">
             <table class="table-view">
                 <thead>
@@ -49,7 +49,11 @@
                     <td class="table-row"><span th:text="${reserves.checkOut}"> Check Out </span></td>
                     <td class="table-row"><span th:text="${reserves.user.firstName}"> First Name </span></td>
                     <td class="table-row"><span th:text="${reserves.user.lastName}"> Last Name </span></td>
-                    <td class="table-row"><button type="submit" name="cancel_book">Cancel</button></td>
+                    <td class="table-row"><form action="#" th:action="@{/bookings/cancel_reserves}" th:object="${reserves}" method="post">
+                                                <input type="hidden" th:name="id" th:value="${reserves.id}"/>
+                                                <button type="submit" name="cancel"> Cancel</button>
+                    </form></td>
+
                 </tr>
                 </tbody>
             </table>

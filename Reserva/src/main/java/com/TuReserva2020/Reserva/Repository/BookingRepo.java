@@ -17,8 +17,8 @@ public interface BookingRepo extends JpaRepository<Booking,Long> {
     @Query("select b from Booking b where b.user.id = :user_id ")
             List<Booking> findBookingByUser(@Param("user_id") Long user_id);
 
-    @Query("delete from Booking b where (b.user.id = :user_id) and (b.id = :booking_id) ")
-            void deleteBooking(@Param("user_id") Long user_id, @Param("booking_id") Long id);
+    /*@Query("delete from Booking b where (b.user.id = :user_id) and (b.id = :booking_id) ")
+            void deleteBooking(@Param("user_id") Long user_id, @Param("booking_id") Long id);*/
 
 
 

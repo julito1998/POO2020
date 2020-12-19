@@ -131,14 +131,12 @@ public class BookingController {
     }
 
     @PostMapping("/cancel_reserves")
-    private String deleteBook(@ModelAttribute Booking reserves,  Model model, Authentication authentication){
-        roomsBookings(model,authentication);
-        User sessionUser = (User)authentication.getPrincipal();
+    private String deleteBook(@ModelAttribute Booking reserves){
         try {
-            serviceBooking.deleteBooking(reserves.getId(),sessionUser.getId());
-            return ("bookings/cancel_reserves");
+            serviceBooking.deleteBooking(reserves.getId());
+            return ("redirect:/bookings/cancel_reserves");
         }catch(Exception e){
-            return ("bookings/reserves");
+            return ("redirect:/bookings/reserves");
         }
     }
 
