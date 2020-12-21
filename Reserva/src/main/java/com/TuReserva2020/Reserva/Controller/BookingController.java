@@ -34,11 +34,17 @@ public class BookingController {
     @Autowired
     private ModelMapper modelMapper;
 
-    @GetMapping
+    @GetMapping("/reserves")
     private String roomsBookings(Model model){
         try {
-            ArrayList<Booking> booking = serviceBooking.listBooking();
-            model.addAttribute("reserves", booking);
+            ArrayList<Booking> bookings = serviceBooking.listBooking();
+
+            List<ConfirmBookingRequestDTO> reservesDTO=bookings.stream()
+                    .map(booking -> modelMapper.map(booking, ConfirmBookingRequestDTO.class))
+                    .collect(Collectors.toList());
+
+            model.addAttribute("reserves", reservesDTO);
+            //model.addAttribute("reserves", reserves);
             return ("bookings/reserves");
         }catch(Exception e){
             return ("App/home");
@@ -52,11 +58,11 @@ public class BookingController {
         return "bookings/availability";
     }
 
-    @GetMapping("/availabilityPublic")
+    @GetMapping("/availability_public")
     private String roomsAvailabilityPublic(Model model){
         model.addAttribute("roomsAvailability", new RoomAvailabilityDTO());
         model.addAttribute("rooms", new ArrayList<RoomDTO>());
-        return "bookings/availabilityPublic";
+        return "bookings/availability_public";
     }
 
     private void loadModelRooms(@ModelAttribute RoomAvailabilityDTO roomsAvailabilityDTO, Model model){
@@ -78,7 +84,7 @@ public class BookingController {
     @PostMapping("/availabilityPublic")
     private String getRoomsAvailablePublic(@ModelAttribute RoomAvailabilityDTO roomsAvailabilityDTO, Model model){
         loadModelRooms(roomsAvailabilityDTO,model);
-        return "bookings/availabilityPublic";
+        return "bookings/availability_public";
     }
 
     @PostMapping("/availability")
