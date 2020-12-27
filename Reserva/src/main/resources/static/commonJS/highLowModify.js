@@ -13,3 +13,8 @@ function errorMessage() {
                 error.innerText = "";
         }
 }
+
+function redirectButtonToLink(link, id='#0'){
+       const elem= document.querySelector(id);
+        elem.location.href=link;
+}

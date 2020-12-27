@@ -49,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      protected void configure(HttpSecurity http) throws Exception {
 
         //antMatchers todas estas rutas hacen referencia a la ruta resources/templates ("/", "/App/principal" ....) o resources/static ("/js/**", "/css/**")
-        http.authorizeRequests().antMatchers("/","/js/**","/css/**","/users","/users/login","/users/new","/App/principal", "/bookings/availabilityPublic").permitAll()
+        http.authorizeRequests().antMatchers("/","/js/**","/css/**","/users","/users/login","/users/new","/principal", "/bookings/availabilityPublic").permitAll()
                 .antMatchers(HttpMethod.POST,"/users").permitAll()
                 .antMatchers("/**").hasRole("USER").and().formLogin()
                 //referencia al metodo get
@@ -66,6 +66,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/");
 
     }
+
+    
+
+
 
 }
 

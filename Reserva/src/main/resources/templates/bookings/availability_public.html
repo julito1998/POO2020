@@ -42,21 +42,23 @@
             <thead>
             <tr class="table-row-cell">
                 <th>Room</th>
-                <th>Occupancy</th>
-                <th>Facility</th>
                 <th>Price</th>
+                <th>Occupancy</th>
+                <th>Availability</th>
+                <th>Facility</th>
             </tr>
             </thead>
 
             <tbody>
             <tr th:if="${rooms.empty}">
-                <td colspan="4"> No Rooms Availability</td>
+                <td colspan="5"> No Rooms Availability In Date Selected</td>
             </tr>
             <tr th:each="room : ${rooms}" class="table-row-cell">
                 <td class="table-row"><span th:text="${room.name}"> Room </span></td>
-                <td class="table-row"><span th:text="${room.occupancy}"> Occupancy </span></td>
-                <td class="table-row"><span th:text="${room.facilities}"> Facilities </span></td>
                 <td class="table-row"><span th:text="${room.price}"> Price </span></td>
+                <td class="table-row"><span th:text="${room.occupancy}"> Occupancy </span></td>
+                <td class="table-row"><span th:text="${room.availability}"> Availability</span></td>
+                <td class="table-row"><span th:text="${room.facilities}"> Facilities </span></td>
             </tr>
             </tbody>
         </table>

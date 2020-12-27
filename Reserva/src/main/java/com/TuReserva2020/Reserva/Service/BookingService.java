@@ -28,18 +28,21 @@ public class BookingService implements IBookingService {
         booking.setCost(booking.getRoom().getPrice());
         booking.setCreatedAt(new Date());
 
-        if(booking.getCheckIn().before(new Date())
-                ||booking.getCheckIn().after(booking.getCheckOut())){
-            throw new Exception ("La fecha de check in es anterior a la fecha actual o " +
-                    "la fecha de check in es posterior a la de check out");}
+        if(booking.getCheckIn().before(new Date())){
+            throw new Exception ("La fecha de check in es anterior a la fecha actual");
+        }
+        if (booking.getCheckIn().after(booking.getCheckOut())) {
+            throw new Exception ("la fecha de check in es posterior a la de check out");
+        }
 
         Room r =roomRepo.isRoomAvailable(booking.getCheckIn(), booking.getCheckOut(), booking.getRoom().getId());
 
-
         if(r!=null){
-            return booking = bookingRepo.save(booking);
+            return bookingRepo.save(booking);
         }
-        else{throw new Exception ("La habitación ya esta reservada o no se encuentra disponible");}
+        else{
+            throw new Exception ("La habitación ya esta reservada o no se encuentra disponible");
+        }
     }
 
     @Override
@@ -47,6 +50,24 @@ public class BookingService implements IBookingService {
         List bookings = bookingRepo.findAll();
       return (ArrayList<Booking>) bookings;
     }
+
+
+    //Listar reservas que hizo un usuario determinado
+    public List<Booking> findBookingById(Long id) throws Exception{
+        List bookings = bookingRepo.findBookingByUser(id);
+        return bookings;
+    }
+
+
+    //Metodo para eliminar usuario
+    public void deleteBooking(Long id) throws Exception {
+        Booking booking = bookingRepo.findById(id)
+                .orElseThrow(() -> new Exception("Booking not Found in delete Booking"));
+
+        bookingRepo.delete(booking);
+    }
+
+
 
 
 }
