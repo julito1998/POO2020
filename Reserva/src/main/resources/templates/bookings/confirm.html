@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href= "@{/css/nav-bar-private.css}">
+    <link rel="stylesheet" th:href= "@{/css/bookings/new-confirm.css}">
     <!--CSS BOOTSTRAP -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css}" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <!--JS BOOTSTRAP -->
@@ -22,8 +23,16 @@
         <a class="nav-link" href="" th:href="@{/home}">Home</a><a class="nav-link" href="#" th:href="@{/bookings/reserves}">Reservas</a><a class="nav-link" href="#" th:href="@{/bookings/cancel_reserves}">Cancelar Reservas</a><a class="nav-link" href="#" th:href="@{/bookings/availability}">Disponibilidad de habitaciones</a><a class="nav-link" href="#" th:href="@{/logout}">Cerrar Sesion</a>
     </nav>
 </div>
-<div class="container-fluid">
-    <h2>Su reserva se registro exitosamente, lo esperamos!</h2>
+<div class="container-fluid" style="text-align: center">
+    <div th:if="${checkIn != null}">
+        <h2>Su reserva se registro exitosamente, lo esperamos en la fecha <span th:text="${checkIn}"></span></h2>
+    </div>
+
+    <div th:unless="${checkIn != null}">
+        <h2>Su reserva no fue registrada exitosamente. Debido al siguiente problema: <span th:text="${error}"></span></h2>
+        <a href="" th:href="@{/bookings/availability}" id="reIntentar">Intentar Nuevamente</a>
+    </div>
+
 </div>
 </body>
 </html>
