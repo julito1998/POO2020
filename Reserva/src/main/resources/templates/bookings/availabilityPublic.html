@@ -50,7 +50,7 @@
 
             <tbody>
             <tr th:if="${rooms.empty}">
-                <td colspan="4"> No Rooms Availability</td>
+                <td colspan="6"> No Rooms Availability</td>
             </tr>
             <tr th:each="room : ${rooms}" class="table-row-cell">
                 <td class="table-row"><span th:text="${room.name}"> Room </span></td>

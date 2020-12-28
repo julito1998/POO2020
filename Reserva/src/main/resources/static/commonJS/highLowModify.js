@@ -12,4 +12,6 @@ function errorMessage() {
         else {
                 error.innerText = "";
         }
+
+
 }

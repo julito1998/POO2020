@@ -61,7 +61,15 @@ public class BookingService implements IBookingService {
         Booking booking = bookingRepo.findById(id)
                 .orElseThrow(() -> new Exception("BookingnotFound in deleteBooking"));
 
-        bookingRepo.delete(booking);
+        Date fecha = new Date();
+
+        if((booking.getCheckIn().getDay() - fecha.getDay() <= 2)) {
+            throw new Exception ("No se puede cancelar la reserva, por que " +
+                    "no cumple con la condicion establecida : 'Sólo podrá cancelar aquellas reservas " +
+                    "con 48 hs o más de antelación respecto de la fecha de ingreso (check-in)'");}
+        else{
+            bookingRepo.delete(booking);}
+
     }
 
 
