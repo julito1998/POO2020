@@ -10,10 +10,42 @@
         <tagDatabase tag="1.0.0-27/11/2020"/>
     </changeSet>
 
+    <changeSet id="modificar-rooms" author="julito">
+        <comment>columna availabitlity por availability</comment>
+        <sql>
+            ALTER TABLE rooms RENAME COLUMN availabitlity TO availability;
+        </sql>
+    </changeSet>
+
+    <changeSet id="modificar-user" author="julito">
+        <comment>columna natioality por nationality</comment>
+        <sql>
+            ALTER TABLE users RENAME COLUMN natioality TO nationality;
+        </sql>
+    </changeSet>
+
+    <changeSet id="eliminar-birt_date" author="julito">
+        <comment>elimino la columna birt_date</comment>
+        <sql>
+            ALTER TABLE users DROP COLUMN birt_date;
+        </sql>
+    </changeSet>
+
+    <changeSet id="add-user" author="julito">
+        <comment>agrego un nuevo usuario</comment>
+        <sql>
+            INSERT INTO users (first_name, last_name, password, birthdate, nationality, email)
+            VALUES('pepe', 'full', 'pepe', DATE '2020-01-02', 'Argentina', 'pepe@hotmail.com');
+        </sql>
+        <rollback>
+            DROP TABLE IF EXISTS users;
+        </rollback>
+    </changeSet>
+
     <changeSet id="rellenar-rooms" author="facundo">
         <comment>rellenar tabla room</comment>
         <sql>
-            insert into rooms (name, price, occupancy, facilities, availability) values ('1', 24.0, 4, 'ni idea que era xd', 2 );
+            insert into rooms (name, price, occupancy, facilities, availability) values ('1', 24.0, 4, 'ni idea que era xd', 2);
         </sql>
         <rollback>
             DROP TABLE IF EXISTS rooms;
