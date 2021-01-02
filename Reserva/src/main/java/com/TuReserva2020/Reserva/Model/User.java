@@ -42,7 +42,7 @@ public class User implements UserDetails{
     @Column(name="birt_date")
     private Date birthDate;
     
-    private String natioality;
+    private String nationality;
     
     public User(){
         super();
@@ -55,7 +55,7 @@ public class User implements UserDetails{
         this.lastName = lastName;
         this.password = password;
         this.birthDate = birthDate;
-        this.natioality = natioality;
+        this.nationality = natioality;
     }
     
     public String getFirstName() {
@@ -82,12 +82,12 @@ public class User implements UserDetails{
         this.birthDate = birthDate;
     }
 
-    public String getNatioality() {
-        return natioality;
+    public String getNationality() {
+        return nationality;
     }
 
-    public void setNatioality(String natioality) {
-        this.natioality = natioality;
+    public void setNationality(String nationality) {
+        this.nationality= nationality;
     }
     
     public Long getId() {
