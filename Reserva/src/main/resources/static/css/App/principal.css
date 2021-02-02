@@ -33,6 +33,7 @@ h1{
 
 #ver-disponibilidad:hover{
     background-color: rgb(59, 174, 223) !important;
+    transition: all .6s ease;
 }
 
 
@@ -60,6 +61,7 @@ img{
     justify-content: space-between;
     margin-top: 1.5%;
 }
+
 .card{
     background: white;
     box-shadow: 0 0 16px rgba(0,0,0,1);
