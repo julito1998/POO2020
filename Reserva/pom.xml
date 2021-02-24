@@ -34,7 +34,7 @@
                     <artifactId>postgresql</artifactId>
                     <scope>runtime</scope>
                 </dependency>
-            
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -86,6 +86,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -109,7 +115,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-        
+
 	<build>
 		<plugins>
 			<plugin>
@@ -120,7 +126,7 @@
                             <groupId>org.liquibase</groupId>
                             <artifactId>liquibase-maven-plugin</artifactId>
                             <version>3.4.1</version>
-                            <configuration>                
+                            <configuration>
                                 <propertyFile>src/main/resources/liquibase.properties</propertyFile>
                             </configuration>
                             <dependencies>
@@ -135,17 +141,17 @@
                                    <version>2.3.1</version>
                                 </dependency>
                             </dependencies>
-                            <executions>  
-                                <execution>  
-                                  <phase>process-resources</phase>  
-                                  <goals>  
-                                    <goal>update</goal>  
-                                  </goals>  
-                                </execution>  
-                             </executions>               
+                            <executions>
+                                <execution>
+                                  <phase>process-resources</phase>
+                                  <goals>
+                                    <goal>update</goal>
+                                  </goals>
+                                </execution>
+                             </executions>
                         </plugin>
 		</plugins>
-  
+
 	</build>
 
 </project>
