@@ -8,6 +8,7 @@ import com.TuReserva2020.Reserva.Repository.RoomRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -47,7 +48,10 @@ public class BookingService implements IBookingService {
 
     @Override
     public ArrayList<Booking> listBooking() throws Exception{
+
+
         List bookings = bookingRepo.findAll();
+
       return (ArrayList<Booking>) bookings;
     }
 
@@ -66,12 +70,14 @@ public class BookingService implements IBookingService {
 
         Date fecha = new Date();
 
-        if((booking.getCheckIn().getDay() - fecha.getDay() <= 2)) {
+        bookingRepo.delete(booking);
+
+        /*if((booking.getCheckIn().getDay() - fecha.getDay() <= 2)) {
             throw new Exception ("No se puede cancelar la reserva, por que " +
                     "no cumple con la condicion establecida : 'Sólo podrá cancelar aquellas reservas " +
                     "con 48 hs o más de antelación respecto de la fecha de ingreso (check-in)'");}
         else{
-            bookingRepo.delete(booking);}
+            bookingRepo.delete(booking);}*/
 
     }
 

@@ -1,4 +1,4 @@
-package com.TuReserva2020.Reserva.InterfaceService;
+package com.TuReserva2020.Reserva.Service;
 
 import com.TuReserva2020.Reserva.Model.Booking;
 
