@@ -39,7 +39,7 @@ public class BookingController {
 
   /*  @GetMapping("/reserves")
     private String roomsBookings(Model model){
-        try {
+        tr {
             ArrayList<Booking> bookings = serviceBooking.listBooking();
 
             List<ConfirmBookingRequestDTO> reservesDTO=bookings.stream()
