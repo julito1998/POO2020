@@ -1,9 +1,9 @@
 package com.TuReserva2020.Reserva.Controller;
 
 import com.TuReserva2020.Reserva.DTO.*;
-import com.TuReserva2020.Reserva.InterfaceService.IBookingService;
-import com.TuReserva2020.Reserva.InterfaceService.IRoomService;
-import com.TuReserva2020.Reserva.InterfaceService.IUserService;
+import com.TuReserva2020.Reserva.Service.IBookingService;
+import com.TuReserva2020.Reserva.Service.IRoomService;
+import com.TuReserva2020.Reserva.Service.IUserService;
 import com.TuReserva2020.Reserva.Model.Booking;
 import com.TuReserva2020.Reserva.Model.Room;
 import com.TuReserva2020.Reserva.Model.User;

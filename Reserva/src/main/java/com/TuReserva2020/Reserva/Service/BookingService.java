@@ -1,6 +1,6 @@
 package com.TuReserva2020.Reserva.Service;
 
-import com.TuReserva2020.Reserva.InterfaceService.IBookingService;
+
 import com.TuReserva2020.Reserva.Model.Booking;
 import com.TuReserva2020.Reserva.Model.Room;
 import com.TuReserva2020.Reserva.Repository.BookingRepo;
