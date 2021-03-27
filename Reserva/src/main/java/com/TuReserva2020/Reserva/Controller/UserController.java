@@ -1,9 +1,12 @@
 package com.TuReserva2020.Reserva.Controller;
 
 import com.TuReserva2020.Reserva.DTO.UserLoginDTO;
+import com.TuReserva2020.Reserva.DTO.UserNewDTO;
 import com.TuReserva2020.Reserva.InterfaceService.IUserService;
+import com.TuReserva2020.Reserva.Model.Booking;
 import com.TuReserva2020.Reserva.Model.User;
 import com.TuReserva2020.Reserva.Service.UserService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -39,17 +42,23 @@ public class UserController {
     @Autowired
     private UserDetailsService userDetailService;
 
+    @Autowired
+    private ModelMapper modelMapper;
 
     @GetMapping("/new")
     public String userNew(Model model){
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserNewDTO());
         return "users/new";
     }
 
     @PostMapping("/new")
-    public String regist(@ModelAttribute User user){
+    public String regist(@ModelAttribute UserNewDTO user){
          try{
-            userService.create(user);
+             UserNewDTO userNewDTO= new UserNewDTO();
+             userNewDTO.setBirthDate(user.getBirthDate());
+             User user1 = modelMapper.map(user, User.class);
+             user1.setBirthDate((user.getCheckInDateConverted());
+            userService.create(user1);
             return "/users/login";
         }catch(UsernameNotFoundException errorU){
             return "/new?error=true";

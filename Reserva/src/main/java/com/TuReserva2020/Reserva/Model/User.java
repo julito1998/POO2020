@@ -39,7 +39,7 @@ public class User implements UserDetails{
     @NotNull
     private String password;
     
-    @Column(name="birt_date")
+    @Column(name="birth_date")
     private Date birthDate;
     
     private String nationality;
