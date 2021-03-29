@@ -1,16 +1,15 @@
 .all-container{
     text-align: center;
-    background:rgb(0,230,230);
+    background:rgba(0,230,230,0.4);
 }
 
 .frm-availability{
     font-size: 110%;
     text-align: center;
     background-position: center;
-    background:aquamarine;
 }
 
-input{
+input {
     width: 15%;
     border-radius: 2px;
     border: none;
