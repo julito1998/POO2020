@@ -3,14 +3,13 @@ package com.TuReserva2020.Reserva.DTO;
 import com.sun.istack.NotNull;
 
 import javax.persistence.Column;
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class UserNewDTO {
-    private static final SimpleDateFormat dateFormat
-            = new SimpleDateFormat("yyyy-MM-dd");
-
+public class UserNewDTO implements Serializable {
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private String email;
     private String password;
     private Long id;
@@ -20,6 +19,7 @@ public class UserNewDTO {
     private String nationality;
 
     public UserNewDTO(String email, String password, Long id, String firstName, String lastName, String birthDate, String nationality) {
+        super();
         this.email = email;
         this.password = password;
         this.id = id;
@@ -33,20 +33,29 @@ public class UserNewDTO {
         super();
     }
 
-    public String getNationality() {
-        return nationality;
+    public Date getBirthDateInDateConverted() throws ParseException {
+        return dateFormat.parse(this.birthDate);
+    }
+    public void setDateBirthDate(Date date){
+        this.setBirthDate(dateFormat.format(date));
     }
 
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
+    public String getBirthDate() {
+        return birthDate;
     }
 
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 
-    public static SimpleDateFormat getDateFormat() {
-        return dateFormat;
+
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
     }
 
     public Long getId() {
@@ -73,25 +82,12 @@ public class UserNewDTO {
         this.lastName = lastName;
     }
 
-    public Date getCheckInDateConverted() throws ParseException {
-        return dateFormat.parse(this.birthDate);
-    }
-
-    public void setCheckInDate(Date date) {
-        this.birthDate = dateFormat.format(date);
-    }
-
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getBirthDate() {
-        return birthDate;
     }
 
     public String getEmail() {

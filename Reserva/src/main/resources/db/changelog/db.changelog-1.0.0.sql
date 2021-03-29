@@ -1,11 +1,11 @@
 create table users(
     id serial primary key not null,
-    email varchar(100) not null,
-    first_name varchar(50) not null,
-    last_name varchar(50) not null,
-    password varchar(100) not null,
-    birthDate date not null,
-    natioality varchar (100)
+    email varchar(255) not null,
+    first_name varchar(255) not null,
+    last_name varchar(255) not null,
+    password varchar(255) not null,
+    birth_date date not null,
+    nationality varchar (255)
 );
 --rollback drop table users;
 --changeset develop:1
@@ -15,7 +15,7 @@ create table rooms(
     name varchar(255) not null,
     price float not null,
     occupancy int not null,
-    availabitlity int not null, 
+    availability int not null,
     facilities varchar(255) not null
 );
 --rollback drop table rooms;

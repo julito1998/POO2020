@@ -5,7 +5,6 @@
  */
 package com.TuReserva2020.Reserva.Service;
 
-import com.TuReserva2020.Reserva.InterfaceService.IUserService;
 import com.TuReserva2020.Reserva.Model.User;
 import com.TuReserva2020.Reserva.Repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +48,7 @@ public class UserService implements UserDetailsService, IUserService{
            user=repo.save(user);
        }
         else{
-            throw new UsernameNotFoundException("El mail : "+ user.getEmail() +" ya esta asociado a un usuario");
+            throw new UsernameNotFoundException("El mail : "+ user.getEmail() +" ya esta asociado a un usuario. Intente Nuevamente con otro Usuaurio");
         }
        return user;
     }

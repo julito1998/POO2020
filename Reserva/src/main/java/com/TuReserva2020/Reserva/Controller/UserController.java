@@ -2,16 +2,11 @@ package com.TuReserva2020.Reserva.Controller;
 
 import com.TuReserva2020.Reserva.DTO.UserLoginDTO;
 import com.TuReserva2020.Reserva.DTO.UserNewDTO;
-import com.TuReserva2020.Reserva.InterfaceService.IUserService;
-import com.TuReserva2020.Reserva.Model.Booking;
+import com.TuReserva2020.Reserva.Service.IUserService;
 import com.TuReserva2020.Reserva.Model.User;
-import com.TuReserva2020.Reserva.Service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
@@ -19,13 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Collection;
+import java.util.Map;
 
 /**
  *
@@ -52,17 +45,19 @@ public class UserController {
     }
 
     @PostMapping("/new")
-    public String regist(@ModelAttribute UserNewDTO user){
+    public String regist(@ModelAttribute UserNewDTO userDTO, Model model){
          try{
-             UserNewDTO userNewDTO= new UserNewDTO();
-             userNewDTO.setBirthDate(user.getBirthDate());
-             User user1 = modelMapper.map(user, User.class);
-             user1.setBirthDate((user.getCheckInDateConverted());
-            userService.create(user1);
-            return "/users/login";
+             User user = modelMapper.map(userDTO, User.class);
+             user.setBirthDate(userDTO.getBirthDateInDateConverted());
+             userService.create(user);
+             return "/users/login";
         }catch(UsernameNotFoundException errorU){
-            return "/new?error=true";
-        }
+            model.addAttribute("error",errorU.getMessage());
+            return "/error";
+        }catch (Exception e){
+             model.addAttribute("error",e.getMessage());
+             return "/error";
+         }
     }
 
     @GetMapping("/login")
@@ -72,12 +67,13 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    private String login(@ModelAttribute UserLoginDTO user) {
+    public String login(@ModelAttribute UserLoginDTO user, Model model) {
        try {
             userService.loadUserByUsername(user.getEmail());
             return "/home";
         } catch (UsernameNotFoundException ex) {
-            return  "/login?error=true";
+           model.addAttribute("error",ex.getMessage());
+           return "/error";
 
         }
     }

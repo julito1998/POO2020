@@ -1,17 +1,14 @@
 package com.TuReserva2020.Reserva.Controller;
 
 import com.TuReserva2020.Reserva.DTO.*;
-import com.TuReserva2020.Reserva.InterfaceService.IBookingService;
-import com.TuReserva2020.Reserva.InterfaceService.IRoomService;
-import com.TuReserva2020.Reserva.InterfaceService.IUserService;
+import com.TuReserva2020.Reserva.Service.IBookingService;
+import com.TuReserva2020.Reserva.Service.IRoomService;
 import com.TuReserva2020.Reserva.Model.Booking;
 import com.TuReserva2020.Reserva.Model.Room;
 import com.TuReserva2020.Reserva.Model.User;
-import com.TuReserva2020.Reserva.Service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,20 +53,20 @@ public class BookingController {
 
 
     @GetMapping("/availability")
-    private String roomsAvailability(Model model){
+    public String roomsAvailability(Model model){
         model.addAttribute("roomsAvailability", new RoomAvailabilityDTO());
         model.addAttribute("rooms", new ArrayList<RoomDTO>());
         return "bookings/availability";
     }
 
     @GetMapping("/availabilityPublic")
-    private String roomsAvailabilityPublic(Model model){
+    public String roomsAvailabilityPublic(Model model){
         model.addAttribute("roomsAvailability", new RoomAvailabilityDTO());
         model.addAttribute("rooms", new ArrayList<RoomDTO>());
         return "bookings/availability_public";
     }
 
-    private void loadModelRooms(@ModelAttribute RoomAvailabilityDTO roomsAvailabilityDTO, Model model){
+    public void loadModelRooms(@ModelAttribute RoomAvailabilityDTO roomsAvailabilityDTO, Model model){
         List<Room> rooms = new ArrayList<>();
         try{
             rooms= serviceRoom.getRoomsAvailable(
@@ -86,13 +83,13 @@ public class BookingController {
     }
 
     @PostMapping("/availabilityPublic")
-    private String getRoomsAvailablePublic(@ModelAttribute RoomAvailabilityDTO roomsAvailabilityDTO, Model model){
+    public String getRoomsAvailablePublic(@ModelAttribute RoomAvailabilityDTO roomsAvailabilityDTO, Model model){
         loadModelRooms(roomsAvailabilityDTO,model);
         return "bookings/availability_public";
     }
 
     @PostMapping("/availability")
-    private String getRoomsAvailable(@ModelAttribute RoomAvailabilityDTO roomsAvailabilityDTO, Model model){
+    public String getRoomsAvailable(@ModelAttribute RoomAvailabilityDTO roomsAvailabilityDTO, Model model){
         loadModelRooms(roomsAvailabilityDTO,model);
         return "bookings/availability";
     }
@@ -134,7 +131,7 @@ public class BookingController {
     }
 
     @GetMapping("/reserves")
-    private String roomsBookings(Model model, Authentication authentication){
+    public String roomsBookings(Model model, Authentication authentication){
         User sessionUser = (User)authentication.getPrincipal();
         try {
             List<Booking> booking = serviceBooking.findBookingById(sessionUser.getId());
@@ -147,13 +144,13 @@ public class BookingController {
 
 
     @GetMapping("/cancel_reserves")
-    private String bookingsToCancel(Model model, Authentication authentication){
+    public String bookingsToCancel(Model model, Authentication authentication){
         roomsBookings(model,authentication);
         return("bookings/cancel_reserves");
     }
 
     @PostMapping("/cancel_reserves")
-    private String deleteBook(@ModelAttribute Booking reserves){
+    public String deleteBook(@ModelAttribute Booking reserves){
         try {
             serviceBooking.deleteBooking(reserves.getId());
             return ("redirect:/bookings/cancel_reserves");
