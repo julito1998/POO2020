@@ -2,7 +2,7 @@ spring:
   datasource:
     platform: postgres
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5433/poo2020_reserva_hotel
+    url: jdbc:postgresql://localhost:5432/poo2020_reserva_hotel
     username: poo
     password: lolito
     initialization-mode: never

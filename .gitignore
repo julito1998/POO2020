@@ -33,7 +33,11 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-/src/main/resources/application.properties
-application.properties
+!**/target/classes/application.yml
+!**/target/classes/liquibase.properties
+!**/target/classes/application.properties
+!**/src/main/resources/application.properties
+!**/src/main/resources/application.yml
+!**/src/main/resources/liquibase.properties
 ### VS Code ###
 .vscode/

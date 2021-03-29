@@ -1,4 +1,4 @@
-HELP.md
+}HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -28,6 +28,11 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-
+!**/target/classes/application.yml
+!**/target/classes/liquibase.properties
+!**/target/classes/application.properties
+!**/src/main/resources/application.properties
+!**/src/main/resources/application.yml
+!**/src/main/resources/liquibase.properties
 ### VS Code ###
 .vscode/
