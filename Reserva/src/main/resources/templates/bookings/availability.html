@@ -31,7 +31,7 @@
         <label>Check Out : </label>
         <input type="date" th:field="*{checkOut}"/>
         <label>Occupancy : </label>
-        <input type="number" th:field="*{occupancy}"/>
+        <input id="IdOccupancy" type="number" step="1" min="1" max="100" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" onKeyDown="if(this.value.length==2 && event.keyCode!=8) return false;" th:field="*{occupancy}"/>
         <button type="submit" name="availability">Check Availability</button>
     </form>
 <div class="container-table">
@@ -48,8 +48,8 @@
             </thead>
 
             <tbody>
-            <tr th:if="${rooms.empty}">
-                <td colspan="5"> No Reserves Availability In Date Selected</td>
+            <tr th:if="${rooms.isEmpty()}">
+                <td colspan="5"> No Reserves Availability in date selected.</td>
             </tr>
             <tr th:each="room : ${rooms}" class="table-row-cell">
                 <td class="table-row"><span th:text="${room.name}"> Room </span></td>

@@ -8,9 +8,15 @@
     text-align: center;
     background-position: center;
 }
+label{
+    font-weight: bold;
+}
+
+#IdOccupancy{
+    width:40px;
+}
 
 input {
-    width: 15%;
     border-radius: 2px;
     border: none;
     box-shadow: 0 0 3px rgba(0,0,0,1);
