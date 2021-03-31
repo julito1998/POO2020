@@ -13,8 +13,35 @@ public class NewBookingResponseDTO {
         private String checkIn;
         private String checkOut;
         private int occupancy;
+        private boolean parkingIncluded;
+        private boolean freeCancelationIncluded;
+        private boolean breakfastIncluded;
 
-        public RoomDTO getRoom() {
+    public boolean isParkingIncluded() {
+        return parkingIncluded;
+    }
+
+    public void setParkingIncluded(boolean parkingIncluded) {
+        this.parkingIncluded = parkingIncluded;
+    }
+
+    public boolean isFreeCancelationIncluded() {
+        return freeCancelationIncluded;
+    }
+
+    public void setFreeCancelationIncluded(boolean freeCancelationIncluded) {
+        this.freeCancelationIncluded = freeCancelationIncluded;
+    }
+
+    public boolean isBreakfastIncluded() {
+        return breakfastIncluded;
+    }
+
+    public void setBreakfastIncluded(boolean breakfastIncluded) {
+        this.breakfastIncluded = breakfastIncluded;
+    }
+
+    public RoomDTO getRoom() {
             return room;
         }
 

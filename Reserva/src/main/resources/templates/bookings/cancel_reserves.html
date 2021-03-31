@@ -39,7 +39,7 @@
                 </thead>
 
                 <tbody>
-                <tr th:if="${reserves.empty}">
+                <tr th:if="${reserves.isEmpty()}">
                     <td colspan="6"> No se hicieron reservas</td>
                 </tr>
                 <tr th:each="reserves : ${reserves}" class="table-row-cell">

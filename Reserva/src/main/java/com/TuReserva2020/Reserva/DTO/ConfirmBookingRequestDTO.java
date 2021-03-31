@@ -13,7 +13,35 @@ public class ConfirmBookingRequestDTO {
     private String checkIn;
     private String checkOut;
     private int occupancy;
+    private boolean parkingIncluded;
+    private boolean freeCancelationIncluded;
+    private boolean breakfastIncluded;
     //tener en cuenta final: desayuno, cochera, cancelación ...
+
+
+    public boolean isParkingIncluded() {
+        return parkingIncluded;
+    }
+
+    public void setParkingIncluded(boolean parkingIncluded) {
+        this.parkingIncluded = parkingIncluded;
+    }
+
+    public boolean isFreeCancelationIncluded() {
+        return freeCancelationIncluded;
+    }
+
+    public void setFreeCancelationIncluded(boolean freeCancelationIncluded) {
+        this.freeCancelationIncluded = freeCancelationIncluded;
+    }
+
+    public boolean isBreakfastIncluded() {
+        return breakfastIncluded;
+    }
+
+    public void setBreakfastIncluded(boolean breakfastIncluded) {
+        this.breakfastIncluded = breakfastIncluded;
+    }
 
     public Long getRoomId() {
         return roomId;

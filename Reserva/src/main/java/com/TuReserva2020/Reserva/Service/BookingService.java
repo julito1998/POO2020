@@ -24,7 +24,19 @@ public class BookingService implements IBookingService {
     @Override
     public Booking newBooking(Booking booking) throws Exception {
         booking.setRoom(roomRepo.findById(booking.getRoom().getId()).get());
+
         booking.setCost(booking.getRoom().getPrice());
+
+        if (booking.isBreakfastIncluded()){
+            booking.setCost(booking.getCost()+400);
+        }
+        if (booking.isFreeCancelation()){
+            booking.setCost(booking.getCost()+100);
+        }
+        if (booking.isParking()){
+            booking.setCost(booking.getCost()+500);
+        }
+
         booking.setCreatedAt(new Date());
 
         if(booking.getCheckIn().before(new Date())){
@@ -58,7 +70,7 @@ public class BookingService implements IBookingService {
     }
 
 
-    //Metodo para eliminar usuario
+    //Metodo para eliminar reserva
     public void deleteBooking(Long id) throws Exception {
         Booking booking = bookingRepo.findById(id)
                 .orElseThrow(() -> new Exception("Booking not Found in delete Booking"));

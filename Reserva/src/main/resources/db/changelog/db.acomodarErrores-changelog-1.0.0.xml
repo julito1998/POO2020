@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--otra forma de escribir versiones de liquibase-->
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1.0.0-acomodar-tablas" author="julian">
+        <tagDatabase tag="1.0.0-31/03/2021"/>
+    </changeSet>
+
+    <changeSet id="modificar-user" author="julito">
+        <comment>columna natioality por nationality</comment>
+        <sql>
+            ALTER TABLE bookings ALTER COLUMN created_at TYPE date;
+        </sql>
+    </changeSet>
+    <!--<changeSet id="modificar-rooms" author="julito">
+            <comment>columna availabitlity por availability</comment>
+            <sql>
+                ALTER TABLE rooms RENAME COLUMN availabitlity TO availability;
+            </sql>
+     </changeSet>
+
+        <changeSet id="modificar-user" author="julito">
+            <comment>columna natioality por nationality</comment>
+            <sql>
+                ALTER TABLE users RENAME COLUMN natioality TO nationality;
+            </sql>
+        </changeSet>
+
+        <changeSet id="eliminar-birt_date" author="julito">
+            <comment>elimino la columna birt_date</comment>
+            <sql>
+                ALTER TABLE users RENAME COLUMN birt_date TO birth_date;
+            </sql>
+        </changeSet>-->
+
+    </databaseChangeLog>

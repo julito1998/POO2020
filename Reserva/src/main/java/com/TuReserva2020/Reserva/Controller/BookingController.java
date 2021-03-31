@@ -138,7 +138,7 @@ public class BookingController {
             model.addAttribute("reserves", booking);
             return ("bookings/reserves");
         }catch(Exception e){
-            return ("/home");
+            return ("redirect:/home");
         }
     }
 
@@ -153,7 +153,7 @@ public class BookingController {
     public String deleteBook(@ModelAttribute Booking reserves){
         try {
             serviceBooking.deleteBooking(reserves.getId());
-            return ("redirect:/bookings/cancel_reserves");
+            return ("bookings/cancel_reserves");
         }catch(Exception e){
             return ("redirect:/bookings/reserves");
         }
