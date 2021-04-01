@@ -40,11 +40,11 @@
 
                 <tbody>
                 <tr th:if="${reserves.isEmpty()}">
-                    <td colspan="6"> No se hicieron reservas</td>
+                    <td colspan="6">No se hicieron reservas</td>
                 </tr>
                 <tr th:each="reserves : ${reserves}" class="table-row-cell">
                     <td class="table-row"><span th:text="${reserves.room.name}"> Room </span></td>
-                    <td class="table-row"><span th:text="${reserves.room.Occupancy}"> Occupancy </span></td>
+                    <td class="table-row"><span th:text="${reserves.room.occupancy}"> Occupancy </span></td>
                     <td class="table-row"><span th:text="${reserves.checkIn}"> Check In </span></td>
                     <td class="table-row"><span th:text="${reserves.checkOut}"> Check Out </span></td>
                     <td class="table-row"><span th:text="${reserves.user.firstName}"> First Name </span></td>

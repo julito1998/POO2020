@@ -1,8 +1,9 @@
 package com.TuReserva2020.Reserva.DTO;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CreateBookingDTO {
+public class CreateBookingDTO implements Serializable {
 
     private Long roomId;
     private Date checkIn;

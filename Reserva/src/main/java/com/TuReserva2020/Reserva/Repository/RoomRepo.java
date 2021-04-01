@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface RoomRepo extends JpaRepository<Room,Long> {
     @Query("select r from Room r where r.occupancy >= :occupancy and r.availability >= (" +
-            "Select count(b) From Booking b where b.room=r and b.checkIn BETWEEN :checkIn and :checkOut)")
+            "Select count(b) From Booking b where b.room=r and b.checkIn BETWEEN :checkIn and :checkOut) order by r.occupancy, r.price")
     List<Room> findRoomAvailable(@Param("checkIn") Date checkIn,@Param("checkOut") Date checkOut,@Param("occupancy")  int occupancy);
 
     @Query("select r from Room r where r.id = :roomId and r.availability >= (" +

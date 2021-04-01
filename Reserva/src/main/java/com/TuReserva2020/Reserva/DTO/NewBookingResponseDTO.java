@@ -5,7 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class NewBookingResponseDTO {
+public class NewBookingResponseDTO implements Serializable {
+
     private static final SimpleDateFormat dateFormat
                 = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -16,7 +17,17 @@ public class NewBookingResponseDTO {
         private boolean parkingIncluded;
         private boolean freeCancelationIncluded;
         private boolean breakfastIncluded;
+        private float cost;
+    //tener en cuenta final: desayuno, cochera, cancelación ...
 
+
+    public float getCost() {
+        return cost;
+    }
+
+    public void setCost(float cost) {
+        this.cost = cost;
+    }
     public boolean isParkingIncluded() {
         return parkingIncluded;
     }

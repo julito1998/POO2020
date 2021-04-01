@@ -18,3 +18,17 @@ function redirectButtonToLink(link, id='#0'){
        const elem= document.querySelector(id);
         elem.location.href=link;
 }
+
+function PriceBooking(idCheck,idLabel){
+        //var price =idLabel;
+        var price = parseFloat(document.getElementById(idLabel).textContent.replace(/[$,a-z,A-Z,()]/g,"").trim());
+        var priceFinal = parseFloat(document.getElementById("PriceFinal").textContent.replace(/[$,:,a-z,A-Z,()]/g,"").trim());
+
+        if(document.getElementById(idCheck).checked){
+                priceFinal=priceFinal + price;
+        }else{
+                priceFinal=priceFinal - price;
+        }
+
+        document.getElementById("PriceFinal").textContent=parseFloat(priceFinal.toFixed(2));
+}

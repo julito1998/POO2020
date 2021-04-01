@@ -7,6 +7,7 @@ import com.TuReserva2020.Reserva.Repository.RoomRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,6 +37,10 @@ public class BookingService implements IBookingService {
         if (booking.isParking()){
             booking.setCost(booking.getCost()+500);
         }
+
+        //DecimalFormat formatoCost = new DecimalFormat("#.00");
+        //le pongo un formato con dos decimales al costo
+        //booking.setCost(Float.parseFloat(formatoCost.format(booking.getCost())));
 
         booking.setCreatedAt(new Date());
 
@@ -74,7 +79,6 @@ public class BookingService implements IBookingService {
     public void deleteBooking(Long id) throws Exception {
         Booking booking = bookingRepo.findById(id)
                 .orElseThrow(() -> new Exception("Booking not Found in delete Booking"));
-
         bookingRepo.delete(booking);
     }
 

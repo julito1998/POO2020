@@ -1,11 +1,12 @@
 package com.TuReserva2020.Reserva.DTO;
 
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class NewBookingRequestDTO {
+public class NewBookingRequestDTO implements Serializable {
 
     private static final SimpleDateFormat dateFormat
             = new SimpleDateFormat("yyyy-MM-dd");
