@@ -40,6 +40,8 @@ public class BookingService implements IBookingService {
 
         //DecimalFormat formatoCost = new DecimalFormat("#.00");
         //le pongo un formato con dos decimales al costo
+        booking.setCost((float) ((float)Math.round(booking.getCost() * 100d) / 100d));
+
         //booking.setCost(Float.parseFloat(formatoCost.format(booking.getCost())));
 
         booking.setCreatedAt(new Date());

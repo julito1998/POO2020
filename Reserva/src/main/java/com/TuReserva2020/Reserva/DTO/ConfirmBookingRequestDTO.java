@@ -17,17 +17,8 @@ public class ConfirmBookingRequestDTO implements Serializable {
     private boolean parkingIncluded;
     private boolean freeCancelationIncluded;
     private boolean breakfastIncluded;
-    private float cost;
+
     //tener en cuenta final: desayuno, cochera, cancelación ...
-
-
-    public float getCost() {
-        return cost;
-    }
-
-    public void setCost(float cost) {
-        this.cost = cost;
-    }
 
     public boolean isParkingIncluded() {
         return parkingIncluded;
