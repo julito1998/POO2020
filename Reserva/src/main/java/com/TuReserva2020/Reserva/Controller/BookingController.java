@@ -1,6 +1,7 @@
 package com.TuReserva2020.Reserva.Controller;
 
 import com.TuReserva2020.Reserva.DTO.*;
+import com.TuReserva2020.Reserva.Model.Payment;
 import com.TuReserva2020.Reserva.Service.IBookingService;
 import com.TuReserva2020.Reserva.Service.IRoomService;
 import com.TuReserva2020.Reserva.Service.IUserService;
@@ -123,8 +124,8 @@ public class BookingController {
         booking.setUser((User)authentication.getPrincipal());
         try {
             serviceBooking.newBooking(booking);
-            model.addAttribute("checkIn", confirmBookingRequestDTO.getCheckIn());
-            return ("bookings/confirm");
+            model.addAttribute("confirmBook", confirmBookingRequestDTO);
+            return ("bookings/payment");
         }
         catch (Exception e){
             model.addAttribute("checkIn", null);
@@ -159,6 +160,26 @@ public class BookingController {
             return ("redirect:/bookings/cancel_reserves");
         }catch(Exception e){
             return ("redirect:/bookings/reserves");
+        }
+    }
+
+
+    @GetMapping("/payment")
+    private String verVistaPago(Model model, Payment payment){
+        model.addAttribute("payment", payment);
+        return("bookings/payment");
+    }
+
+    @PostMapping("/payment")
+    private String confirmarPago(@ModelAttribute Payment payment, Authentication authentication){
+        User sessionUser = (User)authentication.getPrincipal();
+        Booking booking = serviceBooking.findBookingByUserId(sessionUser.getId());
+        try{
+            serviceBooking.newPayment(booking, booking.getCreatedAt(), payment.getCard(), payment.getCardNumber());
+            return ("bookings/confirm");
+        }
+        catch (Exception e){
+            return ("bookings/reserves");
         }
     }
 

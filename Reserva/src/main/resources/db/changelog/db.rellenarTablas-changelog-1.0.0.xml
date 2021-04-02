@@ -17,15 +17,9 @@
         </sql>
     </changeSet>
 
-    <changeSet id="modificar-user" author="julito">
-        <comment>columna natioality por nationality</comment>
-        <sql>
-            ALTER TABLE users RENAME COLUMN natioality TO nationality;
-        </sql>
-    </changeSet>
 
     <changeSet id="eliminar-birt_date" author="julito">
-        <comment>elimino la columna birt_date</comment>
+        <comment>elimino la columna birthdate</comment>
         <sql>
             ALTER TABLE users DROP COLUMN birt_date;
         </sql>

@@ -24,11 +24,11 @@
     </nav>
 </div>
 <div class="container-fluid" style="text-align: center">
-    <div th:if="${checkIn != null}">
-        <h2>Su reserva se registro exitosamente, lo esperamos en la fecha <span th:text="${checkIn}"></span></h2>
+    <div th:if="${confirmBook.checkIn != null}">
+        <h2>Su reserva se registro exitosamente, lo esperamos en la fecha <span th:text="${confirmBook.checkIn}"></span></h2>
     </div>
 
-    <div th:unless="${checkIn != null}">
+    <div th:unless="${confirmBook.checkIn != null}">
         <h2>Su reserva no fue registrada exitosamente. Debido al siguiente problema: <span th:text="${error}"></span></h2>
         <a href="" th:href="@{/bookings/availability}" id="reIntentar">Intentar Nuevamente</a>
     </div>

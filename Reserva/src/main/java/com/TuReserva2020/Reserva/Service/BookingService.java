@@ -2,8 +2,10 @@ package com.TuReserva2020.Reserva.Service;
 
 
 import com.TuReserva2020.Reserva.Model.Booking;
+import com.TuReserva2020.Reserva.Model.Payment;
 import com.TuReserva2020.Reserva.Model.Room;
 import com.TuReserva2020.Reserva.Repository.BookingRepo;
+import com.TuReserva2020.Reserva.Repository.PaymentRepo;
 import com.TuReserva2020.Reserva.Repository.RoomRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,10 @@ public class BookingService implements IBookingService {
 
     @Autowired
     private BookingRepo bookingRepo;
+
+    @Autowired
+    private PaymentRepo paymentRepo;
+
 
     @Autowired
     private RoomRepo roomRepo;
@@ -49,7 +55,6 @@ public class BookingService implements IBookingService {
     @Override
     public ArrayList<Booking> listBooking() throws Exception{
 
-
         List bookings = bookingRepo.findAll();
 
       return (ArrayList<Booking>) bookings;
@@ -60,6 +65,21 @@ public class BookingService implements IBookingService {
     public List<Booking> findBookingById(Long id) throws Exception{
         List bookings = bookingRepo.findBookingByUser(id);
         return bookings;
+    }
+
+    public Booking findBookingByUserId(Long id){
+        return bookingRepo.findBookingByUserId(id);
+    }
+
+
+    public Payment newPayment(Booking booking, Date createdAt, String card, String cardNumber){
+        Payment payment = new Payment();
+        payment.setBooking(booking);
+        payment.setCreatedAt(createdAt);
+        payment.setCard(card);
+        payment.setCardNumber(cardNumber);
+        return paymentRepo.save(payment);
+
     }
 
 
