@@ -125,7 +125,7 @@ public class BookingController {
         try {
             serviceBooking.newBooking(booking);
             model.addAttribute("confirmBook", confirmBookingRequestDTO);
-            return ("bookings/payment");
+            return ("bookings/confirm");
         }
         catch (Exception e){
             model.addAttribute("checkIn", null);
@@ -176,7 +176,7 @@ public class BookingController {
         Booking booking = serviceBooking.findBookingByUserId(sessionUser.getId());
         try{
             serviceBooking.newPayment(booking, booking.getCreatedAt(), payment.getCard(), payment.getCardNumber());
-            return ("bookings/confirm");
+            return ("bookings/payment");
         }
         catch (Exception e){
             return ("bookings/reserves");
