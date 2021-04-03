@@ -67,8 +67,8 @@ public class BookingService implements IBookingService {
         return bookings;
     }
 
-    public Booking findBookingByUserId(Long id){
-        return bookingRepo.findBookingByUserId(id);
+    public Booking findLastBookingByUserId(Long id){
+        return bookingRepo.findLastBookingByUserId(id);
     }
 
 
@@ -90,11 +90,12 @@ public class BookingService implements IBookingService {
         Booking booking = bookingRepo.findById(id)
                 .orElseThrow(() -> new Exception("Booking not Found in delete Booking"));
 
-        Date fecha = new Date();
-
+        paymentRepo.deleteByBookId(booking.getId());
         bookingRepo.delete(booking);
 
-        /*if((booking.getCheckIn().getDay() - fecha.getDay() <= 2)) {
+        /* Date fecha = new Date();
+
+            if((booking.getCheckIn().getDay() - fecha.getDay() <= 2)) {
             throw new Exception ("No se puede cancelar la reserva, por que " +
                     "no cumple con la condicion establecida : 'Sólo podrá cancelar aquellas reservas " +
                     "con 48 hs o más de antelación respecto de la fecha de ingreso (check-in)'");}

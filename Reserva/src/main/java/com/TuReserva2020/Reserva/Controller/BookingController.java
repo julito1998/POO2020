@@ -165,7 +165,7 @@ public class BookingController {
             serviceBooking.deleteBooking(reserves.getId());
             return ("redirect:/bookings/cancel_reserves");
         }catch(Exception e){
-            return ("redirect:/bookings/reserves");
+            return ("redirect:/bookings/cancel_reserves");
         }
     }
 
@@ -179,7 +179,7 @@ public class BookingController {
     @PostMapping("/payment")
     private String confirmarPago(@ModelAttribute Payment payment, Authentication authentication){
         User sessionUser = (User)authentication.getPrincipal();
-        Booking booking = serviceBooking.findBookingByUserId(sessionUser.getId());
+        Booking booking = serviceBooking.findLastBookingByUserId(sessionUser.getId());
         try{
             serviceBooking.newPayment(booking, booking.getCreatedAt(), payment.getCard(), payment.getCardNumber());
             return ("bookings/payment");

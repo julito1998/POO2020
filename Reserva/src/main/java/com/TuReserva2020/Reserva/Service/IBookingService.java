@@ -14,6 +14,6 @@ public interface IBookingService {
     ArrayList<Booking> listBooking() throws Exception;
     List<Booking> findBookingById(Long id) throws Exception;
     void deleteBooking(Long id_book) throws Exception;
-    Booking findBookingByUserId(Long id);
+    Booking findLastBookingByUserId(Long id);
     Payment newPayment(Booking booking, Date createdAt, String card, String cardNumber);
 }

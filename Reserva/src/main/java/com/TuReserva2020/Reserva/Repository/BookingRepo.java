@@ -14,8 +14,9 @@ import java.util.List;
 public interface BookingRepo extends JpaRepository<Booking,Long> {
     List<Booking> findAll();
 
-    @Query("select b from Booking b WHERE b.id = (select max(b.id) from Booking b where b.user.id = :user_id)")
-            Booking findBookingByUserId(@Param("user_id") Long user_id);
+    @Query("select b from Booking b WHERE b.id = " +
+            "(select max(b.id) from Booking b where b.user.id = :user_id)")
+            Booking findLastBookingByUserId(@Param("user_id") Long user_id);
 
 
     @Query("select b from Booking b where b.user.id = :user_id order by b.checkIn")
