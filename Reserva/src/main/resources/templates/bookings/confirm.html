@@ -23,16 +23,14 @@
         <a class="nav-link" href="" th:href="@{/home}">Home</a><a class="nav-link" href="#" th:href="@{/bookings/reserves}">Reservas</a><a class="nav-link" href="#" th:href="@{/bookings/cancel_reserves}">Cancelar Reservas</a><a class="nav-link" href="#" th:href="@{/bookings/availability}">Disponibilidad de habitaciones</a><a class="nav-link" href="#" th:href="@{/logout}">Cerrar Sesion</a>
     </nav>
 </div>
-<div class="container-fluid" style="text-align: center">
-    <div th:if="${confirmBook.checkIn != null}">
-        <h2>Su reserva se registro exitosamente, lo esperamos en la fecha <span th:text="${confirmBook.checkIn}"></span></h2>
-    </div>
 
-    <div th:unless="${confirmBook.checkIn != null}">
-        <h2>Su reserva no fue registrada exitosamente. Debido al siguiente problema: <span th:text="${error}"></span></h2>
-        <a href="" th:href="@{/bookings/availability}" id="reIntentar">Intentar Nuevamente</a>
-    </div>
-
+<div>
+    <h2><span>Se realizó su reserva correctamente, ahora proceda a realizar el pago !</span></h2>
+    <a href="" th:href="@{/bookings/payment}">Completar el pago</a>
 </div>
+
 </body>
 </html>
+
+
+

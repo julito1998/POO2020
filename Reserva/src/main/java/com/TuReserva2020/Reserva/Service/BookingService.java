@@ -78,6 +78,8 @@ public class BookingService implements IBookingService {
         payment.setCreatedAt(createdAt);
         payment.setCard(card);
         payment.setCardNumber(cardNumber);
+
+
         return paymentRepo.save(payment);
 
     }

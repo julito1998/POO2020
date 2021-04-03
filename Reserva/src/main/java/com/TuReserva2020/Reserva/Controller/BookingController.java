@@ -116,6 +116,12 @@ public class BookingController {
         return("bookings/new");
     }
 
+
+
+    @GetMapping("/confirm")
+    public String confirmView(){
+        return"bookings/confirm";
+    }
     @PostMapping("/confirm")
     public String createBooking(@ModelAttribute ConfirmBookingRequestDTO confirmBookingRequestDTO,
                                 Authentication authentication, Model model){
