@@ -32,3 +32,7 @@ function PriceBooking(idCheck,idLabel){
 
         document.getElementById("PriceFinal").textContent=parseFloat(priceFinal.toFixed(2));
 }
+function alerta(){
+        var mensaje = confirm('¿Desea eliminar esta Reserva?')
+        return mensaje;
+}

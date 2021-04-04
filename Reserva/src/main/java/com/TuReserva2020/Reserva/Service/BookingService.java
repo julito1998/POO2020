@@ -3,14 +3,15 @@ package com.TuReserva2020.Reserva.Service;
 import com.TuReserva2020.Reserva.Model.Booking;
 import com.TuReserva2020.Reserva.Model.Room;
 import com.TuReserva2020.Reserva.Repository.BookingRepo;
+import com.TuReserva2020.Reserva.Repository.PaymentRepo;
 import com.TuReserva2020.Reserva.Repository.RoomRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.text.ParseException;
+import java.util.*;
+
 
 @Service
 public class BookingService implements IBookingService {
@@ -21,6 +22,8 @@ public class BookingService implements IBookingService {
     @Autowired
     private RoomRepo roomRepo;
 
+    @Autowired
+    private PaymentRepo paymentRepo;
 
     @Override
     public Booking newBooking(Booking booking) throws Exception {
@@ -37,12 +40,6 @@ public class BookingService implements IBookingService {
         if (booking.isParking()){
             booking.setCost(booking.getCost()+500);
         }
-
-        //DecimalFormat formatoCost = new DecimalFormat("#.00");
-        //le pongo un formato con dos decimales al costo
-        booking.setCost((float) ((float)Math.round(booking.getCost() * 100d) / 100d));
-
-        //booking.setCost(Float.parseFloat(formatoCost.format(booking.getCost())));
 
         booking.setCreatedAt(new Date());
 
@@ -69,22 +66,49 @@ public class BookingService implements IBookingService {
       return (ArrayList<Booking>) bookings;
     }
 
+    @Override
+    public Optional<Booking> findById(long id){
+        return bookingRepo.findById(id);
+    }
+
 
     //Listar reservas que hizo un usuario determinado
-    public List<Booking> findBookingById(Long id) throws Exception{
+    public List<Booking> findBookingByIdUser(Long id) throws Exception{
         List bookings = bookingRepo.findBookingByUser(id);
         return bookings;
     }
 
 
     //Metodo para eliminar reserva
-    public void deleteBooking(Long id) throws Exception {
-        Booking booking = bookingRepo.findById(id)
-                .orElseThrow(() -> new Exception("Booking not Found in delete Booking"));
-        bookingRepo.delete(booking);
+    public void deleteBooking(Long id, Date check_in) throws Exception {
+        Calendar cal_check_in = null;
+        try {
+            cal_check_in=Calendar.getInstance();
+            cal_check_in.setTime(check_in);
+            Calendar fecha_actual= Calendar.getInstance();
+            //new GregorianCalendar();
+            if (fecha_actual.get(Calendar.YEAR) <= cal_check_in.get(Calendar.YEAR) &&
+                    fecha_actual.get(Calendar.MONTH) <= cal_check_in.get(Calendar.MONTH) && fecha_actual.get(Calendar.DAY_OF_MONTH) < cal_check_in.get(Calendar.DAY_OF_MONTH))
+            {
+                if (fecha_actual.get(Calendar.DAY_OF_MONTH) - cal_check_in.get(Calendar.DAY_OF_MONTH) > 2){
+                    Booking booking = bookingRepo.findById(id)
+                            .orElseThrow(() -> new Exception("Booking not Found in delete Booking"));
+                    //tambien elimino los medios de pago de la reserva
+                    paymentRepo.deleteByIdBooking(booking.getId());
+                    bookingRepo.delete(booking);
+                }
+                else{
+                    throw new Exception ("Imposible borrar la reserva con menos de dos dias de anticipación.");
+                }
+
+            }
+            else{
+                throw new Exception ("Imposible borrar una reserva antigua.");
+            }
+        }
+        catch (Exception e) {
+            throw new Exception (e.getMessage());
+        }
+
     }
-
-
-
-
 }

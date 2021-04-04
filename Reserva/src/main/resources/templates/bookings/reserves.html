@@ -23,7 +23,7 @@
         <a class="nav-link" href="" th:href="@{/home}">Home</a><a class="nav-link-active" href="#" th:href="@{/bookings/reserves}">Reservas</a><a class="nav-link" href="#" th:href="@{/bookings/cancel_reserves}">Cancelar Reservas</a><a class="nav-link" href="#" th:href="@{/bookings/availability}">Disponibilidad de habitaciones</a><a class="nav-link" href="#" th:href="@{/logout}">Cerrar Sesion</a>
     </nav>
 
-    <form action="#" th:action="@{/bookings/reserves}" th:object="${reserves}" method="GET" class="frm-reserves">
+    <!--<form action="#" th:action="@{/bookings/cancel_reserves}" th:object="${reserves}" method="POST" class="frm-reserves">-->
     <div class="container-table">
         <table class="table-view">
             <thead>
@@ -34,6 +34,9 @@
                 <th>Check Out</th>
                 <th>First Name</th>
                 <th>Last Name</th>
+                <th>Cost</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
 
@@ -41,53 +44,32 @@
             <tr th:if="${reserves.isEmpty()}">
                 <td colspan="6"> No se hicieron reservas</td>
             </tr>
-            <tr th:each="reserves : ${reserves}" class="table-row-cell">
+            <tr th:each="reserves:${reserves}" class="table-row-cell">
                 <td class="table-row"><span th:text="${reserves.room.name}"> Room </span></td>
                 <td class="table-row"><span th:text="${reserves.room.occupancy}"> Occupancy </span></td>
                 <td class="table-row"><span th:text="${reserves.checkIn}"> Check In </span></td>
                 <td class="table-row"><span th:text="${reserves.checkOut}"> Check Out </span></td>
                 <td class="table-row"><span th:text="${reserves.user.firstName}"> First Name </span></td>
                 <td class="table-row"><span th:text="${reserves.user.lastName}"> Last Name </span></td>
+                <td class="table-row"><span th:text="${reserves.cost}"> Cost </span></td>
+                <td class="table-row">
+                    <form action="#" th:action="@{/bookings/detail_reserves}" th:object="${reserves}" method="GET">
+                    <input type="hidden" th:name="id" th:value="${reserves.id}"/>
+                    <button type="submit" name="detail"> Detail </button>
+                    </form>
+                </td>
+                <td class="table-row">
+                   <form action="#" th:action="@{/bookings/cancel_reserves}" th:object="${reserves}" method="post">
+                    <input type="hidden" th:name="id" th:value="${reserves.id}"/>
+                    <button type="submit" name="cancel"> Cancel</button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
 
-    </form>
+    <!--</form>-->
 </div>
-<!--div class="container-table">
-<table class="table-view">
-    <thead>
-    <tr class="table-row-cell">
-        <th>Room</th>
-        <th>Occupancy</th>
-        <th>Facility</th>
-        <th>Price</th>
-        <th>Reserves</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <tr th:if="${rooms.empty}">
-        <td colspan="4"> No Rooms Availability</td>
-    </tr>
-    <tr th:each="room : ${rooms}" class="table-row-cell">
-        <td class="table-row"><span th:text="${room.name}"> Room </span></td>
-        <td class="table-row"><span th:text="${room.occupancy}"> Occupancy </span></td>
-        <td class="table-row"><span th:text="${room.facilities}"> Facilities </span></td>
-        <td class="table-row"><span th:text="${room.price}"> Price </span></td>
-        <td>
-            <form action="#" th:action="@{/bookings/new}" th:object="${booking}" method="post">
-                <input type="hidden" th:name="checkIn" th:value="${roomsAvailability.checkIn}"/>
-                <input type="hidden" th:name="checkOut" th:value="${roomsAvailability.checkOut}"/>
-                <input type="hidden" th:name="occupancy" th:value="${roomsAvailability.occupancy}"/>
-                <input type="hidden" th:name="roomId" th:value="${room.id}"/>
-                <button type="submit" name="book">Book</button>
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
-</div>-->
 </body>
 </html>

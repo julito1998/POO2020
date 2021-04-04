@@ -14,7 +14,7 @@ import java.util.List;
 public interface BookingRepo extends JpaRepository<Booking,Long> {
     List<Booking> findAll();
 
-    @Query("select b from Booking b where b.user.id = :user_id order by b.checkIn")
+    @Query("select b from Booking b where b.user.id = :user_id order by b.checkIn desc")
             List<Booking> findBookingByUser(@Param("user_id") Long user_id);
 
     /*@Query("delete from Booking b where (b.user.id = :user_id) and (b.id = :booking_id) ")

@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class BookingDTO implements Serializable {
     private Long id;
-    private Long roomId;
+    private RoomDTO room;
     private Date checkIn;
     private Date checkOut;
     private Date reatedAt;
@@ -18,19 +18,6 @@ public class BookingDTO implements Serializable {
         super();
     }
 
-    public BookingDTO(Long id, Long roomId, Date checkIn, Date checkOut, Date reatedAt, boolean breakfastIncluded, boolean parking, boolean freeCancelation, double cost) {
-        super();
-        this.id = id;
-        this.roomId = roomId;
-        this.checkIn = checkIn;
-        this.checkOut = checkOut;
-        this.reatedAt = reatedAt;
-        this.breakfastIncluded = breakfastIncluded;
-        this.parking = parking;
-        this.freeCancelation = freeCancelation;
-        this.cost = cost;
-    }
-
     public Long getId() {
         return id;
     }
@@ -39,12 +26,12 @@ public class BookingDTO implements Serializable {
         this.id = id;
     }
 
-    public Long getRoomId() {
-        return roomId;
+    public RoomDTO getRoom() {
+        return room;
     }
 
-    public void setRoomId(Long roomId) {
-        this.roomId = roomId;
+    public void setRoom(RoomDTO room) {
+        this.room = room;
     }
 
     public Date getCheckIn() {

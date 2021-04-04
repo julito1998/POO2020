@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,7 +131,7 @@ public class BookingController {
     public String roomsBookings(Model model, Authentication authentication){
         User sessionUser = (User)authentication.getPrincipal();
         try {
-            List<Booking> booking = serviceBooking.findBookingById(sessionUser.getId());
+            List<Booking> booking = serviceBooking.findBookingByIdUser(sessionUser.getId());
             model.addAttribute("reserves", booking);
             return ("bookings/reserves");
         }catch(Exception e){
@@ -142,22 +139,57 @@ public class BookingController {
         }
     }
 
-
-    @GetMapping("/cancel_reserves")
+    /*@GetMapping("/cancel_reserves")
     public String bookingsToCancel(Model model, Authentication authentication){
         roomsBookings(model,authentication);
         return("bookings/cancel_reserves");
-    }
+    }*/
 
     @PostMapping("/cancel_reserves")
-    public String deleteBook(@ModelAttribute Booking reserves){
+    public String cancelBooking(@ModelAttribute Booking reserve, Model model) {
         try {
-            serviceBooking.deleteBooking(reserves.getId());
+            Booking booking = serviceBooking.findById(reserve.getId()).get();
+            model.addAttribute("reserve", booking);
+            return ("bookings/cancel_reserves");
+        } catch (Exception e) {
+            return ("redirect:/bookings/reserves");
+        }
+    }
+
+    @PostMapping("/delete_reserves")
+    public String deleteBook(@ModelAttribute DeleteBookingDTO deleteBookingRequestDTO, Model model){
+        try {
+            Booking booking = modelMapper.map(deleteBookingRequestDTO, Booking.class);
+            booking.setCheckIn(deleteBookingRequestDTO.getCheckInDateConverted());
+            serviceBooking.deleteBooking(booking.getId(), booking.getCheckIn());
+            model.addAttribute("error", null);
+            return ("bookings/confirm_delete_reserves");
+        }catch(Exception e){
+            model.addAttribute("error", e.getMessage());
+            return ("bookings/confirm_delete_reserves");
+        }
+    }
+    @GetMapping("/detail_reserves")
+    public String detailBooking(@ModelAttribute Booking reserve,Model model){
+        try{
+            reserve=serviceBooking.findById(reserve.getId()).get();
+            model.addAttribute("reserve", reserve);
+            return ("bookings/detail_reserves");
+        }catch (Exception e){
+            model.addAttribute("error",e.getMessage());
+            return ("bookings/detail_reserves");
+        }
+    }
+
+    /*@PostMapping("/cancel_reserves")
+    public String deleteBook(@ModelAttribute Booking reserve){
+        try {
+            serviceBooking.deleteBooking(reserve.getId(), reserve.getCheckIn());
             return ("bookings/cancel_reserves");
         }catch(Exception e){
             return ("redirect:/bookings/reserves");
         }
-    }
+    }*/
 
 
 
