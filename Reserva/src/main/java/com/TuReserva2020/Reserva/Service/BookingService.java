@@ -8,10 +8,7 @@ import com.TuReserva2020.Reserva.Repository.RoomRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.util.*;
-
 
 @Service
 public class BookingService implements IBookingService {
@@ -62,20 +59,24 @@ public class BookingService implements IBookingService {
 
     @Override
     public ArrayList<Booking> listBooking() throws Exception{
-        List bookings = bookingRepo.findAll();
-      return (ArrayList<Booking>) bookings;
-    }
 
-    @Override
-    public Optional<Booking> findById(long id){
-        return bookingRepo.findById(id);
+
+        List bookings = bookingRepo.findAll();
+
+      return (ArrayList<Booking>) bookings;
     }
 
 
     //Listar reservas que hizo un usuario determinado
+    @Override
     public List<Booking> findBookingByIdUser(Long id) throws Exception{
         List bookings = bookingRepo.findBookingByUser(id);
         return bookings;
+    }
+
+    @Override
+    public Optional<Booking> findById(Long id) {
+        return bookingRepo.findById(id);
     }
 
 

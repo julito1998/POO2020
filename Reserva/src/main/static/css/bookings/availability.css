@@ -1,0 +1,66 @@
+.all-container{
+    text-align: center;
+    background:rgb(0,230,230);
+}
+
+.frm-availability{
+    font-size: 110%;
+    text-align: center;
+    background-position: center;
+    background:aquamarine;
+}
+
+input{
+    width: 15%;
+    border-radius: 2px;
+    border: none;
+    box-shadow: 0 0 3px rgba(0,0,0,1);
+    margin-top: 0.5% !important;
+}
+
+button{
+    margin-left: 2% !important;
+    box-shadow: 0 0 5px rgba(0,0,0,1);
+    text-decoration: none;
+    transition:.3s;
+    font-weight: bold;
+    border:none;
+    border-radius: 4px !important;
+    background-color: rgb(0,250,250);
+    color:rgb(100,20,50);
+}
+button:hover {
+    background-color:rgb(0,210,230);
+}
+
+thead{
+    background:rgb(0,230,230);
+    border: solid;
+    border-color: rgb(100, 211, 255) !important;
+}
+
+.container-table{
+    margin: 0;
+    text-align: center;
+    display: grid;
+    border-right: none !important;
+    border-block-end: none !important;
+    background: white;
+}
+
+.table-view{
+    /*border: solid;*/
+    border-color: rgb(100, 211, 255) !important;
+}
+
+.table-row{
+    border: solid;
+    border-color: rgb(100, 211, 255) !important;
+    background-color: white;
+}
+
+body{
+    background-image:linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("https://images.unsplash.com/photo-1524549207884-e7d1130ae2f3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1534&q=80");
+    background-size:cover;
+    background-position:center;
+}

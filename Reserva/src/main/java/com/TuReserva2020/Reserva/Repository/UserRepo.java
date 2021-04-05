@@ -1,4 +1,8 @@
 package com.TuReserva2020.Reserva.Repository;
+
+import com.TuReserva2020.Reserva.Model.Room;
+import com.TuReserva2020.Reserva.Model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 import com.TuReserva2020.Reserva.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -15,4 +19,5 @@ public interface UserRepo extends JpaRepository<User,Long> {
     boolean existsByEmail(String email);
     User findByPassword(String password);
     User findByEmailAndPassword(String email, String password);
+
 }

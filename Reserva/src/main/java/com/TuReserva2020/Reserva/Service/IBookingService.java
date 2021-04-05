@@ -1,7 +1,6 @@
 package com.TuReserva2020.Reserva.Service;
 
 import com.TuReserva2020.Reserva.Model.Booking;
-import com.TuReserva2020.Reserva.Model.Room;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ public interface IBookingService {
     Booking newBooking(Booking booking) throws Exception ;
     ArrayList<Booking> listBooking() throws Exception;
     List<Booking> findBookingByIdUser(Long id) throws Exception;
-    void deleteBooking(Long id_book, Date check_in) throws Exception;
-    Optional<Booking> findById(long id);
+    Optional <Booking> findById(Long id);
+    void deleteBooking(Long id_book, Date checkIn) throws Exception;
+
 }
