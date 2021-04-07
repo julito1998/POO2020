@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -30,7 +31,8 @@ public class Cancellation {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     private Booking booking;
-    
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull
     @Column(name="created_at")
     private Date createdAt;

@@ -1,14 +1,20 @@
 package com.TuReserva2020.Reserva.DTO;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BookingDTO implements Serializable {
+    private static final SimpleDateFormat dateFormat
+            = new SimpleDateFormat("yyyy-MM-dd");
+
     private Long id;
     private RoomDTO room;
-    private Date checkIn;
-    private Date checkOut;
-    private Date reatedAt;
+    private UserNewDTO user;
+    private String checkIn;
+    private String checkOut;
+    private String createdAt;
     private boolean breakfastIncluded;
     private boolean parking;
     private boolean freeCancelation;
@@ -34,28 +40,28 @@ public class BookingDTO implements Serializable {
         this.room = room;
     }
 
-    public Date getCheckIn() {
+    public String getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(String checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
+    public String getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(String checkOut) {
         this.checkOut = checkOut;
     }
 
-    public Date getReatedAt() {
-        return reatedAt;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setReatedAt(Date reatedAt) {
-        this.reatedAt = reatedAt;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
     public boolean isBreakfastIncluded() {
@@ -88,5 +94,41 @@ public class BookingDTO implements Serializable {
 
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    public Date getCheckInDateConverted() throws ParseException {
+        return dateFormat.parse(this.checkIn);
+    }
+
+    public void setCheckInDate(Date date) {
+        this.checkIn = dateFormat.format(date);
+    }
+
+    public Date getCheckOutDateConverted() throws ParseException {
+        return dateFormat.parse(this.checkOut);
+    }
+
+    public void setCheckOutInDate(Date date) {
+        this.checkOut = dateFormat.format(date);
+    }
+
+    public Date getCreatedAtDateConverted() throws ParseException {
+        return dateFormat.parse(this.createdAt);
+    }
+
+    public void setCreatedAtInDate(Date date) {
+        this.createdAt = dateFormat.format(date);
+    }
+
+    public static SimpleDateFormat getDateFormat() {
+        return dateFormat;
+    }
+
+    public UserNewDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserNewDTO user) {
+        this.user = user;
     }
 }

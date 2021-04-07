@@ -5,13 +5,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class DetailPaymentBookingResponseDTO implements Serializable {
+public class DetailPaymentBookingRequestDTO implements Serializable {
     private static final SimpleDateFormat dateFormat
             = new SimpleDateFormat("yyyy-MM-dd");
 
     private Long id;
-    private BookingDTO booking;
-    private String cheatedAt;
+    private Long idBooking;
+    private String createdAt;
     private String card;
     private String cardNumber;
 
@@ -23,20 +23,20 @@ public class DetailPaymentBookingResponseDTO implements Serializable {
         this.id = id;
     }
 
-    public BookingDTO getBooking() {
-        return booking;
+    public Long getIdBooking() {
+        return idBooking;
     }
 
-    public void setBooking(BookingDTO booking) {
-        this.booking = booking;
+    public void setIdBooking(Long idBooking) {
+        this.idBooking = idBooking;
     }
 
-    public String getCheatedAt() {
-        return cheatedAt;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCheatedAt(String cheatedAt) {
-        this.cheatedAt = cheatedAt;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
     public String getCard() {
@@ -55,12 +55,8 @@ public class DetailPaymentBookingResponseDTO implements Serializable {
         this.cardNumber = cardNumber;
     }
 
-    public Date getCheckInDateConverted() throws ParseException {
-        return dateFormat.parse(this.cheatedAt);
-    }
-
-    public void setCheckInDate(Date date) {
-        this.cheatedAt = dateFormat.format(date);
+    public Date getCreatedAtDateConverted() throws ParseException {
+        return dateFormat.parse(this.createdAt);
     }
 
 }

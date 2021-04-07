@@ -8,6 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * @author Julito
  */
 public interface IUserService extends UserDetailsService {
-    public User create(User user);
+    User create(User user);
 
 }

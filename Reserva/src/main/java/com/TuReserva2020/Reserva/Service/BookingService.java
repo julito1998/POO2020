@@ -1,8 +1,11 @@
 package com.TuReserva2020.Reserva.Service;
 
 import com.TuReserva2020.Reserva.Model.Booking;
+import com.TuReserva2020.Reserva.Model.Cancellation;
+import com.TuReserva2020.Reserva.Model.Payment;
 import com.TuReserva2020.Reserva.Model.Room;
 import com.TuReserva2020.Reserva.Repository.BookingRepo;
+import com.TuReserva2020.Reserva.Repository.CancellationRepo;
 import com.TuReserva2020.Reserva.Repository.PaymentRepo;
 import com.TuReserva2020.Reserva.Repository.RoomRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +20,13 @@ public class BookingService implements IBookingService {
     private BookingRepo bookingRepo;
 
     @Autowired
-    private RoomRepo roomRepo;
+    private PaymentRepo paymentRepo;
 
     @Autowired
-    private PaymentRepo paymentRepo;
+    private CancellationRepo cancellationRepo;
+
+    @Autowired
+    private RoomRepo roomRepo;
 
     @Override
     public Booking newBooking(Booking booking) throws Exception {
@@ -60,7 +66,6 @@ public class BookingService implements IBookingService {
     @Override
     public ArrayList<Booking> listBooking() throws Exception{
 
-
         List bookings = bookingRepo.findAll();
 
       return (ArrayList<Booking>) bookings;
@@ -74,15 +79,17 @@ public class BookingService implements IBookingService {
         return bookings;
     }
 
+
     @Override
     public Optional<Booking> findById(Long id) {
         return bookingRepo.findById(id);
     }
 
-
     //Metodo para eliminar reserva
-    public void deleteBooking(Long id, Date check_in) throws Exception {
+    public void cancelBooking(Long id, Date check_in) throws Exception {
         Calendar cal_check_in = null;
+        Date fechaDateActual = new Date();
+        int milisecondsByDay = 86400000;
         try {
             cal_check_in=Calendar.getInstance();
             cal_check_in.setTime(check_in);
@@ -91,20 +98,24 @@ public class BookingService implements IBookingService {
             if (fecha_actual.get(Calendar.YEAR) <= cal_check_in.get(Calendar.YEAR) &&
                     fecha_actual.get(Calendar.MONTH) <= cal_check_in.get(Calendar.MONTH) && fecha_actual.get(Calendar.DAY_OF_MONTH) < cal_check_in.get(Calendar.DAY_OF_MONTH))
             {
-                if (fecha_actual.get(Calendar.DAY_OF_MONTH) - cal_check_in.get(Calendar.DAY_OF_MONTH) > 2){
+                if (Math.floor ((check_in.getTime()- fechaDateActual.getTime()) / milisecondsByDay) >= 2){
                     Booking booking = bookingRepo.findById(id)
-                            .orElseThrow(() -> new Exception("Booking not Found in delete Booking"));
+                            .orElseThrow(() -> new Exception("Booking not Found in cancel Booking"));
                     //tambien elimino los medios de pago de la reserva
                     paymentRepo.deleteByIdBooking(booking.getId());
-                    bookingRepo.delete(booking);
+                    Cancellation cancellation = new Cancellation();
+                    cancellation.setBooking(booking);
+                    cancellation.setCreatedAt(new Date());
+                    cancellationRepo.save(cancellation);
+                    //bookingRepo.delete(booking);
                 }
                 else{
-                    throw new Exception ("Imposible borrar la reserva con menos de dos dias de anticipación.");
+                    throw new Exception ("Imposible cancelar la reserva con menos de dos dias de anticipación.");
                 }
 
             }
             else{
-                throw new Exception ("Imposible borrar una reserva antigua.");
+                throw new Exception ("Imposible cancelar una reserva antigua.");
             }
         }
         catch (Exception e) {
@@ -112,4 +123,5 @@ public class BookingService implements IBookingService {
         }
 
     }
+
 }

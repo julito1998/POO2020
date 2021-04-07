@@ -9,6 +9,7 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -33,13 +34,16 @@ public class Booking {
     @NotNull
     private Room room;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull
     @Column (name="check_in")
     private Date checkIn;
-    
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column (name="check_out")
     private Date checkOut;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column (name="created_at")
     private Date createdAt;
     

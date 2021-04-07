@@ -89,7 +89,7 @@ public class NewBookingResponseDTO implements Serializable {
         }
 
         public void setCheckOutDate(Date date) {
-            this.checkIn = dateFormat.format(date);
+            this.checkOut = dateFormat.format(date);
         }
 
 }

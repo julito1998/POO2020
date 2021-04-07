@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,7 +31,6 @@ public class User implements UserDetails{
     @NotNull
     private String email;
     
-    
     @Column(name="first_name")
     private String firstName;
     
@@ -38,7 +39,7 @@ public class User implements UserDetails{
 
     @NotNull
     private String password;
-    
+
     @Column(name="birth_date")
     private Date birthDate;
     

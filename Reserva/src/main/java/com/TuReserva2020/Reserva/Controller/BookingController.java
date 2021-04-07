@@ -30,24 +30,6 @@ public class BookingController {
     @Autowired
     private ModelMapper modelMapper;
 
-  /*  @GetMapping("/reserves")
-    private String roomsBookings(Model model){
-        tr {
-            ArrayList<Booking> bookings = serviceBooking.listBooking();
-
-            List<ConfirmBookingRequestDTO> reservesDTO=bookings.stream()
-                    .map(booking -> modelMapper.map(booking, ConfirmBookingRequestDTO.class))
-                    .collect(Collectors.toList());
-
-            model.addAttribute("reserves", reservesDTO);
-            //model.addAttribute("reserves", reserves);
-            return ("bookings/reserves");
-        }catch(Exception e){
-            return ("App/home");
-        }
-    }*/
-
-
     @GetMapping("/availability")
     public String roomsAvailability(Model model){
         model.addAttribute("roomsAvailability", new RoomAvailabilityDTO());
@@ -91,7 +73,7 @@ public class BookingController {
     }
 
 
-    @PostMapping("/new")
+    @PostMapping("/new_reserve")
     public String newBooking(@ModelAttribute NewBookingRequestDTO newBookingRequestDTO,
                              Model model){
         try{
@@ -105,25 +87,26 @@ public class BookingController {
         }catch (Exception e){
                 e.getMessage();
         }
-        return("bookings/new");
+        return("/bookings/new_reserve");
     }
 
-    @PostMapping("/confirm")
+    @PostMapping("/confirm_reserve")
     public String createBooking(@ModelAttribute ConfirmBookingRequestDTO confirmBookingRequestDTO,
                                 Authentication authentication, Model model){
+
         Booking booking = modelMapper.map(confirmBookingRequestDTO, Booking.class);
         booking.setId(null);
         booking.setUser((User)authentication.getPrincipal());
+
         try {
-            serviceBooking.newBooking(booking);
-            model.addAttribute("checkIn", confirmBookingRequestDTO.getCheckIn());
-            return ("bookings/confirm");
+            booking=serviceBooking.newBooking(booking);
+            model.addAttribute("id_booking", booking.getId());
+            model.addAttribute("error", null);
         }
         catch (Exception e){
-            model.addAttribute("checkIn", null);
             model.addAttribute("error", e.getMessage());
-            return ("bookings/confirm");
         }
+        return ("bookings/confirm_reserve");
     }
 
     @GetMapping("/reserves")
@@ -131,20 +114,35 @@ public class BookingController {
         User sessionUser = (User)authentication.getPrincipal();
         try {
             List<Booking> booking = serviceBooking.findBookingByIdUser(sessionUser.getId());
-            model.addAttribute("reserves", booking);
+            List<BookingDTO> bookingDTO=booking.stream()
+                    .map(book -> modelMapper.map(book, BookingDTO.class))
+                    .collect(Collectors.toList());
+
+
+            bookingDTO.stream().forEach(b ->{
+                b.setCheckInDate((serviceBooking.findById(b.getId())).get().getCheckIn());
+                b.setCheckOutInDate((serviceBooking.findById(b.getId())).get().getCheckOut());
+                b.setCreatedAtInDate((serviceBooking.findById(b.getId())).get().getCreatedAt());
+                b.setCost(Math.round(b.getCost() * 100) / 100d);
+            });
+
+
+            model.addAttribute("reserves", bookingDTO);
             return ("bookings/reserves");
         }catch(Exception e){
             return ("redirect:/home");
         }
     }
 
-    /*@GetMapping("/cancel_reserves")
-    public String bookingsToCancel(Model model, Authentication authentication){
-        roomsBookings(model,authentication);
+    @GetMapping("/cancel_reserves")
+    public String bookingsToCancel(@RequestParam (value = "id") Long id,Model model){
+        Booking reserve=serviceBooking.findById(id).get();
+        BookingDTO bookingDTO = modelMapper.map(reserve, BookingDTO.class);
+        model.addAttribute("reserve", bookingDTO);
         return("bookings/cancel_reserves");
-    }*/
+    }
 
-    @PostMapping("/cancel_reserves")
+    /*PostMapping("/cancel_reserves")
     public String cancelBooking(@ModelAttribute Booking reserve, Model model) {
         try {
             Booking booking = serviceBooking.findById(reserve.getId()).get();
@@ -153,31 +151,36 @@ public class BookingController {
         } catch (Exception e) {
             return ("redirect:/bookings/reserves");
         }
-    }
+    }*/
 
-    @PostMapping("/delete_reserves")
-    public String deleteBook(@ModelAttribute DeleteBookingDTO deleteBookingRequestDTO, Model model){
+
+    @PostMapping("/cancel_reserves")
+    public String cancelBooking(@ModelAttribute DeleteBookingDTO deleteBookingRequestDTO, Model model){
         try {
             Booking booking = modelMapper.map(deleteBookingRequestDTO, Booking.class);
             booking.setCheckIn(deleteBookingRequestDTO.getCheckInDateConverted());
-            serviceBooking.deleteBooking(booking.getId(), booking.getCheckIn());
+            serviceBooking.cancelBooking(booking.getId(), booking.getCheckIn());
             model.addAttribute("error", null);
-            return ("bookings/confirm_delete_reserves");
         }catch(Exception e){
             model.addAttribute("error", e.getMessage());
-            return ("bookings/confirm_delete_reserves");
         }
+        return ("bookings/confirm_cancel_reserves");
     }
+
     @GetMapping("/detail_reserves")
-    public String detailBooking(@ModelAttribute Booking reserve,Model model){
+    public String detailBooking(@RequestParam (value = "id") Long id,Model model){
         try{
-            reserve=serviceBooking.findById(reserve.getId()).get();
-            model.addAttribute("reserve", reserve);
-            return ("bookings/detail_reserves");
+            Booking reserve=serviceBooking.findById(id).get();
+            BookingDTO bookingDTO = modelMapper.map(reserve, BookingDTO.class);
+            bookingDTO.setCheckOutInDate(reserve.getCheckOut());
+            bookingDTO.setCreatedAtInDate(reserve.getCreatedAt());
+            bookingDTO.setCheckInDate(reserve.getCheckIn());
+            bookingDTO.setCost(Math.round(bookingDTO.getCost() * 100) / 100d);
+            model.addAttribute("reserve", bookingDTO);
         }catch (Exception e){
             model.addAttribute("error",e.getMessage());
-            return ("bookings/detail_reserves");
         }
+        return ("bookings/detail_reserves");
     }
 
     /*@PostMapping("/cancel_reserves")
