@@ -1,5 +1,5 @@
 a:hover{
-    background-color: rgb(230, 255, 255) !important;
+    background-color: rgb(150, 255, 255) !important;
 }
 
 a{
@@ -26,7 +26,7 @@ a{
     margin: 0%;
     padding: .5rem 1rem;
     display: block;
-    background-color: rgb(230, 255, 255) !important;
+    background-color: rgb(150, 255, 255) !important;
     height: 7vh;
     flex: 1 1 auto;
 }

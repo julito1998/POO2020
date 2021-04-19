@@ -5,7 +5,7 @@ a{
 
 
 a:hover{
-    background-color: rgb(230, 255, 255) !important;
+    background-color: rgb(150, 255, 255) !important;
 }
 
 .nav-link{
@@ -17,7 +17,7 @@ a:hover{
     margin: 0px 10px 0px 0px;
     padding: .5rem 1rem;
     display: block;
-    background-color: rgb(230, 255, 255) !important;
+    background-color: rgb(150, 255, 255) !important;
 }
 .nav-link-active:hover{
     text-decoration: none;

@@ -9,8 +9,11 @@ import com.TuReserva2020.Reserva.Repository.CancellationRepo;
 import com.TuReserva2020.Reserva.Repository.PaymentRepo;
 import com.TuReserva2020.Reserva.Repository.RoomRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.support.ScheduledMethodRunnable;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Method;
 import java.util.*;
 
 @Service
@@ -27,6 +30,9 @@ public class BookingService implements IBookingService {
 
     @Autowired
     private RoomRepo roomRepo;
+
+    //esta es una clase, se utiliza cada 24hs
+
 
     @Override
     public Booking newBooking(Booking booking) throws Exception {
@@ -46,9 +52,9 @@ public class BookingService implements IBookingService {
 
         booking.setCreatedAt(new Date());
 
-        if(booking.getCheckIn().before(new Date())){
+        /*if(booking.getCheckIn().before(new Date())){
             throw new Exception ("La fecha de check in es anterior a la fecha actual");
-        }
+        }*/
         if (booking.getCheckIn().after(booking.getCheckOut())) {
             throw new Exception ("la fecha de check in es posterior a la de check out");
         }
@@ -86,6 +92,7 @@ public class BookingService implements IBookingService {
     }
 
     //Metodo para eliminar reserva
+    @Override
     public void cancelBooking(Long id, Date check_in) throws Exception {
         Calendar cal_check_in = null;
         Date fechaDateActual = new Date();
@@ -122,6 +129,45 @@ public class BookingService implements IBookingService {
             throw new Exception (e.getMessage());
         }
 
+    }
+
+    @Override
+    @Scheduled(fixedDelay = 86400000L)
+    public void cancelBookingTemp() throws InterruptedException {
+        Calendar calCheckIn = Calendar.getInstance();
+        Calendar fechaActual = Calendar.getInstance();
+        Date fechaDateActual = new Date();
+        int milisecondsByDay = 86400000;
+
+        try {
+            //recorro todas las reservas que no estan canceladas
+            bookingRepo.findBookingNotInCancellation().stream().forEach(b -> {
+                calCheckIn.setTime(b.getCheckIn());
+                //si la fecha de reserva es del mismo año o mayor, del mismo mes o mayor y el dia de la check_in es menor al dia actual
+                /**
+                 * if (fechaActual.get(Calendar.YEAR) <= calCheckIn.get(Calendar.YEAR) &&
+                 * fechaActual.get(Calendar.MONTH) <= calCheckIn.get(Calendar.MONTH) && fechaActual.get(Calendar.DAY_OF_MONTH) > calCheckIn.get(Calendar.DAY_OF_MONTH)) {
+                 **/
+                //si la diferencia entra la fecha actual y la fecha de check_in es mayor o igual a 2 se cancela la reserva
+                if (Math.floor((fechaDateActual.getTime() - b.getCheckIn().getTime()) / milisecondsByDay) >= 2) {
+                    Booking booking = bookingRepo.findById(b.getId()).get();
+                    //tambien elimino los medios de pago de la reserva, si los hubiera, si no los hubiera no hay problema.
+                    paymentRepo.deleteByIdBooking(booking.getId());
+                    Cancellation cancellation = new Cancellation();
+                    cancellation.setBooking(booking);
+                    cancellation.setCreatedAt(new Date());
+                    cancellationRepo.save(cancellation);
+                }
+                else {
+                    System.out.println("No fue eliminada");
+                }
+                //}
+            });
+
+
+        } catch (Exception e) {
+
+        }
     }
 
 }

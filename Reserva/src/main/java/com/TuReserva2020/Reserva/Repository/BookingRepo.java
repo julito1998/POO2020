@@ -15,9 +15,8 @@ public interface BookingRepo extends JpaRepository<Booking,Long> {
     List<Booking> findAll();
 
 
-    @Query("select b from Booking b WHERE b.id = " +
-            "(select max(b.id) from Booking b where b.user.id = :user_id)")
-            Booking findLastBookingByUserId(@Param("user_id") Long user_id);
+    @Query("SELECT b FROM Booking b WHERE b NOT IN (SELECT c.booking FROM Cancellation c)")
+    List<Booking> findBookingNotInCancellation();
 
 
     @Query("select b from Booking b where b.user.id = :user_id and b not in " +

@@ -13,7 +13,7 @@ body{
     font-family: 'Roboto', sans-serif;
     background-color: white;
     margin: 0px;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80');
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1529539795054-3c162aab037a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -74,7 +74,7 @@ a{
 }
 
 a:hover{
-    background-color: rgb(230, 255, 255) !important;
+    background-color: rgb(150, 255, 255) !important;
 }
 
 .nav-link{
@@ -85,7 +85,7 @@ a:hover{
     margin: 0px 10px 0px 0px;
     padding: .5rem 1rem;
     display: block;
-    background-color: rgb(230, 255, 255) !important;
+    background-color: rgb(150, 255, 255) !important;
 }
 .nav-link-active:hover{
     text-decoration: none;

@@ -23,12 +23,12 @@
 <div class="container-fluid" style="text-align: center">
     <div th:if="${error == null}">
         <h2>Su pago fue registrado. Lo esperamos la Fecha <span th:text="${checkIn}"></span></h2>
-        <a href="" id="realizarPago" th:href="@{/bookings/reserves}">Ver reservas</a>
+        <a href="" id="hrefConfirmPayment" th:href="@{/bookings/reserves}">Ver reservas</a>
     </div>
 
     <div th:unless="${error == null}">
         <h2>Su pago no fue registrado debido al siguiente problema: <span th:text="${error}"></span></h2>
-        <a href="" th:href="@{/payments/payment(id_booking=${id_booking})}" id="reIntentar">Intentar Nuevamente</a>
+        <a href="" th:href="@{/payments/payment(id_booking=${id_booking})}" id="hrefReintentar">Intentar Nuevamente</a>
     </div>
 </div>
 

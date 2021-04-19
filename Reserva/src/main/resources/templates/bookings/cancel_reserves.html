@@ -26,11 +26,12 @@
     <title>Reserves</title>
 </head>
 <body>
-<div class="nav-cointaner">
+<!--<div class="nav-cointaner">
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <a class="nav-link" href="" th:href="@{/home}">Home</a><a class="nav-link" href="#" th:href="@{/bookings/reserves}">Reservas</a><a class="nav-link-active" href="#" th:href="@{/bookings/cancel_reserves}">Cancelar Reservas</a><a class="nav-link" href="#" th:href="@{/bookings/availability}">Disponibilidad de habitaciones</a><a class="nav-link" href="#" th:href="@{/logout}">Cerrar Sesion</a>
+        <a class="nav-link" href="" th:href="@{/home}">Home</a><a class="nav-link" href="#" th:href="@{/bookings/reserves}">Reservas</a><a class="nav-link" href="#" th:href="@{/bookings/availability}">Disponibilidad de habitaciones</a><a class="nav-link" href="#" th:href="@{/logout}">Cerrar Sesion</a>
     </nav>
-</div>
+</div>-->
+
 <div class="all-container">
             <div class="all-labels">
                 <p>
@@ -101,8 +102,8 @@
             <form action="#" th:action="@{/bookings/cancel_reserves}" th:object="${reserve}" method="POST" class="frm-cancel_reserves" onsubmit="return alerta();">
                     <input type="hidden" th:name="checkIn" th:value="${reserve.checkIn}"/>
                     <input type="hidden" th:name="id" th:value="${reserve.id}"/>
-                    <button id="cancelReserve" type="submit" name="cancel" onclick="alertCancelReserve();">Cancel Reserve</button>
-                    <a id="goBack" href="" th:href="@{/bookings/reserves}">Go Back</a>
+                    <button id="btnCancelReserve" type="submit" name="cancel" onclick="alertCancelReserve();">Cancel Reserve</button>
+                    <a id="hrefGoBack" href="" th:href="@{/bookings/reserves}">Go Back</a>
             </form>
 </div>
 </body>
