@@ -49,7 +49,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      protected void configure(HttpSecurity http) throws Exception {
 
         //antMatchers todas estas rutas hacen referencia a la ruta resources/templates ("/", "/App/principal" ....) o resources/static ("/js/**", "/css/**")
-        http.authorizeRequests().antMatchers("/","/js/**","/css/**","/users","/users/login","/users/new","/principal", "/bookings/availabilityPublic","/bookings/payment").permitAll()
+        http.authorizeRequests().antMatchers("/","/commonJS/**","/css/**","/users","/users/login","/users/new","/principal", "/bookings/availabilityPublic","/bookings/payment").permitAll()
                 .antMatchers(HttpMethod.POST,"/users").permitAll()
                 .antMatchers("/**").hasRole("USER").and().formLogin()
                 //referencia al metodo get

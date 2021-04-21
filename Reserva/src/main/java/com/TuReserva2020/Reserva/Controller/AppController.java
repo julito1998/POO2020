@@ -18,5 +18,9 @@ public class AppController {
         return "App/principal";
     }
 
+    @GetMapping(value="/error", produces="application/json; charset=UTF-8")
+    public String error(){
+        return "error";
+    }
 
 }
