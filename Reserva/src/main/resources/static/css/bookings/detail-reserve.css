@@ -18,7 +18,7 @@ body{
     display: none;
 }
 .form-check input[type=checkbox] + label {
-    cursor: pointer;
+    cursor: default;
 }
 
 .form-check label:before{

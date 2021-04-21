@@ -21,13 +21,13 @@
 
 <div class="container-fluid" style="text-align: center">
     <div th:if="${error == null}">
-        <h2>Su reserva fue cancelada!</h2>
+        <h2>Your reservation was canceled!</h2>
         <a href="" th:href="@{/bookings/reserves}" id="hrefGoBack">Go Back</a>
     </div>
 
     <div th:unless="${error == null}">
-        <h2>Su reserva no fue cancelada debido al siguiente problema: <span th:text="${error}"></span></h2>
-        <a href="" th:href="@{/bookings/reserves}" id="hrefReintentar">Intentar Nuevamente</a>
+        <h2>Your reservation was not canceled due to the following problem: <span th:text="${error}"></span></h2>
+        <a href="" th:href="@{/bookings/reserves}" id="hrefReintentar">Try again</a>
     </div>
 
 </div>

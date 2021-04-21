@@ -22,13 +22,13 @@
 
 <div class="container-fluid" style="text-align: center">
     <div th:if="${error == null}">
-        <h2>Su datos se registraron exitosamente, proceda a realizar el pago para finalizar su reserva.</h2>
-        <a href="" id="hrefRealizarPago" th:href="@{/payments/payment(id_booking=${id_booking})}">Completar el pago</a>
+        <h2>Your data was successfully registered, proceed to make the payment to finalize your reservation.</h2>
+        <a href="" id="hrefRealizarPago" th:href="@{/payments/payment(id_booking=${id_booking})}">Complete payment</a>
     </div>
 
     <div th:unless="${error == null}">
-        <h2>Sus datos no fueron registrados debido al siguiente problema: <span th:text="${error}"></span></h2>
-        <a href="" th:href="@{/bookings/availability}" id="hrefReIntentar">Intente Nuevamente</a>
+        <h2>Your reservation was not canceled due to the following problem: <span th:text="${error}"></span></h2>
+        <a href="" th:href="@{/bookings/availability}" id="hrefReIntentar">Try again</a>
     </div>
 </div>
 

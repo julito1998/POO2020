@@ -48,7 +48,7 @@ public class UserService implements UserDetailsService, IUserService{
            user=repo.save(user);
        }
         else{
-            throw new UsernameNotFoundException("El mail : "+ user.getEmail() +" ya esta asociado a un usuario. Intente Nuevamente con otro Usuaurio");
+            throw new UsernameNotFoundException("The email : "+ user.getEmail() +" it is already associated with a user. Try Again with another User");
         }
        return user;
     }

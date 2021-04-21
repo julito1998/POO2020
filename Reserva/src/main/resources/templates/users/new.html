@@ -20,42 +20,42 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="nav-link" href="#" th:href="@{/}">Inicio</a>
-    <a class="nav-link" href="#" th:href="@{/bookings/availabilityPublic}">Disponibilidad</a>
-    <a class="nav-link" href="#" th:href="@{/users/login}">Iniciar Sesion</a>
-    <a class="nav-link-active" href="#" th:href="@{#}">Crear cuenta</a>
+    <a class="nav-link" href="#" th:href="@{/bookings/availabilityPublic}">Availability</a>
+    <a class="nav-link" href="#" th:href="@{/users/login}">Sign in</a>
+    <a class="nav-link-active" href="#" th:href="@{#}">Sign up</a>
 </nav>
     <div class="all-container">
 
         <form action="#" th:action="@{/users/new}"  th:object="${user}" method="post" class="frm-registrarse">
-            <h2>Nuevo Usuario:</h2>
+            <h2>Sign up:</h2>
 
             <p>
                <label>Email:</label>
-                <input type="email" placeholder="Ingrese su mail" th:field ="*{email}"/>
+                <input type="email" th:required="required" placeholder="Enter your email" th:field ="*{email}"/>
             </p>
             <p>
-                <label>Contraseña:</label>
-                <input id="password" type="password" autocomplete="off" placeholder="Ingrese su contraseña" th:field="*{password}"/>
+                <label>Password:</label>
+                <input id="password" th:required="required" type="password" autocomplete="off" placeholder="Enter your password" th:field="*{password}"/>
             </p>
             <p>
-                <label>Nombre:</label>
-                <input id="firstName" type="text" autocomplete="off" placeholder="Ingrese su nombre" th:field="*{firstName}"/>
+                <label>First name:</label>
+                <input id="firstName" th:required="required" type="text" autocomplete="off" placeholder="Enter your first name" th:field="*{firstName}"/>
             </p>
             <p>
-                <label>Apellido:</label>
-                <input id="lastName"  type="text" autocomplete="off" placeholder="Ingrese su apellido" th:field="*{lastName}"/>
+                <label>Last name:</label>
+                <input id="lastName" th:required="required" type="text" autocomplete="off" placeholder="Enter your last name" th:field="*{lastName}"/>
             </p>
             <p>
-                <label>Fecha de Nacimiento:</label>
-                <input id="birthDate" type="date" autocomplete="off" placeholder="Ingrese su fecha de nacimiento" th:field="*{birthDate}"/>
+                <label>Birth date:</label>
+                <input id="birthDate" th:required="required" type="date" autocomplete="off" placeholder="Enter your birth date" th:field="*{birthDate}"/>
             </p>
             <p>
-                <label>Nacionalidad:</label>
-                <input id="nationality" type="text" autocomplete="off" placeholder="Ingrese su nacionalidad" th:field="*{nationality}"/>
+                <label>Nationality:</label>
+                <input id="nationality" th:required="required" type="text" autocomplete="off" placeholder="Enter your nationality" th:field="*{nationality}"/>
             </p>
 
             <p>
-                <input type="submit" name="submit" value="Registrarse" class="btn-registrarse">
+                <input type="submit" name="submit" value="Register" class="btn-registrarse">
             </p>
 
         </form>

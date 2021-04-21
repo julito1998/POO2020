@@ -34,7 +34,7 @@
             integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
             crossorigin="anonymous"></script>
 
-    <title>Complete su pago</title>
+    <title>complete your payment</title>
 </head>
 
 <body>
@@ -46,25 +46,25 @@
 </div>-->
 
     <div class="all-container">
-        <h1>Confirme su pago </h1>
+        <h1>Confirm payment</h1>
 
 
-        <form action="#" th:action="@{/payments/payment}" th:object="${payment}" method="POST" class="frm-availability" onsubmit="return VerificarCampos()";>
+        <form action="#" th:action="@{/payments/payment}" th:object="${payment}" method="POST" class="frm-availability">
 
-            <label>Nombre tarjeta : </label>
-            <select id="cardTarget" class="form-control" th:field="*{card}">
+            <label>card name : </label>
+            <select id="cardTarget" class="form-control" th:field="*{card}" th:required="required" placeholder="Select credit card" >
 
-                <option value=""> -- Seleccione tarjeta de crédito -- </option>
+                <option value="" > -- Select credit card -- </option>
                 <option th:value="'Tarjeta naranja'" th:text="'Tarjeta naranja'"></option>
                 <option th:value="'Mastercard'" th:text="'Mastercard'"></option>
                 <option th:value="'Visa'" th:text="'Visa'"></option>
 
             </select>
 
-            <label>Numero de tarjeta : </label>
-            <input id="cardNumber"  type="text" th:field="*{cardNumber}"/>
+            <label>Card number: </label>
+            <input th:required="required" id="cardNumber" placeholder="Enter card number" type="text" th:field="*{cardNumber}"/>
             <input type="hidden" th:name="idBooking" th:value="${payment.getIdBooking()}"/>
-            <button type="submit" name="" id="btnConfirmPayment" onclick="VerificarCampos();">Confirmar pago</button>
+            <button type="submit" name="" id="btnConfirmPayment">Confirm</button>
         </form>
     </div>
 

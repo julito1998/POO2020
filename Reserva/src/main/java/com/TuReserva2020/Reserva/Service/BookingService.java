@@ -2,7 +2,6 @@ package com.TuReserva2020.Reserva.Service;
 
 import com.TuReserva2020.Reserva.Model.Booking;
 import com.TuReserva2020.Reserva.Model.Cancellation;
-import com.TuReserva2020.Reserva.Model.Payment;
 import com.TuReserva2020.Reserva.Model.Room;
 import com.TuReserva2020.Reserva.Repository.BookingRepo;
 import com.TuReserva2020.Reserva.Repository.CancellationRepo;
@@ -10,10 +9,8 @@ import com.TuReserva2020.Reserva.Repository.PaymentRepo;
 import com.TuReserva2020.Reserva.Repository.RoomRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.scheduling.support.ScheduledMethodRunnable;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Method;
 import java.util.*;
 
 @Service
@@ -56,7 +53,7 @@ public class BookingService implements IBookingService {
             throw new Exception ("La fecha de check in es anterior a la fecha actual");
         }*/
         if (booking.getCheckIn().after(booking.getCheckOut())) {
-            throw new Exception ("la fecha de check in es posterior a la de check out");
+            throw new Exception ("the check in date is after the check out date");
         }
 
         Room r =roomRepo.isRoomAvailable(booking.getCheckIn(), booking.getCheckOut(), booking.getRoom().getId());
@@ -65,7 +62,7 @@ public class BookingService implements IBookingService {
             return bookingRepo.save(booking);
         }
         else{
-            throw new Exception ("La habitación ya esta reservada o no se encuentra disponible");
+            throw new Exception ("The room is already reserved or is not available");
         }
     }
 
@@ -117,12 +114,12 @@ public class BookingService implements IBookingService {
                     //bookingRepo.delete(booking);
                 }
                 else{
-                    throw new Exception ("Imposible cancelar la reserva con menos de dos dias de anticipación.");
+                    throw new Exception ("It is impossible to cancel the reservation with less than two days in advance.");
                 }
 
             }
             else{
-                throw new Exception ("Imposible cancelar una reserva antigua.");
+                throw new Exception ("Unable to cancel an old reservation.");
             }
         }
         catch (Exception e) {
@@ -159,7 +156,7 @@ public class BookingService implements IBookingService {
                     cancellationRepo.save(cancellation);
                 }
                 else {
-                    System.out.println("No fue eliminada");
+                    System.out.println("It was not eliminated");
                 }
                 //}
             });

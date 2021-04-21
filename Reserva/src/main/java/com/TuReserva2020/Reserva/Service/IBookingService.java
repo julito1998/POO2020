@@ -1,9 +1,7 @@
 package com.TuReserva2020.Reserva.Service;
 
 import com.TuReserva2020.Reserva.Model.Booking;
-import com.TuReserva2020.Reserva.Model.Payment;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

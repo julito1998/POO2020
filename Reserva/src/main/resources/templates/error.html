@@ -3,14 +3,63 @@
 <head>
      <meta charset="UTF-8">
     <title>Error </title>
+    <link rel="stylesheet" th:href= "@{/css/error.css}">
+    <script th:href="@{/commonJS/error.js}"></script>
     <link rel="shortcut icon"  type="image/x-icon" href="https://favicon-generator.org/favicon-generator/htdocs/favicons/2014-12-04/6759ac3cc72335218b00de0bbf9cec47.ico">
+    <!--CSS BOOTSTRAP -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css}" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!--JS BOOTSTRAP -->
+    <script th:href="@{https://code.jquery.com/jquery-3.5.1.slim.min.js}" src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script th:href="@{https://cdn.jsdelivr.net/npm/bootstrap4.5.3/dist/js/bootstrap.bundle.min.js}" src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <!--JQUERY BOOTSTRAP-->
+    <script th:href="@{https://code.jquery.com/jquery-3.5.1.slim.min.js}" src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script th:href="@{https://cdn.jsdelivr.net/npm/popper.js1.16.1/dist/umd/popper.min.js}" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script th:href="@{https://cdn.jsdelivr.net/npm/bootstrap4.5.3/dist/js/bootstrap.min.js}" src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
 </head>
 <body>
-    <H1 id="error">Error</H1>
+
+<div class="box">
+    <div class="box__ghost">
+        <div class="symbol"></div>
+        <div class="symbol"></div>
+        <div class="symbol"></div>
+        <div class="symbol"></div>
+        <div class="symbol"></div>
+        <div class="symbol"></div>
+
+        <div class="box__ghost-container">
+            <div class="box__ghost-eyes">
+                <div class="box__eye-left"></div>
+                <div class="box__eye-right"></div>
+            </div>
+            <div class="box__ghost-bottom">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="box__ghost-shadow"></div>
+    </div>
+
+    <div class="box__description">
+        <div class="box__description-container">
+            <div class="box__description-title">Whoops!</div>
+            <div class="box__description-text">It seems like we couldn't find the page you were looking for</div>
+        </div>
+
+        <a href="https://codepen.io/diogo_ml_gomes/" target="_blank" class="box__button">Go back</a>
+
+    </div>
+
+</div>
+   <!--<H1 id="error">Error</H1>
     <p>
         <h2>PAGE NOT FOUND</h2>
     </p>
     <label>Error:</label>
-    <span th:text="${error}"></span>
+    <span th:text="${error}"></span>-->
 </body>
 </html>

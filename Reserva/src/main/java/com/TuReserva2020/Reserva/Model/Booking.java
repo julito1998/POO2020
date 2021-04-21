@@ -1,10 +1,8 @@
 package com.TuReserva2020.Reserva.Model;
 
 import com.sun.istack.NotNull;
-import java.io.Serializable;
-import java.util.ArrayList;
+
 import java.util.Date;
-import java.util.List;
 import javax.persistence.*;
 
 import org.hibernate.annotations.OnDelete;

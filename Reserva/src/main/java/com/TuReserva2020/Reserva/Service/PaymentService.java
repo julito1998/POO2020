@@ -1,7 +1,6 @@
 package com.TuReserva2020.Reserva.Service;
 
 import com.TuReserva2020.Reserva.Model.Payment;
-import com.TuReserva2020.Reserva.Model.Room;
 import com.TuReserva2020.Reserva.Repository.PaymentRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +29,7 @@ public class PaymentService implements  IPaymentService{
             payment.setCreatedAt(new Date());
             payment=paymentRepo.save(payment);
             if (payment == null){
-                throw new Exception("Error al guardar el pago.");
+                throw new Exception("Error saving payment.");
             }
         }catch (Exception e){
             throw new Exception(e.getMessage());

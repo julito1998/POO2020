@@ -11,7 +11,7 @@ body{
     font-family: 'Roboto', sans-serif;
     background-color:white;
     margin: 0;
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1509822929063-6b6cfc9b42f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80');
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1610569171388-dd6e3d27e340?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80');
     background-size: cover;
     background-position: center;
 }
@@ -20,7 +20,7 @@ body{
     align-items: center;
     color: white;
     text-align: right;
-    margin: 40px;
+    margin: 0px;
 }
 
 .frm-registrarse{
@@ -64,7 +64,7 @@ a{
 }
 
 a:hover{
-    background-color: rgb(230, 255, 255) !important;
+    background-color: rgb(150, 255, 255) !important;
 }
 
 .nav-link{
@@ -75,7 +75,7 @@ a:hover{
     margin: 0px 10px 0px 0px;
     padding: .5rem 1rem;
     display: block;
-    background-color: rgb(230, 255, 255) !important;
+    background-color: rgb(150, 255, 255) !important;
 }
 .nav-link-active:hover{
     text-decoration: none;

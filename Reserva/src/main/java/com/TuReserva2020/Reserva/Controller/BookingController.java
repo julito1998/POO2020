@@ -118,7 +118,6 @@ public class BookingController {
                     .map(book -> modelMapper.map(book, BookingDTO.class))
                     .collect(Collectors.toList());
 
-
             bookingDTO.stream().forEach(b ->{
                 b.setCheckInDate((serviceBooking.findById(b.getId())).get().getCheckIn());
                 b.setCheckOutInDate((serviceBooking.findById(b.getId())).get().getCheckOut());
